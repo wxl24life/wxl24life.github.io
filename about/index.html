@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="kafka bigdata,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="NOTE: Version 1.0.1 Apache Kafka is a distributed streaming platform (分布式流处理平台). What does distributed streaming platform mean? A streaming platform has 3 key capabilities:  pub &amp;amp; sub to streams o">
-<meta name="keywords" content="kafka bigdata">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Kafka Introduction">
-<meta property="og:url" content="http://yoursite.com/2019/04/10/helloworld-md/index.html">
+<meta name="description" content="NameXiaolong Wang LocationBeijing">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About me">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="NOTE: Version 1.0.1 Apache Kafka is a distributed streaming platform (分布式流处理平台). What does distributed streaming platform mean? A streaming platform has 3 key capabilities:  pub &amp;amp; sub to streams o">
+<meta property="og:description" content="NameXiaolong Wang LocationBeijing">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-10T11:16:15.000Z">
+<meta property="og:updated_time" content="2019-04-10T14:54:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kafka Introduction">
-<meta name="twitter:description" content="NOTE: Version 1.0.1 Apache Kafka is a distributed streaming platform (分布式流处理平台). What does distributed streaming platform mean? A streaming platform has 3 key capabilities:  pub &amp;amp; sub to streams o">
+<meta name="twitter:title" content="About me">
+<meta name="twitter:description" content="NameXiaolong Wang LocationBeijing">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/10/helloworld-md/">
+  <link rel="canonical" href="http://yoursite.com/about/">
 
 
 
 
 
-  <title>Kafka Introduction | wxl24life's blog</title>
+  <title>About me | wxl24life's blog</title>
   
 
 
@@ -289,189 +288,35 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/helloworld-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wxl24life">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/final.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wxl24life's blog">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Kafka Introduction</h1>
-        
+	<h1 class="post-title" itemprop="name headline">About me</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T18:56:29+08:00">
-                2019-04-10
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <p><strong>NOTE</strong>: <em>Version 1.0.1</em></p>
-<p>Apache Kafka is a <em>distributed streaming platform</em> (分布式流处理平台).</p>
-<p>What does <em>distributed streaming platform</em> mean?</p>
-<p>A streaming platform has 3 key capabilities:</p>
-<ul>
-<li><strong>pub &amp; sub</strong> to streams of records (message queue or enterprise messaging system).</li>
-<li><strong>store</strong> streams of records <em>in a fault-tolerant way</em>.</li>
-<li><strong>process</strong> streams of records <em>as they occur</em>.</li>
-</ul>
-<p>Kafka’s 2 broad classes of application (两大类应用场景):</p>
-<ul>
-<li><em>real-time streaming data pipelines</em> (实时流数据通道), reliably get data between systems or applications (能够在系统或者应用之间进行可靠的数据传输）</li>
-<li><em>real-time streaming application</em> (实时流处理应用程序), transform or react to the streams of data (对流数据进行转换或者响应式操作)</li>
-</ul>
-<h2 id="Kafka-in-Detail"><a href="#Kafka-in-Detail" class="headerlink" title="Kafka in Detail"></a>Kafka in Detail</h2><p>Some concepts first:</p>
-<ul>
-<li>run as a <strong>cluster</strong> on 1 or more servers that can span multiple datacenters.</li>
-<li>store streams of records in categories called <strong>topics</strong>.</li>
-<li>each record contains of <em>a key, a value &amp; a timestamp</em>.</li>
-</ul>
-<p>4 core APIs:</p>
-<ul>
-<li>Producer API: <strong>publish</strong> a stream of records to one or more Kafka topics</li>
-<li>Consumer API:  <strong>subscribe</strong> to one or more topics and process the stream of records </li>
-<li>Streams API: allows an application to act as <strong>a stream processor</strong>, consuming an input stream from one or more topics and producing an output stream to one or more output topics, effectively transforming the input streams to output streams</li>
-<li>Connector API: allows building and running reusable producers or consumers that connect Kafka topics to existing applications or data systems</li>
-</ul>
+      <div class="post-body">
+        
+        
+          <h2 id="Name"><a href="#Name" class="headerlink" title="Name"></a>Name</h2><p>Xiaolong Wang</p>
+<h2 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h2><p>Beijing</p>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/kafka-bigdata/" rel="tag"># kafka bigdata</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" rel="prev" title="通过内存堆栈hprof文件分析Java内存泄露">
-                通过内存堆栈hprof文件分析Java内存泄露 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -602,7 +447,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-in-Detail"><span class="nav-number">1.</span> <span class="nav-text">Kafka in Detail</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Name"><span class="nav-number">1.</span> <span class="nav-text">Name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Location"><span class="nav-number">2.</span> <span class="nav-text">Location</span></a></li></ol></div>
             
 
           </div>

@@ -53,13 +53,13 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -385,7 +385,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  
+                  425
                 </span>
               
 
@@ -484,7 +484,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/helloworld-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/hello-world-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wxl24life">
@@ -503,7 +503,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/helloworld-md/" itemprop="url">Kafka Introduction</a></h1>
+                <a class="post-title-link" href="/2019/04/10/hello-world-md/" itemprop="url">博客开场白</a></h1>
         
 
         <div class="post-meta">
@@ -515,7 +515,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T18:56:29+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T19:41:14+08:00">
                 2019-04-10
               </time>
             
@@ -525,6 +525,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自言自语/" itemprop="url" rel="index">
+                    <span itemprop="name">自言自语</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -547,7 +569,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  
+                  213
                 </span>
               
 
@@ -574,33 +596,12 @@
       
         
           
-            <p><strong>NOTE</strong>: <em>Version 1.0.1</em></p>
-<p>Apache Kafka is a <em>distributed streaming platform</em> (分布式流处理平台).</p>
-<p>What does <em>distributed streaming platform</em> mean?</p>
-<p>A streaming platform has 3 key capabilities:</p>
-<ul>
-<li><strong>pub &amp; sub</strong> to streams of records (message queue or enterprise messaging system).</li>
-<li><strong>store</strong> streams of records <em>in a fault-tolerant way</em>.</li>
-<li><strong>process</strong> streams of records <em>as they occur</em>.</li>
-</ul>
-<p>Kafka’s 2 broad classes of application (两大类应用场景):</p>
-<ul>
-<li><em>real-time streaming data pipelines</em> (实时流数据通道), reliably get data between systems or applications (能够在系统或者应用之间进行可靠的数据传输）</li>
-<li><em>real-time streaming application</em> (实时流处理应用程序), transform or react to the streams of data (对流数据进行转换或者响应式操作)</li>
-</ul>
-<h2 id="Kafka-in-Detail"><a href="#Kafka-in-Detail" class="headerlink" title="Kafka in Detail"></a>Kafka in Detail</h2><p>Some concepts first:</p>
-<ul>
-<li>run as a <strong>cluster</strong> on 1 or more servers that can span multiple datacenters.</li>
-<li>store streams of records in categories called <strong>topics</strong>.</li>
-<li>each record contains of <em>a key, a value &amp; a timestamp</em>.</li>
-</ul>
-<p>4 core APIs:</p>
-<ul>
-<li>Producer API: <strong>publish</strong> a stream of records to one or more Kafka topics</li>
-<li>Consumer API:  <strong>subscribe</strong> to one or more topics and process the stream of records </li>
-<li>Streams API: allows an application to act as <strong>a stream processor</strong>, consuming an input stream from one or more topics and producing an output stream to one or more output topics, effectively transforming the input streams to output streams</li>
-<li>Connector API: allows building and running reusable producers or consumers that connect Kafka topics to existing applications or data systems</li>
-</ul>
+            <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。</p>
+<ol>
+<li><a href="http://wuchong.me/" title="Jark&#39;s  Blog" target="_blank" rel="noopener">Jark’s Blog</a><br> 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主</li>
+<li><a href="https://www.cnblogs.com/trista222/p/8017300.html" target="_blank" rel="noopener">结合hexo在GitHub上搭建个人博客——全过程</a><br> 整体上按照这篇 blog 的步骤走了一遍，架子就搭起来了</li>
+<li><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">【持续更新】最全Hexo博客搭建+主题优化+插件配置+常用操作+错误分析</a><br> 如标题所说，确实非常全面详细，全文很长，可以按照目录或者关键字搜索自己关注的配置介绍</li>
+</ol>
 
           
         
@@ -695,7 +696,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -706,7 +707,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -765,15 +766,6 @@
   </span>
   <span class="author" itemprop="copyrightHolder">wxl24life</span>
 
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count"></span>
   
 </div>
 

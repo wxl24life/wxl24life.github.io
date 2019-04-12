@@ -300,6 +300,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/hexo-notes-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/12/hexo-notes-1/" itemprop="url">hexo blog 操作备忘</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T14:30:14+08:00">
+                2019-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/备忘/" itemprop="url" rel="index">
+                    <span itemprop="name">备忘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  542
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>简单记录下 hexo 的常用操作，以作备忘。</p>
+<p><code>$ hexo server # 以本地模式启动博客站点</code><br>本地模式下，对配置文件和文章 post 的编辑，只要保存就可以通过 localhost:4000 页面看到效果。如果修改保存后未看到效果，考虑清理一下缓存，命令是：<br><code>$ hexo clean</code></p>
+<p><code>$ hexo new draft draft-name # 新建草稿</code><br><code>$ hexo new post post-name # 新建文章</code><br><code>$ hexo generate &amp; hexo deploy # 生成静态文件并推送到 github - 发表文章</code> </p>
+<p>例如，在编写本文时，我首先创建了一篇草稿，用到的命令：<br><code>$ hexo new draft hexo-notes</code><br>该命令会在工程目录的sources/_drafts 下创建一篇草稿。<em>注意：文章（或草稿）名程默认创建为 .md 文件。</em></p>
+<p>如果想直接创建文章，将命令里的 draft 换成 post 即可。</p>
+<p>说一下 draft 和 post 两种文件类型的差异。</p>
+<p>draft 是草稿，属于待发表的状态，对它的所有编辑都不会反映到博客站点上面，所以执行  generate &amp; deploy 命令的目的仅仅是将当前未完成的工作 commit &amp; push 到 github 上面。</p>
+<p>post 是文章，创建完立即可以在博客上面显示出来，如果开着本地 server，对 post 的每一次编辑保存都可以通过刷新页面看到最新效果。如果执行 generate &amp; deploy，文章立即发表，如果文章只写了一半，就很不适合推送到 github。</p>
+<p>draft 完成之后如何变成 post？<br><code>$ hexo publish draft hexo-notes</code></p>
+<p>Last but not least 的一条命令：</p>
+<h2 id="hexo-h-查看命令行帮助"><a href="#hexo-h-查看命令行帮助" class="headerlink" title="$ hexo -h # 查看命令行帮助"></a><code>$ hexo -h # 查看命令行帮助</code></h2><p>以下是从 draft 转到 post 一开始自己想到的操作，经验证不可行。可以忽略。</p>
+<blockquote>
+<p>draft 完成之后如何变成 post，很简单，执行一次 cp 或者 mv 命令即可：<br><code>$ cp source/\_drafts/hexo-notes.md source/\_posts</code></p>
+<p>假设前面执行了 copy，如果想删除 draft，只需要到对应的文件目录下执行 rm 命令：<br><code>$ rm source/\_drafts/hexo-notes.md</code></p>
+<p>删除文章 post 的操作类似。</p>
+<p>如果已经发表过的文章，不希望继续展示，有一个办法，可以将文章 move 到 source/_drafts 目录。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/hexo-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -860,7 +1037,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -882,7 +1059,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

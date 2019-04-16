@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="自言自语,生活日常,">
+  <meta name="keywords" content="Flink,Streamming Process,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="致谢在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。  Jark’s Blog 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主 结合hexo在GitHub上搭建个人博客——全过程 整体上按">
-<meta name="keywords" content="自言自语,生活日常">
+<meta name="description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为">
+<meta name="keywords" content="Flink,Streamming Process">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客开场白">
-<meta property="og:url" content="http://yoursite.com/2019/04/10/hello-world-md/index.html">
+<meta property="og:title" content="对 Flink 任务并行度的理解">
+<meta property="og:url" content="http://yoursite.com/2019/04/15/flink-parallelism-settings-1/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="致谢在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。  Jark’s Blog 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主 结合hexo在GitHub上搭建个人博客——全过程 整体上按">
+<meta property="og:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-11T02:59:23.000Z">
+<meta property="og:updated_time" content="2019-04-16T08:23:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客开场白">
-<meta name="twitter:description" content="致谢在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。  Jark’s Blog 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主 结合hexo在GitHub上搭建个人博客——全过程 整体上按">
+<meta name="twitter:title" content="对 Flink 任务并行度的理解">
+<meta name="twitter:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/10/hello-world-md/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/15/flink-parallelism-settings-1/">
 
 
 
 
 
-  <title>博客开场白 | wxl24life's blog</title>
+  <title>对 Flink 任务并行度的理解 | wxl24life's blog</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/hello-world-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/flink-parallelism-settings-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wxl24life">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">博客开场白</h1>
+          <h1 class="post-title" itemprop="name headline">对 Flink 任务并行度的理解</h1>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T19:41:14+08:00">
-                2019-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T23:39:43+08:00">
+                2019-04-15
               </time>
             
 
@@ -353,8 +353,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自言自语/" itemprop="url" rel="index">
-                    <span itemprop="name">自言自语</span>
+                  <a href="/categories/技术笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">技术笔记</span>
                   </a>
                 </span>
 
@@ -384,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  213
+                  1k
                 </span>
               
 
@@ -409,12 +409,34 @@
       
 
       
-        <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。</p>
+        <p>在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。</p>
+<h2 id="概念1-并行度"><a href="#概念1-并行度" class="headerlink" title="概念1 - 并行度"></a>概念1 - 并行度</h2><p>Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为并行度，本文把任务的并行度也称作算子的并行度。</p>
+<p>Flink 提供了 4 种设置任务并行度的方式：</p>
 <ol>
-<li><a href="http://wuchong.me/" title="Jark&#39;s  Blog" target="_blank" rel="noopener">Jark’s Blog</a><br> 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主</li>
-<li><a href="https://www.cnblogs.com/trista222/p/8017300.html" target="_blank" rel="noopener">结合hexo在GitHub上搭建个人博客——全过程</a><br> 整体上按照这篇 blog 的步骤走了一遍，架子就搭起来了</li>
-<li><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">【持续更新】最全Hexo博客搭建+主题优化+插件配置+常用操作+错误分析</a><br> 如标题所说，确实非常全面详细，全文很长，可以按照目录或者关键字搜索自己关注的配置介绍</li>
+<li>操作算子级别 - 通过 setParallelism() API 设置单个算子的并行度</li>
+<li>执行环境配置 - 通过 API env. setParallelism() 进行全局设置</li>
+<li>client 级别 - 通过 flink run 命令行参数 -p 指定</li>
+<li>系统级别 - 集群的 conf 配置 parallelism.default</li>
 </ol>
+<p>无论哪种方式，所设置的并行度都只适应于单个算子。不同方式的优先级逐次递减（算子级别最高）。</p>
+<p>当使用 Flink 提供的 savepoint 特性时，用户可以在作业启动时按照修改算子并行度的 4 种方式对算子并行度进行调整，但是调整后的数值不能超过初始设置的最大并行度。</p>
+<h2 id="概念2-最大并行度"><a href="#概念2-最大并行度" class="headerlink" title="概念2 - 最大并行度"></a>概念2 - 最大并行度</h2><p><strong>最大并行度</strong>定义了算子在未来可以提升并发能力的上限，这里重点着眼于未来。</p>
+<p>Flink 官方 Production Readiness Checklist 里面建议用户在作业投产之前，在程序里显示地设置算子的最大并行度。</p>
+<h3 id="最大并行度参数一旦设置不可调整（截止到-1-8-版本）"><a href="#最大并行度参数一旦设置不可调整（截止到-1-8-版本）" class="headerlink" title="最大并行度参数一旦设置不可调整（截止到 1.8 版本）"></a>最大并行度参数一旦设置不可调整（截止到 1.8 版本）</h3><p>当作业投产上线之后，如果未来某个时间点任务的执行效率遇到瓶颈，用户希望增加并行度，但是并行度已经达到前期设置的最大并行度，用户会很被动：如果硬要调高最大并行度参数，作业已经保存过的状态或者checkpoint/savepoint 只能丢弃，显然多数情况下这是不可接受的。</p>
+<p>即使未来版本支持调整该参数，目前可以断定的是，在状态非常大的情况下，这种调整会超级耗时，所以还是要避免做这样的调整。</p>
+<h3 id="是不是可以将缺省的最大并行度设置一个较高的值？"><a href="#是不是可以将缺省的最大并行度设置一个较高的值？" class="headerlink" title="是不是可以将缺省的最大并行度设置一个较高的值？"></a>是不是可以将缺省的最大并行度设置一个较高的值？</h3><p>答案是否定的，这个值不可以设置的过高。Flink 将作业维护的状态做了分区，状态被分成若干个 key-groups。</p>
+<ul>
+<li>过高的最大并行度数值会产生过多的 key-groups，它会严重影响作业执行的性能。</li>
+<li>过高的最大并行度会影响到状态的大小。为了能够对任务的并行处理能力进行有效的扩展，Flink 需要维护任务的某些元信息，而这些信息会随着最大并行度参数数值的增加而变多，从而使状态变大。</li>
+</ul>
+<h3 id="总体原则"><a href="#总体原则" class="headerlink" title="总体原则"></a>总体原则</h3><p>预估任务未来的并行度需求，适当提高最大并行度，但是为了获得更好的性能，又要尽可能控制这个数值不要过高。例如，当数值超过 128 的时候，通常就会导致状态快照（state snapshots）变大。</p>
+<h3 id="如何设置最大并行度"><a href="#如何设置最大并行度" class="headerlink" title="如何设置最大并行度"></a>如何设置最大并行度</h3><p>Flink 提供的缺省最大并行度数值取决于作业<strong>第一次启动</strong>时任务的并行度：</p>
+<ul>
+<li>当任务并行度小于 128 时，最大并行度默认是 128。</li>
+<li>任务并行度大于等于 128 时，最大并行度取值为：<code>MIN(nextPowerOfTwo(parallelism + (parallelism / 2)), 2^15)</code></li>
+</ul>
+<p>通过调用算子或者执行环境的 setMaxParallelism() API 的方式，可以分别在单个算子和全局作业两个粒度对任务的最大并行度进行设置。</p>
+<p>最大并行度设置时需要满足下面的条件：<br><code>0 &lt; parallelism &lt;= max parallelism &lt;= 2^15</code></p>
 
       
     </div>
@@ -432,9 +454,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自言自语/" rel="tag"># 自言自语</a>
+            <a href="/tags/Flink/" rel="tag"># Flink</a>
           
-            <a href="/tags/生活日常/" rel="tag"># 生活日常</a>
+            <a href="/tags/Streamming-Process/" rel="tag"># Streamming Process</a>
           
         </div>
       
@@ -447,15 +469,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/12/hexo-notes/" rel="next" title="hexo blog 操作备忘">
+                <i class="fa fa-chevron-left"></i> hexo blog 操作备忘
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" rel="prev" title="通过内存堆栈hprof文件分析Java内存泄露">
-                通过内存堆栈hprof文件分析Java内存泄露 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">1.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念1-并行度"><span class="nav-number">1.</span> <span class="nav-text">概念1 - 并行度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念2-最大并行度"><span class="nav-number">2.</span> <span class="nav-text">概念2 - 最大并行度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大并行度参数一旦设置不可调整（截止到-1-8-版本）"><span class="nav-number">2.1.</span> <span class="nav-text">最大并行度参数一旦设置不可调整（截止到 1.8 版本）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#是不是可以将缺省的最大并行度设置一个较高的值？"><span class="nav-number">2.2.</span> <span class="nav-text">是不是可以将缺省的最大并行度设置一个较高的值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总体原则"><span class="nav-number">2.3.</span> <span class="nav-text">总体原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何设置最大并行度"><span class="nav-number">2.4.</span> <span class="nav-text">如何设置最大并行度</span></a></li></ol></li></ol></div>
             
 
           </div>

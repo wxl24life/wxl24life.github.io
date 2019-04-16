@@ -300,6 +300,370 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/flink-parallelism-settings-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/15/flink-parallelism-settings-1/" itemprop="url">对 Flink 任务并行度的理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T23:39:43+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">技术笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。</p>
+<h2 id="概念1-并行度"><a href="#概念1-并行度" class="headerlink" title="概念1 - 并行度"></a>概念1 - 并行度</h2><p>Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为并行度，本文把任务的并行度也称作算子的并行度。</p>
+<p>Flink 提供了 4 种设置任务并行度的方式：</p>
+<ol>
+<li>操作算子级别 - 通过 setParallelism() API 设置单个算子的并行度</li>
+<li>执行环境配置 - 通过 API env. setParallelism() 进行全局设置</li>
+<li>client 级别 - 通过 flink run 命令行参数 -p 指定</li>
+<li>系统级别 - 集群的 conf 配置 parallelism.default</li>
+</ol>
+<p>无论哪种方式，所设置的并行度都只适应于单个算子。不同方式的优先级逐次递减（算子级别最高）。</p>
+<p>当使用 Flink 提供的 savepoint 特性时，用户可以在作业启动时按照修改算子并行度的 4 种方式对算子并行度进行调整，但是调整后的数值不能超过初始设置的最大并行度。</p>
+<h2 id="概念2-最大并行度"><a href="#概念2-最大并行度" class="headerlink" title="概念2 - 最大并行度"></a>概念2 - 最大并行度</h2><p><strong>最大并行度</strong>定义了算子在未来可以提升并发能力的上限，这里重点着眼于未来。</p>
+<p>Flink 官方 Production Readiness Checklist 里面建议用户在作业投产之前，在程序里显示地设置算子的最大并行度。</p>
+<h3 id="最大并行度参数一旦设置不可调整（截止到-1-8-版本）"><a href="#最大并行度参数一旦设置不可调整（截止到-1-8-版本）" class="headerlink" title="最大并行度参数一旦设置不可调整（截止到 1.8 版本）"></a>最大并行度参数一旦设置不可调整（截止到 1.8 版本）</h3><p>当作业投产上线之后，如果未来某个时间点任务的执行效率遇到瓶颈，用户希望增加并行度，但是并行度已经达到前期设置的最大并行度，用户会很被动：如果硬要调高最大并行度参数，作业已经保存过的状态或者checkpoint/savepoint 只能丢弃，显然多数情况下这是不可接受的。</p>
+<p>即使未来版本支持调整该参数，目前可以断定的是，在状态非常大的情况下，这种调整会超级耗时，所以还是要避免做这样的调整。</p>
+<h3 id="是不是可以将缺省的最大并行度设置一个较高的值？"><a href="#是不是可以将缺省的最大并行度设置一个较高的值？" class="headerlink" title="是不是可以将缺省的最大并行度设置一个较高的值？"></a>是不是可以将缺省的最大并行度设置一个较高的值？</h3><p>答案是否定的，这个值不可以设置的过高。Flink 将作业维护的状态做了分区，状态被分成若干个 key-groups。</p>
+<ul>
+<li>过高的最大并行度数值会产生过多的 key-groups，它会严重影响作业执行的性能。</li>
+<li>过高的最大并行度会影响到状态的大小。为了能够对任务的并行处理能力进行有效的扩展，Flink 需要维护任务的某些元信息，而这些信息会随着最大并行度参数数值的增加而变多，从而使状态变大。</li>
+</ul>
+<h3 id="总体原则"><a href="#总体原则" class="headerlink" title="总体原则"></a>总体原则</h3><p>预估任务未来的并行度需求，适当提高最大并行度，但是为了获得更好的性能，又要尽可能控制这个数值不要过高。例如，当数值超过 128 的时候，通常就会导致状态快照（state snapshots）变大。</p>
+<h3 id="如何设置最大并行度"><a href="#如何设置最大并行度" class="headerlink" title="如何设置最大并行度"></a>如何设置最大并行度</h3><p>Flink 提供的缺省最大并行度数值取决于作业<strong>第一次启动</strong>时任务的并行度：</p>
+<ul>
+<li>当任务并行度小于 128 时，最大并行度默认是 128。</li>
+<li>任务并行度大于等于 128 时，最大并行度取值为：<code>MIN(nextPowerOfTwo(parallelism + (parallelism / 2)), 2^15)</code></li>
+</ul>
+<p>通过调用算子或者执行环境的 setMaxParallelism() API 的方式，可以分别在单个算子和全局作业两个粒度对任务的最大并行度进行设置。</p>
+<p>最大并行度设置时需要满足下面的条件：<br><code>0 &lt; parallelism &lt;= max parallelism &lt;= 2^15</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/hexo-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/12/hexo-notes/" itemprop="url">hexo blog 操作备忘</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-12T16:11:02+08:00">
+                2019-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/备忘/" itemprop="url" rel="index">
+                    <span itemprop="name">备忘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  541
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>简单记录下 hexo 的常用操作，以作备忘。</p>
+<p><code>$ hexo server # 以本地模式启动博客站点</code><br>本地模式下，对配置文件和文章 post 的编辑，只要保存就可以通过 localhost:4000 页面看到效果。如果修改保存后未看到效果，考虑清理一下缓存，命令是：<br><code>$ hexo clean</code></p>
+<p><code>$ hexo new draft draft-name # 新建草稿</code><br><code>$ hexo new post post-name # 新建文章</code><br><code>$ hexo generate &amp; hexo deploy # 生成静态文件并推送到 github - 发表文章</code> </p>
+<p>例如，在编写本文时，我首先创建了一篇草稿，用到的命令：<br><code>$ hexo new draft hexo-notes</code><br>该命令会在工程目录的sources/_drafts 下创建一篇草稿。注意：文章（或草稿）名程默认创建为 .md 文件。</p>
+<p>如果想直接创建文章，将命令里的 draft 换成 post 即可。</p>
+<p>说一下 draft 和 post 两种文件类型的差异。</p>
+<p>draft 是草稿，属于待发表的状态，对它的所有编辑都不会反映到博客站点上面，所以执行  generate &amp; deploy 命令的目的仅仅是将当前未完成的工作 commit &amp; push 到 github 上面。</p>
+<p>post 是文章，创建完立即可以在博客上面显示出来，如果开着本地 server，对 post 的每一次编辑保存都可以通过刷新页面看到最新效果。如果执行 generate &amp; deploy，文章立即发表，如果文章只写了一半，就很不适合推送到 github。</p>
+<p>draft 完成之后如何变成 post？<br><code>$ hexo publish draft hexo-notes</code><br>Last but not least 的一条命令：</p>
+<h2 id="hexo-h-查看命令行帮助"><a href="#hexo-h-查看命令行帮助" class="headerlink" title="$ hexo -h # 查看命令行帮助"></a><code>$ hexo -h # 查看命令行帮助</code></h2><p>以下是从 draft 转到 post 一开始自己想到的操作，经验证不可行。可以忽略。</p>
+<blockquote>
+<p>draft 完成之后如何变成 post，很简单，执行一次 cp 或者 mv 命令即可：<br><code>$ cp source/\_drafts/hexo-notes.md source/\_posts</code></p>
+<p>假设前面执行了 copy，如果想删除 draft，只需要到对应的文件目录下执行 rm 命令：<br><code>$ rm source/\_drafts/hexo-notes.md</code></p>
+<p>删除文章 post 的操作类似。</p>
+<p>如果已经发表过的文章，不希望继续展示，有一个办法，可以将文章 move 到 source/_drafts 目录。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/hexo-notes-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -865,7 +1229,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -876,7 +1240,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -887,7 +1251,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

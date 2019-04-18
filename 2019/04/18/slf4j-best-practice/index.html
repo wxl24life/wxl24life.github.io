@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="自言自语,生活日常,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="致谢在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。  Jark’s Blog 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主 结合hexo在GitHub上搭建个人博客——全过程 整体上按">
-<meta name="keywords" content="自言自语,生活日常">
+<meta name="description" content="此文转载自：https://www.cnblogs.com/wanghaichao/p/9214265.html 一、结论： 应用中不可直接使用日志系统（Log4j、Logback）中的API，而应依赖使用日志框架SLF4J中的API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。  代码中的使用格式如下：    import org.SLF4J.Logger;    import">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客开场白">
-<meta property="og:url" content="http://yoursite.com/2019/04/10/hello-world-md/index.html">
+<meta property="og:title" content="SLF4J 使用规范（转载）">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/slf4j-best-practice/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="致谢在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。  Jark’s Blog 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主 结合hexo在GitHub上搭建个人博客——全过程 整体上按">
+<meta property="og:description" content="此文转载自：https://www.cnblogs.com/wanghaichao/p/9214265.html 一、结论： 应用中不可直接使用日志系统（Log4j、Logback）中的API，而应依赖使用日志框架SLF4J中的API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。  代码中的使用格式如下：    import org.SLF4J.Logger;    import">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-11T02:59:23.000Z">
+<meta property="og:updated_time" content="2019-04-18T08:48:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客开场白">
-<meta name="twitter:description" content="致谢在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。  Jark’s Blog 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主 结合hexo在GitHub上搭建个人博客——全过程 整体上按">
+<meta name="twitter:title" content="SLF4J 使用规范（转载）">
+<meta name="twitter:description" content="此文转载自：https://www.cnblogs.com/wanghaichao/p/9214265.html 一、结论： 应用中不可直接使用日志系统（Log4j、Logback）中的API，而应依赖使用日志框架SLF4J中的API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。  代码中的使用格式如下：    import org.SLF4J.Logger;    import">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/10/hello-world-md/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/slf4j-best-practice/">
 
 
 
 
 
-  <title>博客开场白 | wxl24life's blog</title>
+  <title>SLF4J 使用规范（转载） | wxl24life's blog</title>
   
 
 
@@ -301,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/hello-world-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/slf4j-best-practice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wxl24life">
@@ -318,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">博客开场白</h1>
+          <h1 class="post-title" itemprop="name headline">SLF4J 使用规范（转载）</h1>
         
 
         <div class="post-meta">
@@ -330,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T19:41:14+08:00">
-                2019-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T16:36:18+08:00">
+                2019-04-18
               </time>
             
 
@@ -353,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自言自语/" itemprop="url" rel="index">
-                    <span itemprop="name">自言自语</span>
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
                   </a>
                 </span>
 
@@ -384,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  213
+                  1.7k
                 </span>
               
 
@@ -409,11 +408,58 @@
       
 
       
-        <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。</p>
+        <p>此文转载自：<a href="https://www.cnblogs.com/wanghaichao/p/9214265.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghaichao/p/9214265.html</a></p>
+<h2 id="一、结论："><a href="#一、结论：" class="headerlink" title="一、结论："></a>一、结论：</h2><blockquote>
+<p>应用中不可直接使用日志系统（Log4j、Logback）中的API，而应依赖使用日志框架SLF4J中的API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。</p>
+</blockquote>
+<p>代码中的使用格式如下：<br>    import org.SLF4J.Logger;<br>    import org.SLF4J.LoggerFactory;</p>
+<pre><code>private static final Logger LOGGER = LoggerFactory.getLogger(Abc.class);
+LOGGER.info(&quot;订单{}开始取消订单,请求参数:{}&quot;, orderNo, object.toJSONString());
+</code></pre><p>{} 可以读取到后面追加的参数并放置里面。<br>日志工具对象 logger 应声明为 <em>private static final</em>：</p>
 <ol>
-<li><a href="http://wuchong.me/" title="Jark&#39;s  Blog" target="_blank" rel="noopener">Jark’s Blog</a><br> 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主</li>
-<li><a href="https://www.cnblogs.com/trista222/p/8017300.html" target="_blank" rel="noopener">结合hexo在GitHub上搭建个人博客——全过程</a><br> 整体上按照这篇 blog 的步骤走了一遍，架子就搭起来了</li>
-<li><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">【持续更新】最全Hexo博客搭建+主题优化+插件配置+常用操作+错误分析</a><br> 如标题所说，确实非常全面详细，全文很长，可以按照目录或者关键字搜索自己关注的配置介绍</li>
+<li>声明为private是出于安全性考虑，防止logger对象被其他类非法使用。</li>
+<li>声明为static是为了防止重复new出logger对象，同时防止logger被序列化，造成安全风险，出于资源利用的考虑，LOGGER的构造方法参数是Class，决定了LOGGER是根据类的结构来进行区分日志，所以一个类只要一个LOGGER就可以了，故static。</li>
+<li>声明为final是因为在类的生命周期内无需变更logger，只是记录该类的信息。</li>
+</ol>
+<h2 id="二、SLF4J-介绍"><a href="#二、SLF4J-介绍" class="headerlink" title="二、SLF4J 介绍"></a>二、SLF4J 介绍</h2><p>全称为 The Simple Logging Facade for Java，官方解释为：</p>
+<blockquote>
+<p>The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstraction for various logging frameworks, such as java.util.logging, logback and log4j. SLF4J allows the end-user to plug in the desired logging framework at deployment time. Note that SLF4J-enabling your library/application implies the addition of only a single mandatory dependency, namely SLF4J-api-1.7.21.jar.</p>
+</blockquote>
+<p>SLF4J 是一系列的日志接口，而 log4j logback 是具体实现了的日志框架。SLF4J(Simple logging Facade for Java) 不是一个真正的日志实现，而是一个抽象层，它允许你在后台使用任意一个日志类库。SLF4J 译为简单日志门面，是日志框架的抽象。而 log4j 和 logback 是众多日志框架中的几种。</p>
+<h2 id="三、log4j和logback的区别"><a href="#三、log4j和logback的区别" class="headerlink" title="三、log4j和logback的区别"></a>三、log4j和logback的区别</h2><p>logback 是直接实现了 SLF4J 的接口，是不消耗内存和计算开销的。而 log4j 不是对SLF4J的原生实现，所以 SLF4J api 在调用 log4j 时需要一个适配层（适配器模式）。Logback 相对 log4j 而言有了相对多的改进。但是两者的用法几乎差别不大。下面是 logback 的优势：</p>
+<ul>
+<li>更快的执行速度</li>
+<li>充分的测试</li>
+<li>logback-classic非常自然的实现了SLF4J</li>
+<li>丰富的扩展文档</li>
+<li>可以使用使用XML配置文件或者Groovy</li>
+<li>自动重新载入配置文件</li>
+<li>优雅地从I/O错误中恢复</li>
+<li>自动清除旧的日志归档文件</li>
+<li>自动压缩归档日志文件<br>注意：如果单独使用 SLF4J，是无法在控制台输出日志的。也就是说我们在具体开发中，需要绑定一个具体的日志框架，也就是 SLF4J 的实现，才能正常的使用 SLF4J。</li>
+</ul>
+<h2 id="四、总结如下"><a href="#四、总结如下" class="headerlink" title="四、总结如下"></a>四、总结如下</h2><p>1、SLF4J 是 java 的一个日志门面，实现了日志框架一些通用的api，log4j和logback是具体的日志框架。<br>2、他们可以单独的使用，也可以绑定SLF4J一起使用。</p>
+<ul>
+<li>单独使用。分别调用框架自己的方法来输出日志信息。</li>
+<li><p>绑定SLF4J一起使用。调用SLF4J的api来输入日志信息，具体使用与底层日志框架无关（需要底层框架的配置文件）。</p>
+<p>  显然不推荐单独使用日志框架。假设项目中已经使用了 log4j，而我们此时加载了一个类库，而这个类库依赖另一个日志框架。这个时候我们就需要维护两个日志框架，这是一个非常麻烦的事情。而使用了 SLF4J 就不同了，由于应用调用的抽象层的api，与底层日志框架是无关的，因此可以任意更换日志框架。</p>
+</li>
+</ul>
+<h2 id="五、使用-SLF4J-绑定日志系统的优势"><a href="#五、使用-SLF4J-绑定日志系统的优势" class="headerlink" title="五、使用 SLF4J 绑定日志系统的优势"></a>五、使用 SLF4J 绑定日志系统的优势</h2><ol>
+<li>软件工程的角度。抽象，解耦，便于维护。在你的开源或内部类库中使用SLF4J会使得它独立于任何一个特定的日志实现，这意味着不需要管理多个日志配置或者多个日志类库。</li>
+<li><p>语法设计角度。SLF4J有{}占位符，而log4j需要用“+”来连接字符串，既不利于阅读，同时消耗了内存（heap memory）。在SLF4J，我们不需要字符串连接而且不会导致暂时不需要的字符串消耗。取而代之的，我们在一个以占位符和以参数传递实际值的模板格式下写日志信息，同时提高了代码的可读性。</p>
+<p> 占位符(place holder)，在代码中表示为“{}”的特性。占位符是一个非常类似于在String的format()方法中的%s，因为它会在运行时被某个提供的实际字符串所替换。这不仅降低了你代码中字符串连接次数，而且还节省了新建的String对象。即使你可能没需要那些对象，但这个依旧成立，取决于你的生产环境的日志级别，例如在DEBUG或者INFO级别的字符串连接。因为String对象是不可修改的并且它们建立在一个String池中，它们消耗堆内存( heap memory)而且大多数时间他们是不被需要的，例如当你的应用程序在生产环境以ERROR级别运行时候，一个String使用在DEBUG语句就是不被需要的。通过使用SLF4J，你可以在运行时延迟字符串的建立，这意味着只有需要的String对象才被建立。而如果你已经使用log4j，那么你已经对于在if条件中使用debug语句这种变通方案十分熟悉了，但SLF4J的占位符就比这个好用得多。</p>
+<p> 对trace/debug/info级别的日志输出，必须使用条件输出形式或者使用占位符的方式。 说明：logger.debug(“Processing trade with id: “ + id + “ and symbol: “ + symbol); 如果日志级别是warn，上述日志不会打印，但是会执行字符串拼接操作，如果symbol是对象，会执行toString()方法，浪费了系统资源，执行了上述操作，最终日志却没有打印。 </p>
+<pre><code># 正例：（条件）建设采用如下方式
+if (logger.isDebugEnabled()) {
+logger.debug(&quot;Processing trade with id: &quot; + id + &quot; and symbol: &quot; + symbol);
+}
+# 正例：（占位符）
+logger.debug(&quot;Processing trade with id: {} and symbol : {} &quot;, id, symbol);
+</code></pre></li>
+<li><p>通过使用SLF4J的日志方法，你可以延迟构建日志信息（Srting）的开销，直到你真正需要，这对于内存和CPU都是高效的。</p>
+</li>
+<li>作为附注，更少的暂时的字符串意味着垃圾回收器（Garbage Collector）需要做更好的工作，这意味着你的应用程序有为更好的吞吐量和性能。</li>
 </ol>
 
       
@@ -430,14 +476,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/自言自语/" rel="tag"># 自言自语</a>
-          
-            <a href="/tags/生活日常/" rel="tag"># 生活日常</a>
-          
-        </div>
-      
 
       
       
@@ -447,15 +485,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/17/flink-on-yarn-log4j-customize/" rel="next" title="Flink On Yarn 模式下定制化业务日志">
+                <i class="fa fa-chevron-left"></i> Flink On Yarn 模式下定制化业务日志
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" rel="prev" title="通过内存堆栈hprof文件分析Java内存泄露">
-                通过内存堆栈hprof文件分析Java内存泄露 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#致谢"><span class="nav-number">1.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、结论："><span class="nav-number">1.</span> <span class="nav-text">一、结论：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、SLF4J-介绍"><span class="nav-number">2.</span> <span class="nav-text">二、SLF4J 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、log4j和logback的区别"><span class="nav-number">3.</span> <span class="nav-text">三、log4j和logback的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、总结如下"><span class="nav-number">4.</span> <span class="nav-text">四、总结如下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、使用-SLF4J-绑定日志系统的优势"><span class="nav-number">5.</span> <span class="nav-text">五、使用 SLF4J 绑定日志系统的优势</span></a></li></ol></div>
             
 
           </div>

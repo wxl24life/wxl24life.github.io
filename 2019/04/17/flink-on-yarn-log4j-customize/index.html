@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Flink,">
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="背景介绍最近公司通过 on yarn 模式部署了一套 Flink 集群，遇到了提交集群作业后，业务日志 log4j 配置文件无法加载的问题。 当往集群部署作业时，默认情况下，业务应用在自己项目工程 jar 里提供的 log4j.properties 是无法加载的，Flink 会默认采用安装目录下的 conf/log4j.properties 作为统一的 logger 定义文件。Flink 提供的">
+<meta name="keywords" content="Flink">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flink On Yarn 模式下定制化业务日志">
 <meta property="og:url" content="http://yoursite.com/2019/04/17/flink-on-yarn-log4j-customize/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
 <meta property="og:description" content="背景介绍最近公司通过 on yarn 模式部署了一套 Flink 集群，遇到了提交集群作业后，业务日志 log4j 配置文件无法加载的问题。 当往集群部署作业时，默认情况下，业务应用在自己项目工程 jar 里提供的 log4j.properties 是无法加载的，Flink 会默认采用安装目录下的 conf/log4j.properties 作为统一的 logger 定义文件。Flink 提供的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-18T08:34:19.000Z">
+<meta property="og:updated_time" content="2019-04-18T08:35:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flink On Yarn 模式下定制化业务日志">
 <meta name="twitter:description" content="背景介绍最近公司通过 on yarn 模式部署了一套 Flink 集群，遇到了提交集群作业后，业务日志 log4j 配置文件无法加载的问题。 当往集群部署作业时，默认情况下，业务应用在自己项目工程 jar 里提供的 log4j.properties 是无法加载的，Flink 会默认采用安装目录下的 conf/log4j.properties 作为统一的 logger 定义文件。Flink 提供的">
@@ -340,6 +341,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">技术笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -427,6 +450,12 @@ ln -s flink/conf/* .
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Flink/" rel="tag"># Flink</a>
+          
+        </div>
+      
 
       
       
@@ -445,6 +474,10 @@ ln -s flink/conf/* .
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/slf4j-best-practice/" rel="prev" title="SLF4J 使用规范（转载）">
+                SLF4J 使用规范（转载） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -528,7 +561,7 @@ ln -s flink/conf/* .
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -539,7 +572,7 @@ ln -s flink/conf/* .
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

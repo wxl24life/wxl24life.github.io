@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="wxl24life&#39;s blog">
 <meta property="og:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-16T08:23:08.000Z">
+<meta property="og:updated_time" content="2019-04-16T08:47:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对 Flink 任务并行度的理解">
 <meta name="twitter:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为">
@@ -420,7 +420,11 @@
 </ol>
 <p>无论哪种方式，所设置的并行度都只适应于单个算子。不同方式的优先级逐次递减（算子级别最高）。</p>
 <p>当使用 Flink 提供的 savepoint 特性时，用户可以在作业启动时按照修改算子并行度的 4 种方式对算子并行度进行调整，但是调整后的数值不能超过初始设置的最大并行度。</p>
-<h2 id="概念2-最大并行度"><a href="#概念2-最大并行度" class="headerlink" title="概念2 - 最大并行度"></a>概念2 - 最大并行度</h2><p><strong>最大并行度</strong>定义了算子在未来可以提升并发能力的上限，这里重点着眼于未来。</p>
+<h2 id="概念2-最大并行度"><a href="#概念2-最大并行度" class="headerlink" title="概念2 - 最大并行度"></a>概念2 - 最大并行度</h2><p>以下来自源代码：</p>
+<blockquote>
+<p>The maximum degree of parallelism specifies the upper limit for dynamic scaling. It also defines the number of key groups used for partitioned state.</p>
+</blockquote>
+<p><strong>最大并行度</strong>定义了算子在未来可以提升并发能力的上限，这里重点着眼于未来。</p>
 <p>Flink 官方 Production Readiness Checklist 里面建议用户在作业投产之前，在程序里显示地设置算子的最大并行度。</p>
 <h3 id="最大并行度参数一旦设置不可调整（截止到-1-8-版本）"><a href="#最大并行度参数一旦设置不可调整（截止到-1-8-版本）" class="headerlink" title="最大并行度参数一旦设置不可调整（截止到 1.8 版本）"></a>最大并行度参数一旦设置不可调整（截止到 1.8 版本）</h3><p>当作业投产上线之后，如果未来某个时间点任务的执行效率遇到瓶颈，用户希望增加并行度，但是并行度已经达到前期设置的最大并行度，用户会很被动：如果硬要调高最大并行度参数，作业已经保存过的状态或者checkpoint/savepoint 只能丢弃，显然多数情况下这是不可接受的。</p>
 <p>即使未来版本支持调整该参数，目前可以断定的是，在状态非常大的情况下，这种调整会超级耗时，所以还是要避免做这样的调整。</p>
@@ -478,6 +482,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/flink-on-yarn-log4j-customize/" rel="prev" title="Flink On Yarn 模式下定制化业务日志">
+                Flink On Yarn 模式下定制化业务日志 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -561,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -572,7 +580,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -583,7 +591,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

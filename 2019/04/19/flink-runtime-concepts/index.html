@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="有椒其馨,胡考之宁">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxl24life&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/java-oom/index.html">
+<meta name="description" content="整体梳理下 Flink 分布式 runtime 涉及到一些一些概念。 Task vs Subtask算子的 parallelism 表示该算子在运行时可被拆解为多少个子任务 (subtask)。Flink 默认会尝试对相邻连续算子的子任务进行串联 (chain)，串联到一起的一个或多个子任务组成了 Flink 概念里的任务 (task)，例如 source-map-filter  三个算子的子任务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flink-runtime-concepts">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/flink-runtime-concepts/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="有椒其馨,胡考之宁">
+<meta property="og:description" content="整体梳理下 Flink 分布式 runtime 涉及到一些一些概念。 Task vs Subtask算子的 parallelism 表示该算子在运行时可被拆解为多少个子任务 (subtask)。Flink 默认会尝试对相邻连续算子的子任务进行串联 (chain)，串联到一起的一个或多个子任务组成了 Flink 概念里的任务 (task)，例如 source-map-filter  三个算子的子任务">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-19T02:04:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxl24life&#39;s blog">
-<meta name="twitter:description" content="有椒其馨,胡考之宁">
+<meta name="twitter:title" content="flink-runtime-concepts">
+<meta name="twitter:description" content="整体梳理下 Flink 分布式 runtime 涉及到一些一些概念。 Task vs Subtask算子的 parallelism 表示该算子在运行时可被拆解为多少个子任务 (subtask)。Flink 默认会尝试对相邻连续算子的子任务进行串联 (chain)，串联到一起的一个或多个子任务组成了 Flink 概念里的任务 (task)，例如 source-map-filter  三个算子的子任务">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/java-oom/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/19/flink-runtime-concepts/">
 
 
 
 
 
-  <title>标签: java, oom | wxl24life's blog</title>
+  <title>flink-runtime-concepts | wxl24life's blog</title>
   
 
 
@@ -143,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,52 +286,179 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>java, oom<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/flink-runtime-concepts/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" itemprop="url">
-              
-                <span itemprop="name">通过内存堆栈 hprof 文件分析 Java 内存泄露</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">flink-runtime-concepts</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-10T22:18:47+08:00" content="2019-04-10">
-          04-10
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T07:27:57+08:00">
+                2019-04-19
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  350
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>整体梳理下 Flink 分布式 runtime 涉及到一些一些概念。</p>
+<h2 id="Task-vs-Subtask"><a href="#Task-vs-Subtask" class="headerlink" title="Task vs Subtask"></a>Task vs Subtask</h2><p>算子的 parallelism 表示该算子在运行时可被拆解为多少个子任务 (subtask)。Flink 默认会尝试对相邻连续算子的子任务进行串联 (chain)，串联到一起的一个或多个子任务组成了 Flink 概念里的任务 (task)，例如 source-map-filter  三个算子的子任务默认是可以串联到一个任务里执行的。</p>
+<p>每个任务独占一个线程，该线程与 taskmanager 的任务槽 (task slot) 是一一对应的。</p>
+<blockquote>
+<p>num (subtask) = num (threads) = num (task slot)</p>
+</blockquote>
+<h2 id="JobManager-vs-TaskManager"><a href="#JobManager-vs-TaskManager" class="headerlink" title="JobManager vs. TaskManager"></a>JobManager vs. TaskManager</h2><ol>
+<li>JobManager 也被称作 master，而 TaskManager 也被称作 worker。为了避免单点故障，JM 支持配置 HA。</li>
+<li>每个 JobManager/TaskManager 对应一个 JVM 进程。<br> TM 包含 1 到多个 task slot，每个 slot 与线程一一对应，独占 TM 固定大小的内存资源 (1/n, n = num (task slots))。任务以 operator chain 的方式运行在一个个 task slot 里。task slot 的个数决定了 TM 所能执行的任务数量。</li>
+</ol>
+<pre><code>The number of task slots that each TaskManager offers. Each slot runs one parallel pipeline.
+
+taskmanager.numberOfTaskSlots: 2
+</code></pre><ol start="3">
+<li>JobManager 用于协调分布式执行过程，例如调度任务、协调完成 checkpoint、协调失败场景下的恢复操作等。TaskManager 负责执行 dataflow 里的具体任务，同时也负责 datastream 的缓存和数据交换。</li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/slf4j-best-practice/" rel="next" title="SLF4J 使用规范（转载）">
+                <i class="fa fa-chevron-left"></i> SLF4J 使用规范（转载）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/06/how-to-use-hbase-client-api/" rel="prev" title="How to use HBase client API">
+                How to use HBase client API <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -338,6 +466,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY3NC8yMDIxNA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -358,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -437,6 +583,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-vs-Subtask"><span class="nav-number">1.</span> <span class="nav-text">Task vs Subtask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JobManager-vs-TaskManager"><span class="nav-number">2.</span> <span class="nav-text">JobManager vs. TaskManager</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -579,6 +741,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -607,6 +773,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

@@ -300,6 +300,308 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/06/how-to-use-hbase-client-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/06/how-to-use-hbase-client-api/" itemprop="url">How to use HBase client API</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-06T15:51:42+08:00">
+                2019-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ref: <a href="https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/package-summary.html" target="_blank" rel="noopener">https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/package-summary.html</a></p>
+<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>To administer HBase, create and drop tables, list and alter tables, use <em>Admin</em>. Once created, table access is via an instance of <em>Table</em>. You add content to a table a row at a time. To insert, create an instance of a Put object. Specify value, target column and optionally a timestamp. Commit your update using <em>Table.put(Put)</em>. To fetch your inserted value, use Get. The Get can be specified to be broad – get all on a particular row – or narrow; i.e. return only a single cell value. After creating an instance of Get, invoke <em>Table.get(Get)</em>.</p>
+<p>Use <em>Scan</em> to set up a scanner – a Cursor- like access. After creating and configuring your Scan instance, call <em>Table.getScanner(Scan)</em> and then invoke next on the returned object. Both<em> Table.get(Get) </em>and <em>Table.getScanner(Scan)</em> return a Result.</p>
+<p>Use <em>Delete</em> to remove content. You can remove individual cells or entire families, etc. Pass it to <em>Table.delete(Delete</em>) to execute.</p>
+<p>Puts, Gets and Deletes take out a lock on the target row for the duration of their operation. Concurrent modifications to a single row are serialized. Gets and scans run concurrently without interference of the row locks and are guaranteed to not to return half written rows.</p>
+<p>Client code accessing a cluster finds the cluster by querying ZooKeeper. This means that the ZooKeeper quorum to use must be on the client CLASSPATH. Usually this means make sure the client can find your hbase-site.xml.</p>
+<h1 id="Example-API-Usage"><a href="#Example-API-Usage" class="headerlink" title="Example API Usage"></a>Example API Usage</h1><p>Once you have a running HBase, you probably want a way to hook your application up to it. If your application is in Java, then you should use the Java API. Here’s an example of what a simple client might look like. This example assumes that you’ve created a table called “myTable” with a column family called “myColumnFamily”.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">`<span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.HBaseConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.TableName;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Connection;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.ConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Get;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Table;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Put;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Result;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.ResultScanner;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.client.Scan;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.hbase.util.Bytes;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Class that has nothing but a main.</span></span><br><span class="line"><span class="comment">// Does a Put, Get and a Scan against an hbase table.</span></span><br><span class="line"><span class="comment">// The API described here is since HBase 1.0.</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyLittleHBaseClient</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]()</span> args) <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"><span class="comment">// You need a configuration object to tell the client where to connect.</span></span><br><span class="line"><span class="comment">// When you create a HBaseConfiguration, it reads in whatever you've set</span></span><br><span class="line"><span class="comment">// into your hbase-site.xml and in hbase-default.xml, as long as these can</span></span><br><span class="line"><span class="comment">// be found on the CLASSPATH</span></span><br><span class="line">Configuration config = HBaseConfiguration.create();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Next you need a Connection to the cluster. Create one. When done with it,</span></span><br><span class="line"><span class="comment">// close it. A try/finally is a good way to ensure it gets closed or use</span></span><br><span class="line"><span class="comment">// the jdk7 idiom, try-with-resources: see</span></span><br><span class="line"><span class="comment">// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Connections are heavyweight.  Create one once and keep it around. From a Connection</span></span><br><span class="line"><span class="comment">// you get a Table instance to access Tables, an Admin instance to administer the cluster,</span></span><br><span class="line"><span class="comment">// and RegionLocator to find where regions are out on the cluster. As opposed to Connections,</span></span><br><span class="line"><span class="comment">// Table, Admin and RegionLocator instances are lightweight; create as you need them and then</span></span><br><span class="line"><span class="comment">// close when done.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">Connection connection = ConnectionFactory.createConnection(config);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The below instantiates a Table object that connects you to the "myLittleHBaseTable" table</span></span><br><span class="line">  <span class="comment">// (TableName.valueOf turns String into a TableName instance).</span></span><br><span class="line">  <span class="comment">// When done with it, close it (Should start a try/finally after this creation so it gets</span></span><br><span class="line">  <span class="comment">// closed for sure the jdk7 idiom, try-with-resources: see</span></span><br><span class="line">  <span class="comment">// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html)</span></span><br><span class="line">  Table table = connection.getTable(TableName.valueOf(<span class="string">"myLittleHBaseTable"</span>));</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// To add to a row, use Put.  A Put constructor takes the name of the row</span></span><br><span class="line"><span class="comment">// you want to insert into as a byte array.  In HBase, the Bytes class has</span></span><br><span class="line"><span class="comment">// utility for converting all kinds of java types to byte arrays.  In the</span></span><br><span class="line"><span class="comment">// below, we are converting the String "myLittleRow" into a byte array to</span></span><br><span class="line"><span class="comment">// use as a row key for our update. Once you have a Put instance, you can</span></span><br><span class="line"><span class="comment">// adorn it by setting the names of columns you want to update on the row,</span></span><br><span class="line"><span class="comment">// the timestamp to use in your update, etc. If no timestamp, the server</span></span><br><span class="line"><span class="comment">// applies current time to the edits.</span></span><br><span class="line">Put p = <span class="keyword">new</span> Put(Bytes.toBytes(<span class="string">"myLittleRow"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// To set the value you'd like to update in the row 'myLittleRow', specify</span></span><br><span class="line"><span class="comment">// the column family, column qualifier, and value of the table cell you'd</span></span><br><span class="line"><span class="comment">// like to update.  The column family must already exist in your table</span></span><br><span class="line"><span class="comment">// schema.  The qualifier can be anything.  All must be specified as byte</span></span><br><span class="line"><span class="comment">// arrays as hbase is all about byte arrays.  Lets pretend the table</span></span><br><span class="line"><span class="comment">// 'myLittleHBaseTable' was created with a family 'myLittleFamily'.</span></span><br><span class="line">p.add(Bytes.toBytes(<span class="string">"myLittleFamily"</span>), Bytes.toBytes(<span class="string">"someQualifier"</span>),</span><br><span class="line">Bytes.toBytes(<span class="string">"Some Value"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Once you've adorned your Put instance with all the updates you want to</span></span><br><span class="line"><span class="comment">// make, to commit it do the following (The HTable#put method takes the</span></span><br><span class="line"><span class="comment">// Put instance you've been building and pushes the changes you made into</span></span><br><span class="line"><span class="comment">// hbase)</span></span><br><span class="line">table.put(p);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Now, to retrieve the data we just wrote. The values that come back are</span></span><br><span class="line"><span class="comment">// Result instances. Generally, a Result is an object that will package up</span></span><br><span class="line"><span class="comment">// the hbase return into the form you find most palatable.</span></span><br><span class="line">Get g = <span class="keyword">new</span> Get(Bytes.toBytes(<span class="string">"myLittleRow"</span>));</span><br><span class="line">Result r = table.get(g);</span><br><span class="line"><span class="keyword">byte</span> []() value = r.getValue(Bytes.toBytes(<span class="string">"myLittleFamily"</span>),</span><br><span class="line">  Bytes.toBytes(<span class="string">"someQualifier"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// If we convert the value bytes, we should get back 'Some Value', the</span></span><br><span class="line"><span class="comment">// value we inserted at this location.</span></span><br><span class="line">String valueStr = Bytes.toString(value);</span><br><span class="line">System.out.println(<span class="string">"GET: "</span> + valueStr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Sometimes, you won't know the row you're looking for. In this case, you</span></span><br><span class="line"><span class="comment">// use a Scanner. This will give you cursor-like interface to the contents</span></span><br><span class="line"><span class="comment">// of the table.  To set up a Scanner, do like you did above making a Put</span></span><br><span class="line"><span class="comment">// and a Get, create a Scan.  Adorn it with column names, etc.</span></span><br><span class="line">Scan s = <span class="keyword">new</span> Scan();</span><br><span class="line">s.addColumn(Bytes.toBytes(<span class="string">"myLittleFamily"</span>), Bytes.toBytes(<span class="string">"someQualifier"</span>));</span><br><span class="line">ResultScanner scanner = table.getScanner(s);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">   <span class="comment">// Scanners return Result instances.</span></span><br><span class="line">   <span class="comment">// Now, for the actual iteration. One way is to use a while loop like so:</span></span><br><span class="line">   <span class="keyword">for</span> (Result rr = scanner.next(); rr != <span class="keyword">null</span>; rr = scanner.next()) &#123;</span><br><span class="line"> <span class="comment">// print out the row we found and the columns we were looking for</span></span><br><span class="line"> System.out.println(<span class="string">"Found row: "</span> + rr);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// The other approach is to use a foreach loop. Scanners are iterable!</span></span><br><span class="line">   <span class="comment">// for (Result rr : scanner) &#123;</span></span><br><span class="line">   <span class="comment">//   System.out.println("Found row: " + rr);</span></span><br><span class="line">   <span class="comment">// &#125;</span></span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">   <span class="comment">// Make sure you close your scanners when you are done!</span></span><br><span class="line">   <span class="comment">// Thats why we have it inside a try/finally clause</span></span><br><span class="line">   scanner.close();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// Close your table and cluster connection.</span></span><br><span class="line">   &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> <span class="keyword">if</span> (table != <span class="keyword">null</span>) table.close();</span><br><span class="line">   &#125;</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">   connection.close();</span><br><span class="line"> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>`There are many other methods for putting data into and getting data out of HBase, but these examples should get you started. See the Table javadoc for more methods. Additionally, there are methods for managing tables in the Admin class.</p>
+<p>If your client is NOT Java, then you should consider the Thrift or REST libraries.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/19/flink-runtime-concepts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/19/flink-runtime-concepts/" itemprop="url">flink-runtime-concepts</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-19T07:27:57+08:00">
+                2019-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  350
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>整体梳理下 Flink 分布式 runtime 涉及到一些一些概念。</p>
+<h2 id="Task-vs-Subtask"><a href="#Task-vs-Subtask" class="headerlink" title="Task vs Subtask"></a>Task vs Subtask</h2><p>算子的 parallelism 表示该算子在运行时可被拆解为多少个子任务 (subtask)。Flink 默认会尝试对相邻连续算子的子任务进行串联 (chain)，串联到一起的一个或多个子任务组成了 Flink 概念里的任务 (task)，例如 source-map-filter  三个算子的子任务默认是可以串联到一个任务里执行的。</p>
+<p>每个任务独占一个线程，该线程与 taskmanager 的任务槽 (task slot) 是一一对应的。</p>
+<blockquote>
+<p>num (subtask) = num (threads) = num (task slot)</p>
+</blockquote>
+<h2 id="JobManager-vs-TaskManager"><a href="#JobManager-vs-TaskManager" class="headerlink" title="JobManager vs. TaskManager"></a>JobManager vs. TaskManager</h2><ol>
+<li>JobManager 也被称作 master，而 TaskManager 也被称作 worker。为了避免单点故障，JM 支持配置 HA。</li>
+<li>每个 JobManager/TaskManager 对应一个 JVM 进程。<br> TM 包含 1 到多个 task slot，每个 slot 与线程一一对应，独占 TM 固定大小的内存资源 (1/n, n = num (task slots))。任务以 operator chain 的方式运行在一个个 task slot 里。task slot 的个数决定了 TM 所能执行的任务数量。</li>
+</ol>
+<pre><code>The number of task slots that each TaskManager offers. Each slot runs one parallel pipeline.
+
+taskmanager.numberOfTaskSlots: 2
+</code></pre><ol start="3">
+<li>JobManager 用于协调分布式执行过程，例如调度任务、协调完成 checkpoint、协调失败场景下的恢复操作等。TaskManager 负责执行 dataflow 里的具体任务，同时也负责 datastream 的缓存和数据交换。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/slf4j-best-practice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -414,66 +716,66 @@
           
             <p>此文转载自：<a href="https://www.cnblogs.com/wanghaichao/p/9214265.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghaichao/p/9214265.html</a></p>
 <h2 id="一、结论："><a href="#一、结论：" class="headerlink" title="一、结论："></a>一、结论：</h2><blockquote>
-<p>应用中不可直接使用日志系统（Log4j、Logback）中的API，而应依赖使用日志框架SLF4J中的API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。</p>
+<p>应用中不可直接使用日志系统（Log4j、Logback）中的 API，而应依赖使用日志框架 SLF4J 中的 API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。</p>
 </blockquote>
 <p>代码中的使用格式如下：</p>
 <pre><code>import org.SLF4J.Logger;
 import org.SLF4J.LoggerFactory;
 
-private static final Logger LOGGER = LoggerFactory.getLogger(Abc.class);
-LOGGER.info(&quot;订单{}开始取消订单,请求参数:{}&quot;, orderNo, object.toJSONString());
+private static final Logger LOGGER = LoggerFactory.getLogger (Abc.class);
+LOGGER.info (&quot;订单 {} 开始取消订单，请求参数:{}&quot;, orderNo, object.toJSONString ());
 </code></pre><p>{} 可以读取到后面追加的参数并放置里面。<br>日志工具对象 logger 应声明为 <em>private static final</em>：</p>
 <ol>
-<li>声明为private是出于安全性考虑，防止logger对象被其他类非法使用。</li>
-<li>声明为static是为了防止重复new出logger对象，同时防止logger被序列化，造成安全风险，出于资源利用的考虑，LOGGER的构造方法参数是Class，决定了LOGGER是根据类的结构来进行区分日志，所以一个类只要一个LOGGER就可以了，故static。</li>
-<li>声明为final是因为在类的生命周期内无需变更logger，只是记录该类的信息。</li>
+<li>声明为 private 是出于安全性考虑，防止 logger 对象被其他类非法使用。</li>
+<li>声明为 static 是为了防止重复 new 出 logger 对象，同时防止 logger 被序列化，造成安全风险，出于资源利用的考虑，LOGGER 的构造方法参数是 Class，决定了 LOGGER 是根据类的结构来进行区分日志，所以一个类只要一个 LOGGER 就可以了，故 static。</li>
+<li>声明为 final 是因为在类的生命周期内无需变更 logger，只是记录该类的信息。</li>
 </ol>
 <h2 id="二、SLF4J-介绍"><a href="#二、SLF4J-介绍" class="headerlink" title="二、SLF4J 介绍"></a>二、SLF4J 介绍</h2><p>全称为 The Simple Logging Facade for Java，官方解释为：</p>
 <blockquote>
 <p>The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstraction for various logging frameworks, such as java.util.logging, logback and log4j. SLF4J allows the end-user to plug in the desired logging framework at deployment time. Note that SLF4J-enabling your library/application implies the addition of only a single mandatory dependency, namely SLF4J-api-1.7.21.jar.</p>
 </blockquote>
-<p>SLF4J 是一系列的日志接口，而 log4j logback 是具体实现了的日志框架。SLF4J(Simple logging Facade for Java) 不是一个真正的日志实现，而是一个抽象层，它允许你在后台使用任意一个日志类库。SLF4J 译为简单日志门面，是日志框架的抽象。而 log4j 和 logback 是众多日志框架中的几种。</p>
-<h2 id="三、log4j-和-logback-的区别"><a href="#三、log4j-和-logback-的区别" class="headerlink" title="三、log4j 和 logback 的区别"></a>三、log4j 和 logback 的区别</h2><p>logback 是直接实现了 SLF4J 的接口，是不消耗内存和计算开销的。而 log4j 不是对SLF4J的原生实现，所以 SLF4J api 在调用 log4j 时需要一个适配层（适配器模式）。Logback 相对 log4j 而言有了相对多的改进。但是两者的用法几乎差别不大。</p>
+<p>SLF4J 是一系列的日志接口，而 log4j logback 是具体实现了的日志框架。SLF4J (Simple logging Facade for Java) 不是一个真正的日志实现，而是一个抽象层，它允许你在后台使用任意一个日志类库。SLF4J 译为简单日志门面，是日志框架的抽象。而 log4j 和 logback 是众多日志框架中的几种。</p>
+<h2 id="三、log4j-和-logback-的区别"><a href="#三、log4j-和-logback-的区别" class="headerlink" title="三、log4j 和 logback 的区别"></a>三、log4j 和 logback 的区别</h2><p>logback 是直接实现了 SLF4J 的接口，是不消耗内存和计算开销的。而 log4j 不是对 SLF4J 的原生实现，所以 SLF4J api 在调用 log4j 时需要一个适配层（适配器模式）。Logback 相对 log4j 而言有了相对多的改进。但是两者的用法几乎差别不大。</p>
 <p>下面是 logback 的优势：</p>
 <ul>
 <li>更快的执行速度</li>
 <li>充分的测试</li>
-<li>logback-classic非常自然的实现了SLF4J</li>
+<li>logback-classic 非常自然的实现了 SLF4J</li>
 <li>丰富的扩展文档</li>
-<li>可以使用使用XML配置文件或者Groovy</li>
+<li>可以使用使用 XML 配置文件或者 Groovy</li>
 <li>自动重新载入配置文件</li>
-<li>优雅地从I/O错误中恢复</li>
+<li>优雅地从 I/O 错误中恢复</li>
 <li>自动清除旧的日志归档文件</li>
 <li>自动压缩归档日志文件<br>注意：如果单独使用 SLF4J，是无法在控制台输出日志的。也就是说我们在具体开发中，需要绑定一个具体的日志框架，也就是 SLF4J 的实现，才能正常的使用 SLF4J。</li>
 </ul>
 <p>log4j 和 logback 与 SLF4J 差异总结如下：</p>
 <ol>
-<li><p>SLF4J 是 java 的一个日志门面，实现了日志框架一些通用的api，log4j和logback 是具体的日志框架。</p>
+<li><p>SLF4J 是 java 的一个日志门面，实现了日志框架一些通用的 api，log4j 和 logback 是具体的日志框架。</p>
 </li>
 <li><p>他们可以单独的使用，也可以绑定 SLF4J 一起使用。</p>
 </li>
 </ol>
 <ul>
 <li>单独使用。分别调用框架自己的方法来输出日志信息。</li>
-<li><p>绑定SLF4J一起使用。调用SLF4J的api来输入日志信息，具体使用与底层日志框架无关（需要底层框架的配置文件）。</p>
-<p>  显然不推荐单独使用日志框架。假设项目中已经使用了 log4j，而我们此时加载了一个类库，而这个类库依赖另一个日志框架。这个时候我们就需要维护两个日志框架，这是一个非常麻烦的事情。而使用了 SLF4J 就不同了，由于应用调用的抽象层的api，与底层日志框架是无关的，因此可以任意更换日志框架。</p>
+<li><p>绑定 SLF4J 一起使用。调用 SLF4J 的 api 来输入日志信息，具体使用与底层日志框架无关（需要底层框架的配置文件）。</p>
+<p>  显然不推荐单独使用日志框架。假设项目中已经使用了 log4j，而我们此时加载了一个类库，而这个类库依赖另一个日志框架。这个时候我们就需要维护两个日志框架，这是一个非常麻烦的事情。而使用了 SLF4J 就不同了，由于应用调用的抽象层的 api，与底层日志框架是无关的，因此可以任意更换日志框架。</p>
 </li>
 </ul>
 <h2 id="四、使用-SLF4J-绑定日志系统的优势"><a href="#四、使用-SLF4J-绑定日志系统的优势" class="headerlink" title="四、使用 SLF4J 绑定日志系统的优势"></a>四、使用 SLF4J 绑定日志系统的优势</h2><ol>
-<li><p>软件工程的角度。抽象，解耦，便于维护。在你的开源或内部类库中使用SLF4J会使得它独立于任何一个特定的日志实现，这意味着不需要管理多个日志配置或者多个日志类库。</p>
+<li><p>软件工程的角度。抽象，解耦，便于维护。在你的开源或内部类库中使用 SLF4J 会使得它独立于任何一个特定的日志实现，这意味着不需要管理多个日志配置或者多个日志类库。</p>
 </li>
-<li><p>语法设计角度。SLF4J有{}占位符，而log4j需要用“+”来连接字符串，既不利于阅读，同时消耗了内存（heap memory）。在SLF4J，我们不需要字符串连接而且不会导致暂时不需要的字符串消耗。取而代之的，我们在一个以占位符和以参数传递实际值的模板格式下写日志信息，同时提高了代码的可读性。</p>
-<p> 占位符(place holder)，在代码中表示为“{}”的特性。占位符是一个非常类似于在String的format()方法中的%s，因为它会在运行时被某个提供的实际字符串所替换。这不仅降低了你代码中字符串连接次数，而且还节省了新建的String对象。即使你可能没需要那些对象，但这个依旧成立，取决于你的生产环境的日志级别，例如在DEBUG或者INFO级别的字符串连接。因为String对象是不可修改的并且它们建立在一个String池中，它们消耗堆内存( heap memory)而且大多数时间他们是不被需要的，例如当你的应用程序在生产环境以ERROR级别运行时候，一个String使用在DEBUG语句就是不被需要的。</p>
-<p> 通过使用SLF4J，你可以在运行时延迟字符串的建立，这意味着只有需要的String对象才被建立。而如果你已经使用log4j，那么你已经对于在if条件中使用debug语句这种变通方案十分熟悉了，但SLF4J的占位符就比这个好用得多。</p>
-<p> 对trace/debug/info级别的日志输出，必须使用条件输出形式或者使用占位符的方式。 说明：<code>logger.debug(&quot;Processing trade with id: &quot; + id + &quot; and symbol: &quot; + symbol);</code> 如果日志级别是warn，上述日志不会打印，但是会执行字符串拼接操作，如果symbol是对象，会执行 toString() 方法，浪费了系统资源，执行了上述操作，最终日志却没有打印。 </p>
+<li><p>语法设计角度。SLF4J 有 {} 占位符，而 log4j 需要用 “+” 来连接字符串，既不利于阅读，同时消耗了内存（heap memory）。在 SLF4J，我们不需要字符串连接而且不会导致暂时不需要的字符串消耗。取而代之的，我们在一个以占位符和以参数传递实际值的模板格式下写日志信息，同时提高了代码的可读性。</p>
+<p> 占位符 (place holder)，在代码中表示为 “{}” 的特性。占位符是一个非常类似于在 String 的 format () 方法中的 % s，因为它会在运行时被某个提供的实际字符串所替换。这不仅降低了你代码中字符串连接次数，而且还节省了新建的 String 对象。即使你可能没需要那些对象，但这个依旧成立，取决于你的生产环境的日志级别，例如在 DEBUG 或者 INFO 级别的字符串连接。因为 String 对象是不可修改的并且它们建立在一个 String 池中，它们消耗堆内存 ( heap memory) 而且大多数时间他们是不被需要的，例如当你的应用程序在生产环境以 ERROR 级别运行时候，一个 String 使用在 DEBUG 语句就是不被需要的。</p>
+<p> 通过使用 SLF4J，你可以在运行时延迟字符串的建立，这意味着只有需要的 String 对象才被建立。而如果你已经使用 log4j，那么你已经对于在 if 条件中使用 debug 语句这种变通方案十分熟悉了，但 SLF4J 的占位符就比这个好用得多。</p>
+<p> 对 trace/debug/info 级别的日志输出，必须使用条件输出形式或者使用占位符的方式。 说明：<code>logger.debug (&quot;Processing trade with id: &quot;+ id +&quot; and symbol: &quot;+ symbol);</code> 如果日志级别是 warn，上述日志不会打印，但是会执行字符串拼接操作，如果 symbol 是对象，会执行 toString () 方法，浪费了系统资源，执行了上述操作，最终日志却没有打印。 </p>
 <pre><code># 正例：（条件）建设采用如下方式
-if (logger.isDebugEnabled()) {
-logger.debug(&quot;Processing trade with id: &quot; + id + &quot; and symbol: &quot; + symbol);
+if (logger.isDebugEnabled ()) {
+logger.debug (&quot;Processing trade with id:&quot; + id + &quot;and symbol:&quot; + symbol);
 }
 # 正例：（占位符）
-logger.debug(&quot;Processing trade with id: {} and symbol : {} &quot;, id, symbol);
+logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symbol);
 </code></pre></li>
-<li><p>通过使用SLF4J的日志方法，你可以延迟构建日志信息（Srting）的开销，直到你真正需要，这对于内存和CPU都是高效的。</p>
+<li><p>通过使用 SLF4J 的日志方法，你可以延迟构建日志信息（Srting）的开销，直到你真正需要，这对于内存和 CPU 都是高效的。</p>
 </li>
 <li>作为附注，更少的暂时的字符串意味着垃圾回收器（Garbage Collector）需要做更好的工作，这意味着你的应用程序有为更好的吞吐量和性能。</li>
 </ol>
@@ -646,7 +948,7 @@ log4j.appender.file=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.file.File=${log.file}
 log4j.appender.file.append=false
 log4j.appender.file.layout=org.apache.log4j.PatternLayout
-log4j.appender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c %x - %m%n
+log4j.appender.file.layout.ConversionPattern=% d {yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c % x - % m% n
 </code></pre><p>采用默认设置的好处是可以通过 flink web ui 查看日志，因为集群缺省提供的 <em>log.file</em> 指向了 yarn 的 application container 下的日志文件，而它正是 web ui 的 taskmanager logs 页面所指向的日志文件在服务器上的地址。但是，由于每次查看都需要打开完整的文件，所以当日志量很大时，加载会非常慢甚至直接导致页面挂掉。</p>
 <p>能够想到的解决办法是，继续使用 <em>flink/conf/log4j.properties</em> 文件，但是每个应用需要在里面定制自己的 logger。</p>
 <h2 id="定制方案"><a href="#定制方案" class="headerlink" title="定制方案"></a>定制方案</h2><p>我们通过创建软链接的方式，在每次执行 <em>flink run</em> 命令启动作业时，由业务指定自己的 log4j.properties，定制自己业务的 logger。</p>
@@ -657,12 +959,12 @@ log4j.appender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %-
 <li>创建 <em>conf</em> 目录下所有文件的软链接<pre><code>$ cd /home/umecron/wxl/conf
 ln -s flink/conf/* . 
 </code></pre></li>
-<li>将业务自己的 log4j.properties 放进 <em>/home/umecron/wxl/conf </em>目录，替换已经存在的软链接</li>
+<li>将业务自己的 log4j.properties 放进 <em>/home/umecron/wxl/conf </em> 目录，替换已经存在的软链接</li>
 <li>执行 <em>flink run</em> 提交任务之前，执行：<pre><code>export FLINK_CONF_DIR=/home/umecron/wxl/conf
 </code></pre></li>
 </ol>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果需要使用自己项目里的 log4j.properties，<strong>前面创建软链接的方案只适用于单任务模式启动的 flink on yarn 集群（<em>one-yarn-cluster-per-job</em>）。</strong>区别于通过 yarn-session 启动的 flink 集群。</p>
-<p>参考：<a href="https://riptutorial.com/apache-flink/example/29955/using-different-configuration-s--for-each-application" target="_blank" rel="noopener">Using different configuration(s) for each application</a></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果需要使用自己项目里的 log4j.properties，<strong> 前面创建软链接的方案只适用于单任务模式启动的 flink on yarn 集群（<em>one-yarn-cluster-per-job</em>）。</strong> 区别于通过 yarn-session 启动的 flink 集群。</p>
+<p>参考：<a href="https://riptutorial.com/apache-flink/example/29955/using-different-configuration-s--for-each-application" target="_blank" rel="noopener">Using different configuration (s) for each application</a></p>
 
           
         
@@ -824,23 +1126,23 @@ ln -s flink/conf/* .
         
           
             <p>在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。</p>
-<h2 id="概念1-并行度"><a href="#概念1-并行度" class="headerlink" title="概念1 - 并行度"></a>概念1 - 并行度</h2><p>Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为并行度，本文把任务的并行度也称作算子的并行度。</p>
+<h2 id="概念-1-并行度"><a href="#概念-1-并行度" class="headerlink" title="概念 1 - 并行度"></a>概念 1 - 并行度</h2><p>Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为并行度，本文把任务的并行度也称作算子的并行度。</p>
 <p>Flink 提供了 4 种设置任务并行度的方式：</p>
 <ol>
-<li>操作算子级别 - 通过 setParallelism() API 设置单个算子的并行度</li>
-<li>执行环境配置 - 通过 API env. setParallelism() 进行全局设置</li>
+<li>操作算子级别 - 通过 setParallelism () API 设置单个算子的并行度</li>
+<li>执行环境配置 - 通过 API env. setParallelism () 进行全局设置</li>
 <li>client 级别 - 通过 flink run 命令行参数 -p 指定</li>
 <li>系统级别 - 集群的 conf 配置 parallelism.default</li>
 </ol>
 <p>无论哪种方式，所设置的并行度都只适应于单个算子。不同方式的优先级逐次递减（算子级别最高）。</p>
 <p>当使用 Flink 提供的 savepoint 特性时，用户可以在作业启动时按照修改算子并行度的 4 种方式对算子并行度进行调整，但是调整后的数值不能超过初始设置的最大并行度。</p>
-<h2 id="概念2-最大并行度"><a href="#概念2-最大并行度" class="headerlink" title="概念2 - 最大并行度"></a>概念2 - 最大并行度</h2><p>以下来自源代码：</p>
+<h2 id="概念-2-最大并行度"><a href="#概念-2-最大并行度" class="headerlink" title="概念 2 - 最大并行度"></a>概念 2 - 最大并行度</h2><p>以下来自源代码：</p>
 <blockquote>
 <p>The maximum degree of parallelism specifies the upper limit for dynamic scaling. It also defines the number of key groups used for partitioned state.</p>
 </blockquote>
-<p><strong>最大并行度</strong>定义了算子在未来可以提升并发能力的上限，这里重点着眼于未来。</p>
+<p><strong> 最大并行度 </strong> 定义了算子在未来可以提升并发能力的上限，这里重点着眼于未来。</p>
 <p>Flink 官方 Production Readiness Checklist 里面建议用户在作业投产之前，在程序里显示地设置算子的最大并行度。</p>
-<h3 id="最大并行度参数一旦设置不可调整（截止到-1-8-版本）"><a href="#最大并行度参数一旦设置不可调整（截止到-1-8-版本）" class="headerlink" title="最大并行度参数一旦设置不可调整（截止到 1.8 版本）"></a>最大并行度参数一旦设置不可调整（截止到 1.8 版本）</h3><p>当作业投产上线之后，如果未来某个时间点任务的执行效率遇到瓶颈，用户希望增加并行度，但是并行度已经达到前期设置的最大并行度，用户会很被动：如果硬要调高最大并行度参数，作业已经保存过的状态或者checkpoint/savepoint 只能丢弃，显然多数情况下这是不可接受的。</p>
+<h3 id="最大并行度参数一旦设置不可调整（截止到-1-8-版本）"><a href="#最大并行度参数一旦设置不可调整（截止到-1-8-版本）" class="headerlink" title="最大并行度参数一旦设置不可调整（截止到 1.8 版本）"></a>最大并行度参数一旦设置不可调整（截止到 1.8 版本）</h3><p>当作业投产上线之后，如果未来某个时间点任务的执行效率遇到瓶颈，用户希望增加并行度，但是并行度已经达到前期设置的最大并行度，用户会很被动：如果硬要调高最大并行度参数，作业已经保存过的状态或者 checkpoint/savepoint 只能丢弃，显然多数情况下这是不可接受的。</p>
 <p>即使未来版本支持调整该参数，目前可以断定的是，在状态非常大的情况下，这种调整会超级耗时，所以还是要避免做这样的调整。</p>
 <h3 id="是不是可以将缺省的最大并行度设置一个较高的值？"><a href="#是不是可以将缺省的最大并行度设置一个较高的值？" class="headerlink" title="是不是可以将缺省的最大并行度设置一个较高的值？"></a>是不是可以将缺省的最大并行度设置一个较高的值？</h3><p>答案是否定的，这个值不可以设置的过高。Flink 将作业维护的状态做了分区，状态被分成若干个 key-groups。</p>
 <ul>
@@ -848,12 +1150,12 @@ ln -s flink/conf/* .
 <li>过高的最大并行度会影响到状态的大小。为了能够对任务的并行处理能力进行有效的扩展，Flink 需要维护任务的某些元信息，而这些信息会随着最大并行度参数数值的增加而变多，从而使状态变大。</li>
 </ul>
 <h3 id="总体原则"><a href="#总体原则" class="headerlink" title="总体原则"></a>总体原则</h3><p>预估任务未来的并行度需求，适当提高最大并行度，但是为了获得更好的性能，又要尽可能控制这个数值不要过高。例如，当数值超过 128 的时候，通常就会导致状态快照（state snapshots）变大。</p>
-<h3 id="如何设置最大并行度"><a href="#如何设置最大并行度" class="headerlink" title="如何设置最大并行度"></a>如何设置最大并行度</h3><p>Flink 提供的缺省最大并行度数值取决于作业<strong>第一次启动</strong>时任务的并行度：</p>
+<h3 id="如何设置最大并行度"><a href="#如何设置最大并行度" class="headerlink" title="如何设置最大并行度"></a>如何设置最大并行度</h3><p>Flink 提供的缺省最大并行度数值取决于作业 <strong> 第一次启动 </strong> 时任务的并行度：</p>
 <ul>
 <li>当任务并行度小于 128 时，最大并行度默认是 128。</li>
-<li>任务并行度大于等于 128 时，最大并行度取值为：<code>MIN(nextPowerOfTwo(parallelism + (parallelism / 2)), 2^15)</code></li>
+<li>任务并行度大于等于 128 时，最大并行度取值为：<code>MIN (nextPowerOfTwo (parallelism + (parallelism / 2)), 2^15)</code></li>
 </ul>
-<p>通过调用算子或者执行环境的 setMaxParallelism() API 的方式，可以分别在单个算子和全局作业两个粒度对任务的最大并行度进行设置。</p>
+<p>通过调用算子或者执行环境的 setMaxParallelism () API 的方式，可以分别在单个算子和全局作业两个粒度对任务的最大并行度进行设置。</p>
 <p>最大并行度设置时需要满足下面的条件：<br><code>0 &lt; parallelism &lt;= max parallelism &lt;= 2^15</code></p>
 
           
@@ -988,7 +1290,7 @@ ln -s flink/conf/* .
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  541
+                  542
                 </span>
               
 
@@ -1018,7 +1320,7 @@ ln -s flink/conf/* .
             <p>简单记录下 hexo 的常用操作，以作备忘。</p>
 <p><code>$ hexo server # 以本地模式启动博客站点</code><br>本地模式下，对配置文件和文章 post 的编辑，只要保存就可以通过 localhost:4000 页面看到效果。如果修改保存后未看到效果，考虑清理一下缓存，命令是：<br><code>$ hexo clean</code></p>
 <p><code>$ hexo new draft draft-name # 新建草稿</code><br><code>$ hexo new post post-name # 新建文章</code><br><code>$ hexo generate &amp; hexo deploy # 生成静态文件并推送到 github - 发表文章</code> </p>
-<p>例如，在编写本文时，我首先创建了一篇草稿，用到的命令：<br><code>$ hexo new draft hexo-notes</code><br>该命令会在工程目录的sources/_drafts 下创建一篇草稿。注意：文章（或草稿）名程默认创建为 .md 文件。</p>
+<p>例如，在编写本文时，我首先创建了一篇草稿，用到的命令：<br><code>$ hexo new draft hexo-notes</code><br>该命令会在工程目录的 sources/_drafts 下创建一篇草稿。注意：文章（或草稿）名程默认创建为 .md 文件。</p>
 <p>如果想直接创建文章，将命令里的 draft 换成 post 即可。</p>
 <p>说一下 draft 和 post 两种文件类型的差异。</p>
 <p>draft 是草稿，属于待发表的状态，对它的所有编辑都不会反映到博客站点上面，所以执行  generate &amp; deploy 命令的目的仅仅是将当前未完成的工作 commit &amp; push 到 github 上面。</p>
@@ -1098,7 +1400,7 @@ ln -s flink/conf/* .
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" itemprop="url">通过内存堆栈hprof文件分析Java内存泄露</a></h1>
+                <a class="post-title-link" href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" itemprop="url">通过内存堆栈 hprof 文件分析 Java 内存泄露</a></h1>
         
 
         <div class="post-meta">
@@ -1164,7 +1466,7 @@ ln -s flink/conf/* .
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  425
+                  426
                 </span>
               
 
@@ -1194,30 +1496,30 @@ ln -s flink/conf/* .
             <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>应用日志报 <strong>OutOfMemoryError</strong></p>
 <h2 id="现场证据收集"><a href="#现场证据收集" class="headerlink" title="现场证据收集"></a>现场证据收集</h2><ul>
 <li>首先使用 <em>jstat</em> 查看内存回收情况<br>  <code>$ jstat -gcutil PID 1000</code></li>
-<li>从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC增长迅速。</li>
-<li>查看应用日志，发现<code>OutOfMemoryError</code>，怀疑内存泄露 </li>
-<li>通过 <em>jmap</em> 打印内存堆栈dump文件（hprof文件）<br>  <code>$ jmap -dump:format=b,file=/tmp/dump.log PID</code></li>
-<li>dump文件大于4G，尝试拉取到本地机器（可以通过浏览器访问分析结果）使用 <em>jhat</em> 分析，内存溢出报错<br>之后上网寻找分析超大内存dump文件的解决方案，发现了 Eclipse MAT 插件，实际使用发现对内存的消耗明显减少。</li>
+<li>从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC 增长迅速。</li>
+<li>查看应用日志，发现 <code>OutOfMemoryError</code>，怀疑内存泄露 </li>
+<li>通过 <em>jmap</em> 打印内存堆栈 dump 文件（hprof 文件）<br>  <code>$ jmap -dump:format=b,file=/tmp/dump.log PID</code></li>
+<li>dump 文件大于 4G，尝试拉取到本地机器（可以通过浏览器访问分析结果）使用 <em>jhat</em> 分析，内存溢出报错<br>之后上网寻找分析超大内存 dump 文件的解决方案，发现了 Eclipse MAT 插件，实际使用发现对内存的消耗明显减少。</li>
 </ul>
 <p>贴几个网上找到的链接：</p>
 <ul>
 <li><a href="https://stackoverflow.com/questions/7254017/tool-for-analyzing-large-java-heap-dumps/7254494#7254494" title="SO: tool-for-analyzing-large-java-heap-dumps" target="_blank" rel="noopener">StackOverFlow: tool-for-analyzing-large-java-heap-dumps</a></li>
 <li><a href="https://sites.google.com/site/eclipsebiz/Finding-Memory-Leak" title="Finding-Memory-Leak" target="_blank" rel="noopener">Finding-Memory-Leak</a></li>
 </ul>
-<h2 id="使用-mat-分析内存堆栈"><a href="#使用-mat-分析内存堆栈" class="headerlink" title="使用 mat 分析内存堆栈"></a>使用 mat 分析内存堆栈</h2><p>首先，Memory Analyzer有两种运行方式：</p>
+<h2 id="使用-mat-分析内存堆栈"><a href="#使用-mat-分析内存堆栈" class="headerlink" title="使用 mat 分析内存堆栈"></a>使用 mat 分析内存堆栈</h2><p>首先，Memory Analyzer 有两种运行方式：</p>
 <ul>
 <li>stand-alone: 可以不依赖 eclipse 独立运行，直接执行脚本即可。我选用了这种方式</li>
 <li>以 eclipse 插件方式运行，如果机器有安装 eclipse 可以尝试</li>
 </ul>
-<p>下面是具体的指令执行过程（整体思路来自StackOverFlow那篇回复）:</p>
+<p>下面是具体的指令执行过程（整体思路来自 StackOverFlow 那篇回复）:</p>
 <ol>
 <li>执行脚本 <code>./mat/ParseHeapDump.sh dump.log</code> 报内存溢出错误</li>
-<li>修改脚本文件<code>./mat/ParseHeapDump.sh</code> JVM 启动参数，最后一行:<br> <code>&quot;$(dirname -- &quot;$0&quot;)&quot;/MemoryAnalyzer -consolelog -application org.eclipse.mat.api.parse &quot;$@&quot; -vmargs -Xmx8g -XX:-UseGCOverheadLimit</code></li>
+<li>修改脚本文件 <code>./mat/ParseHeapDump.sh</code> JVM 启动参数，最后一行:<br> <code>&quot;$(dirname --&quot;$0&quot;)&quot;/MemoryAnalyzer -consolelog -application org.eclipse.mat.api.parse &quot;$@&quot; -vmargs -Xmx8g -XX:-UseGCOverheadLimit</code></li>
 <li>执行脚本 <code>./mat/ParseHeapDump.sh dump.log</code>，生成一堆 index 文件</li>
 <li>执行命令，生成内存泄露报告，以 html 静态文件存在:<br> <code>./mat/ParseHeapDump.sh dump.log org.eclipse.mat.api:suspects</code></li>
 <li>浏览器打开 index.html，定位到引起内存泄露的对象</li>
 </ol>
-<p>更多关于 mat 内存泄露报告的分析介绍，参见<a href="https://sites.google.com/site/eclipsebiz/Finding-Memory-Leak" title="Finding-Memory-Leak" target="_blank" rel="noopener">Finding-Memory-Leak</a></p>
+<p>更多关于 mat 内存泄露报告的分析介绍，参见 <a href="https://sites.google.com/site/eclipsebiz/Finding-Memory-Leak" title="Finding-Memory-Leak" target="_blank" rel="noopener">Finding-Memory-Leak</a></p>
 
           
         
@@ -1351,7 +1653,7 @@ ln -s flink/conf/* .
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  213
+                  214
                 </span>
               
 
@@ -1381,8 +1683,8 @@ ln -s flink/conf/* .
             <h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>在博客搭建过程中部分参考了几篇中文博主的攻略文章，在此表示感谢。</p>
 <ol>
 <li><a href="http://wuchong.me/" title="Jark&#39;s  Blog" target="_blank" rel="noopener">Jark’s Blog</a><br> 开 blog 的冲动最早来自于这个 blog，自己博客的搭建方式和主题也主要借鉴于此。因为最近一年一直在关注 Flink，博主 Wuchong 是 Apache Flink commiter，在中文互联网圈算是为数不多写过很多有价值文章的博主</li>
-<li><a href="https://www.cnblogs.com/trista222/p/8017300.html" target="_blank" rel="noopener">结合hexo在GitHub上搭建个人博客——全过程</a><br> 整体上按照这篇 blog 的步骤走了一遍，架子就搭起来了</li>
-<li><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">【持续更新】最全Hexo博客搭建+主题优化+插件配置+常用操作+错误分析</a><br> 如标题所说，确实非常全面详细，全文很长，可以按照目录或者关键字搜索自己关注的配置介绍</li>
+<li><a href="https://www.cnblogs.com/trista222/p/8017300.html" target="_blank" rel="noopener">结合 hexo 在 GitHub 上搭建个人博客 —— 全过程</a><br> 整体上按照这篇 blog 的步骤走了一遍，架子就搭起来了</li>
+<li><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">【持续更新】最全 Hexo 博客搭建 + 主题优化 + 插件配置 + 常用操作 + 错误分析</a><br> 如标题所说，确实非常全面详细，全文很长，可以按照目录或者关键字搜索自己关注的配置介绍</li>
 </ol>
 
           
@@ -1467,7 +1769,7 @@ ln -s flink/conf/* .
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

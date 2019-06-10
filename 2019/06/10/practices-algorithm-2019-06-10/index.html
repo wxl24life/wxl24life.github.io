@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="algorithm, java,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="有椒其馨,胡考之宁">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxl24life&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/categories/技术笔记/index.html">
+<meta name="description" content="长期以来，我对于写算法或者白板写代码一直是 “畏惧” 的。但是，自己也深刻知道，算法作为一项最基本的技能，每个程序员都需要有一些基本的掌握。 从今天开始，我准备坚持做一些练习，在熟悉算法的同时，也练习提升下自己的编码能力。并且会同步在博客对编写代码过程中遇到的问题和收获的经验进行记录。 先从一道最简单的题目入手：二维数组中的查找。 题目描述在一个二维数组中（每个一维数组的长度相同），每一行都按照从">
+<meta name="keywords" content="algorithm, java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法编程练习：二维数组中的查找">
+<meta property="og:url" content="http://yoursite.com/2019/06/10/practices-algorithm-2019-06-10/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="有椒其馨,胡考之宁">
+<meta property="og:description" content="长期以来，我对于写算法或者白板写代码一直是 “畏惧” 的。但是，自己也深刻知道，算法作为一项最基本的技能，每个程序员都需要有一些基本的掌握。 从今天开始，我准备坚持做一些练习，在熟悉算法的同时，也练习提升下自己的编码能力。并且会同步在博客对编写代码过程中遇到的问题和收获的经验进行记录。 先从一道最简单的题目入手：二维数组中的查找。 题目描述在一个二维数组中（每个一维数组的长度相同），每一行都按照从">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-10T00:31:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxl24life&#39;s blog">
-<meta name="twitter:description" content="有椒其馨,胡考之宁">
+<meta name="twitter:title" content="算法编程练习：二维数组中的查找">
+<meta name="twitter:description" content="长期以来，我对于写算法或者白板写代码一直是 “畏惧” 的。但是，自己也深刻知道，算法作为一项最基本的技能，每个程序员都需要有一些基本的掌握。 从今天开始，我准备坚持做一些练习，在熟悉算法的同时，也练习提升下自己的编码能力。并且会同步在博客对编写代码过程中遇到的问题和收获的经验进行记录。 先从一道最简单的题目入手：二维数组中的查找。 题目描述在一个二维数组中（每个一维数组的长度相同），每一行都按照从">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/技术笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/10/practices-algorithm-2019-06-10/">
 
 
 
 
 
-  <title>分类: 技术笔记 | wxl24life's blog</title>
+  <title>算法编程练习：二维数组中的查找 | wxl24life's blog</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,79 +287,219 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>技术笔记<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/practices-algorithm-2019-06-10/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/17/flink-on-yarn-log4j-customize/" itemprop="url">
-              
-                <span itemprop="name">Flink On Yarn 模式下定制化业务日志</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">算法编程练习：二维数组中的查找</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-17T15:41:16+08:00" content="2019-04-17">
-          04-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T08:22:37+08:00">
+                2019-06-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  626
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>长期以来，我对于写算法或者白板写代码一直是 “畏惧” 的。但是，自己也深刻知道，算法作为一项最基本的技能，每个程序员都需要有一些基本的掌握。</p>
+<p>从今天开始，我准备坚持做一些练习，在熟悉算法的同时，也练习提升下自己的编码能力。并且会同步在博客对编写代码过程中遇到的问题和收获的经验进行记录。</p>
+<p>先从一道最简单的题目入手：<a href="https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&amp;tqId=11154&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">二维数组中的查找</a>。</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>手写代码第一版：</p>
+<pre><code>public class Solution {
+public boolean Find (int target, int [][] array) {
+    if (array == null || array.size () == 0) {
+        return false;
+    }
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/15/flink-parallelism-settings-1/" itemprop="url">
-              
-                <span itemprop="name">对 Flink 任务并行度的理解</span>
-              
-            </a>
-        
-      </h2>
+    int rowSize = array.size ();
+    int columnSize = array [0].size (); // 一纬数组长度相同，取第一个
+    for (int row = 0; row &lt; rowSize; row++) {
+        if (binarySearch (target, array [row], 0, columnSize - 1)) {
+            return true;
+        }
+    }
+    return false;
+}
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T23:39:43+08:00" content="2019-04-15">
-          04-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+private boolean binarySearch (int target, int [] array, int start, int end) {
+    if (array == null || array.size () == 0) {
+        return false;
+    }
+    if (end &lt; start) return false;
+    int mid = start + (end - start) / 2;
+    if (target == array [mid]) return true;
+    if (target &gt; array [mid]) return binarySearch (target, array, mid + 1, end);
+    if (target &lt; array [mid]) return binarySearch (target, array, start, mid - 1);
+}
+}
+</code></pre><p>编译错误：error: cannot find symbol.. method size ()</p>
+<p>!!! 第一次手写代码，竟然通过 Java 获取数组长度的方法都记错了。应该是跟数组列表获取长度的方式记混了。</p>
+<p>正确的写法 <code>list.size ()</code>, <code>array.length</code>。</p>
+<p>修改，提交，依然报错。</p>
+<pre><code>`binnarySearch ()` 方法最后缺少 `return` 语句。
+</code></pre><p>在第一次写代码实现时，考虑过要不要换成 <code>if {} else if {} else {}</code> 的方式。当时觉得，在目前这个版本里，所使用的三个 <code>if</code> 条件语句已经包含了所有的情况，不需要再做额外的 <code>return</code>，以为编译器可以智能地识别这种情况。但是实际编译的时候，还是报错了，说明目前的编译器还可以做的更智能。</p>
+<p>最终版本：</p>
+<pre><code>private boolean binarySearch (int target, int [] array, int start, int end) {
+    if (array == null || array.length == 0) {
+        return false;
+    }
+    if (end &lt; start) return false;
+    int mid = start + (end - start) / 2;
+    if (target == array [mid]) {
+        return true;
+    } else if (target &gt; array [mid]) {
+        return binarySearch (target, array, mid + 1, end);
+    } else {
+        //if (target &lt; array [mid])
+        return binarySearch (target, array, start, mid - 1);
+    }
+}
+</code></pre>
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/algorithm-java/" rel="tag"># algorithm, java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/06/how-to-use-hbase-client-api/" rel="next" title="How to use HBase client API">
+                <i class="fa fa-chevron-left"></i> How to use HBase client API
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -365,6 +507,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY3NC8yMDIxNA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -385,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -464,6 +624,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -606,6 +782,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -634,6 +814,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

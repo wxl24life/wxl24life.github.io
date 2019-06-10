@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念 1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称">
+<meta name="description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。">
 <meta name="keywords" content="Flink,Streamming Process">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对 Flink 任务并行度的理解">
 <meta property="og:url" content="http://yoursite.com/2019/04/15/flink-parallelism-settings-1/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念 1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称">
+<meta property="og:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-16T08:47:31.000Z">
+<meta property="og:updated_time" content="2019-06-10T11:19:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对 Flink 任务并行度的理解">
-<meta name="twitter:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。 概念 1 - 并行度Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称">
+<meta name="twitter:description" content="在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。">
 
 
 
@@ -415,6 +415,7 @@
 
       
         <p>在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。</p>
+<a id="more"></a>
 <h2 id="概念-1-并行度"><a href="#概念-1-并行度" class="headerlink" title="概念 1 - 并行度"></a>概念 1 - 并行度</h2><p>Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为并行度，本文把任务的并行度也称作算子的并行度。</p>
 <p>Flink 提供了 4 种设置任务并行度的方式：</p>
 <ol>
@@ -596,7 +597,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

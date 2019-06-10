@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="wxl24life&#39;s blog">
 <meta property="og:description" content="场景应用日志报 OutOfMemoryError 现场证据收集 首先使用 jstat 查看内存回收情况  $ jstat -gcutil PID 1000 从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC 增长迅速。 查看应用日志，发现 OutOfMemoryError，怀疑内存泄露  通过 jmap 打印内存堆栈 dump 文件（hprof 文件）  $ jmap -dump">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-11T08:00:35.000Z">
+<meta property="og:updated_time" content="2019-06-10T11:20:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过内存堆栈 hprof 文件分析 Java 内存泄露">
 <meta name="twitter:description" content="场景应用日志报 OutOfMemoryError 现场证据收集 首先使用 jstat 查看内存回收情况  $ jstat -gcutil PID 1000 从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC 增长迅速。 查看应用日志，发现 OutOfMemoryError，怀疑内存泄露  通过 jmap 打印内存堆栈 dump 文件（hprof 文件）  $ jmap -dump">
@@ -422,6 +422,7 @@
 <li>通过 <em>jmap</em> 打印内存堆栈 dump 文件（hprof 文件）<br>  <code>$ jmap -dump:format=b,file=/tmp/dump.log PID</code></li>
 <li>dump 文件大于 4G，尝试拉取到本地机器（可以通过浏览器访问分析结果）使用 <em>jhat</em> 分析，内存溢出报错<br>之后上网寻找分析超大内存 dump 文件的解决方案，发现了 Eclipse MAT 插件，实际使用发现对内存的消耗明显减少。</li>
 </ul>
+<a id="more"></a>
 <p>贴几个网上找到的链接：</p>
 <ul>
 <li><a href="https://stackoverflow.com/questions/7254017/tool-for-analyzing-large-java-heap-dumps/7254494#7254494" title="SO: tool-for-analyzing-large-java-heap-dumps" target="_blank" rel="noopener">StackOverFlow: tool-for-analyzing-large-java-heap-dumps</a></li>
@@ -589,7 +590,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

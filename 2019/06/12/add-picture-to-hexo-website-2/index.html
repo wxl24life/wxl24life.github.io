@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="在翻阅 Apache Flink 源代码的时候，单从代码观感上面看，有两大 Java 语言特性经常出现。一个是 Java 泛型，另一个就是大量使用 transient 关键字修饰类的成员变量。 泛型后面会专门写一篇文章进行复习。本篇文章简单介绍一下 transient 关键字的用法。">
-<meta name="keywords" content="java">
+<meta name="description" content="1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true 2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git 3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/sour">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 关键字之 transient">
-<meta property="og:url" content="http://yoursite.com/2019/06/10/java-keywords-transient/index.html">
+<meta property="og:title" content="add-picture-to-hexo-website-2">
+<meta property="og:url" content="http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="在翻阅 Apache Flink 源代码的时候，单从代码观感上面看，有两大 Java 语言特性经常出现。一个是 Java 泛型，另一个就是大量使用 transient 关键字修饰类的成员变量。 泛型后面会专门写一篇文章进行复习。本篇文章简单介绍一下 transient 关键字的用法。">
+<meta property="og:description" content="1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true 2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git 3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/sour">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T11:40:29.000Z">
+<meta property="og:image" content="http://yoursite.com/.com//test.jpg">
+<meta property="og:updated_time" content="2019-06-12T14:23:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 关键字之 transient">
-<meta name="twitter:description" content="在翻阅 Apache Flink 源代码的时候，单从代码观感上面看，有两大 Java 语言特性经常出现。一个是 Java 泛型，另一个就是大量使用 transient 关键字修饰类的成员变量。 泛型后面会专门写一篇文章进行复习。本篇文章简单介绍一下 transient 关键字的用法。">
+<meta name="twitter:title" content="add-picture-to-hexo-website-2">
+<meta name="twitter:description" content="1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true 2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git 3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/sour">
+<meta name="twitter:image" content="http://yoursite.com/.com//test.jpg">
 
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/10/java-keywords-transient/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/">
 
 
 
 
 
-  <title>Java 关键字之 transient | wxl24life's blog</title>
+  <title>add-picture-to-hexo-website-2 | wxl24life's blog</title>
   
 
 
@@ -301,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/java-keywords-transient/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wxl24life">
@@ -318,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 关键字之 transient</h1>
+          <h1 class="post-title" itemprop="name headline">add-picture-to-hexo-website-2</h1>
         
 
         <div class="post-meta">
@@ -330,8 +331,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T15:42:47+08:00">
-                2019-06-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-12T22:17:43+08:00">
+                2019-06-12
               </time>
             
 
@@ -341,28 +342,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">技术笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -370,7 +349,7 @@
 
           
           
-             <span id="/2019/06/10/java-keywords-transient/" class="leancloud_visitors" data-flag-title="Java 关键字之 transient">
+             <span id="/2019/06/12/add-picture-to-hexo-website-2/" class="leancloud_visitors" data-flag-title="add-picture-to-hexo-website-2">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -401,32 +380,15 @@
       
 
       
-        <p>在翻阅 Apache Flink 源代码的时候，单从代码观感上面看，有两大 Java 语言特性经常出现。一个是 Java 泛型，另一个就是大量使用 transient 关键字修饰类的成员变量。</p>
-<p>泛型后面会专门写一篇文章进行复习。本篇文章简单介绍一下 transient 关键字的用法。</p>
-<a id="more"></a>
-<h3 id="单词-transient-的含义"><a href="#单词-transient-的含义" class="headerlink" title="单词 transient 的含义"></a>单词 transient 的含义</h3><p>先看一下词典里这个单词的解释：</p>
-<pre><code>**transient**
-
-/ˈtrænzɪənt;   [US]    ˈtrænʃnt; `trænʃənt/
-
-adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转瞬即逝的
-</code></pre><p>从字面意思看，transient 有短暂片刻的意思。</p>
-<h3 id="Java-里的-transient-关键字"><a href="#Java-里的-transient-关键字" class="headerlink" title="Java 里的 transient 关键字"></a>Java 里的 transient 关键字</h3><p>先附录一段代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Queue to store the currently in-flight stream elements into. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> StreamElementQueue queue;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Pending stream element which could not yet added to the queue. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> StreamElementQueueEntry&lt;?&gt; pendingStreamElementQueueEntry;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> ExecutorService executor;</span><br></pre></td></tr></table></figure>
-<p>从上面的代码里我们看到，transient 被用来修饰类的成员变量。</p>
-<p>看一下 <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.3.1.3" target="_blank" rel="noopener">官方</a> 对这个关键字的解释：</p>
-<pre><code>Variables may be marked transient to indicate that they are not part of the persistent state of an object.
-</code></pre><p>我们知道，当需要针对 Java 对象进行存储或者传输时，需要先对其做序列化，将对象转换成字节流。Java 默认对类里所有成员变量（非静态）都进行序列化。但是，实际应用中，我们可能只关心部分成员变量的值，例如只需要存储部分成员变量的值。</p>
-<p>能不能只对部分成员变量进行序列化？</p>
-<p>transient 关键字就是用来实现这个需求的。通过将类的成员变量使用 transient 修饰，我们显示声明了在对象序列化时，该成员变量不需要序列化。</p>
-<p>通过 transient 修饰可以降低对象序列化和反序列化的开销，同时也能节省存储或传输时的带宽，尤其是当 transient 修饰的是一个较重的对象属性时，例如上面 Flink 代码里的几个对象成员。</p>
-<p>另外，Java 里某个类如果需要序列化，需要满足两个条件：</p>
-<ol>
-<li>要序列化的类本身实现了 java.io.Serializable 接口</li>
-<li>类成员变量如果是对象属性，成员对应的类同样需要实现 java.io.Serializable 接口</li>
-</ol>
-<p>前期我们在开始编写并部署 Flink 程序的时候，曾经出现过因为自定义的 Function 类成员没有实现序列化接口，而导致整个对象序列化失败的案例。当时查阅文档，采用的修复策略就是本文所介绍的 <strong> 增加 transient 关键字修饰 </strong>。</p>
-<h2 id="transient-使用代码示例"><a href="#transient-使用代码示例" class="headerlink" title="transient 使用代码示例"></a>transient 使用代码示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> wxl24life</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaSerializationTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">        Male person = <span class="keyword">new</span> Male ();</span><br><span class="line">        person.setAge (<span class="string">"30"</span>);</span><br><span class="line">        person.setName (<span class="string">"aaa"</span>);</span><br><span class="line">        person.setHeight (<span class="string">"178cm"</span>);</span><br><span class="line"></span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream (<span class="string">"temp-file.txt"</span>);</span><br><span class="line">        ObjectOutputStream outputStream = <span class="keyword">new</span> ObjectOutputStream (fileOutputStream);</span><br><span class="line">        outputStream.writeObject (person);</span><br><span class="line">        outputStream.flush ();</span><br><span class="line">        outputStream.close ();</span><br><span class="line"></span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream (<span class="string">"temp-file.txt"</span>);</span><br><span class="line">        ObjectInputStream inputStream = <span class="keyword">new</span> ObjectInputStream (fileInputStream);</span><br><span class="line">        Male personAfter = (Male) inputStream.readObject ();</span><br><span class="line"></span><br><span class="line">        Assert.assertEquals (person.getAge (), personAfter.getAge ());</span><br><span class="line">        Assert.assertEquals (person.getName (), personAfter.getName ());</span><br><span class="line">        Assert.assertNull (personAfter.getHeight ());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Male</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String sex = <span class="string">"male"</span>;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String height;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> height;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setHeight</span><span class="params">(String height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.height = height;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p><img src="/.com//test.jpg" alt></p>
+<p>1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true</p>
+<p>2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git</p>
+<p>3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/source/_posts 文件夹内除了 xxxx.md 文件还有一个同名的文件夹</p>
+<p>4 最后在 xxxx.md 中想引入图片时，先把图片复制到 xxxx 这个文件夹中，然后只需要在 xxxx.md 中按照 markdown 的格式引入图片：</p>
+<p><code>![你想输入的替代文字](xxxx / 图片名.jpg)</code></p>
+<p>注意： xxxx 是这个 md 文件的名字，也是同名文件夹的名字。只需要有文件夹名字即可，不需要有什么绝对路径。你想引入的图片就只需要放入 xxxx 这个文件夹内就好了，很像引用相对路径。</p>
+<p>5 最后检查一下，hexo g 生成页面后，进入 public\2017\02\26\index.html 文件中查看相关字段，可以发现，html 标签内的语句是 <code>&lt;img src=&quot;2017/02/26/xxxx/ 图片名.jpg&quot;&gt;</code>，而不是 <code>&lt;img src=&quot;xxxx / 图片名.jpg&gt;</code>。这很重要，关乎你的网页是否可以真正加载你想插入的图片。</p>
+<p>参考：<a href="https://www.cnblogs.com/codehome/p/8428738.html?utm_source=debugrun&utm_medium=referral" target="_blank" rel="noopener">Hexo 中添加本地图片</a></p>
 
       
     </div>
@@ -447,7 +409,7 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/06/10/java-keywords-transient/" title="Java 关键字之 transient">http://yoursite.com/2019/06/10/java-keywords-transient/</a>
+    <a href="http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/" title="add-picture-to-hexo-website-2">http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -460,12 +422,6 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-        </div>
-      
 
       
       
@@ -475,8 +431,8 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/10/practices-algorithm-2019-06-10/" rel="next" title="算法编程练习：二维数组中的查找">
-                <i class="fa fa-chevron-left"></i> 算法编程练习：二维数组中的查找
+              <a href="/2019/06/12/add-picture-to-hexo-website/" rel="next" title="add-picture-to-hexo-website">
+                <i class="fa fa-chevron-left"></i> add-picture-to-hexo-website
               </a>
             
           </div>
@@ -484,10 +440,6 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/10/customize-openner-app-for-mac-file-type/" rel="prev" title="定制 Mac 文件类型的默认打开程序">
-                定制 Mac 文件类型的默认打开程序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -544,17 +496,8 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -632,22 +575,6 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词-transient-的含义"><span class="nav-number">1.</span> <span class="nav-text">单词 transient 的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-里的-transient-关键字"><span class="nav-number">2.</span> <span class="nav-text">Java 里的 transient 关键字</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#transient-使用代码示例"><span class="nav-number"></span> <span class="nav-text">transient 使用代码示例</span></a></li></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

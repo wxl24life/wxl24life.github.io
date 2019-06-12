@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="hexo,">
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true 2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git 3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/sour">
+<meta name="description" content="把根目录配置文件 _config.yml 里的 post_asset_folder: 这个选项设置为 true  在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件 hexo-asset-image  等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/source/_p">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="add-picture-to-hexo-website-2">
+<meta property="og:title" content="使用 hexo-asset-image 上传本地图片">
 <meta property="og:url" content="http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true 2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git 3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/sour">
+<meta property="og:description" content="把根目录配置文件 _config.yml 里的 post_asset_folder: 这个选项设置为 true  在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件 hexo-asset-image  等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/source/_p">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/.com//test.jpg">
-<meta property="og:updated_time" content="2019-06-12T14:23:15.000Z">
+<meta property="og:updated_time" content="2019-06-12T14:32:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="add-picture-to-hexo-website-2">
-<meta name="twitter:description" content="1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true 2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git 3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/sour">
+<meta name="twitter:title" content="使用 hexo-asset-image 上传本地图片">
+<meta name="twitter:description" content="把根目录配置文件 _config.yml 里的 post_asset_folder: 这个选项设置为 true  在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件 hexo-asset-image  等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/source/_p">
 <meta name="twitter:image" content="http://yoursite.com/.com//test.jpg">
 
 
@@ -127,7 +128,7 @@
 
 
 
-  <title>add-picture-to-hexo-website-2 | wxl24life's blog</title>
+  <title>使用 hexo-asset-image 上传本地图片 | wxl24life's blog</title>
   
 
 
@@ -319,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">add-picture-to-hexo-website-2</h1>
+          <h1 class="post-title" itemprop="name headline">使用 hexo-asset-image 上传本地图片</h1>
         
 
         <div class="post-meta">
@@ -349,7 +350,7 @@
 
           
           
-             <span id="/2019/06/12/add-picture-to-hexo-website-2/" class="leancloud_visitors" data-flag-title="add-picture-to-hexo-website-2">
+             <span id="/2019/06/12/add-picture-to-hexo-website-2/" class="leancloud_visitors" data-flag-title="使用 hexo-asset-image 上传本地图片">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -380,15 +381,20 @@
       
 
       
-        <p><img src="/.com//test.jpg" alt></p>
-<p>1 把主页配置文件_config.yml 里的 post_asset_folder: 这个选项设置为 true</p>
-<p>2 在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自 dalao：dalao 的 git</p>
-<p>3 等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/source/_posts 文件夹内除了 xxxx.md 文件还有一个同名的文件夹</p>
-<p>4 最后在 xxxx.md 中想引入图片时，先把图片复制到 xxxx 这个文件夹中，然后只需要在 xxxx.md 中按照 markdown 的格式引入图片：</p>
-<p><code>![你想输入的替代文字](xxxx / 图片名.jpg)</code></p>
-<p>注意： xxxx 是这个 md 文件的名字，也是同名文件夹的名字。只需要有文件夹名字即可，不需要有什么绝对路径。你想引入的图片就只需要放入 xxxx 这个文件夹内就好了，很像引用相对路径。</p>
-<p>5 最后检查一下，hexo g 生成页面后，进入 public\2017\02\26\index.html 文件中查看相关字段，可以发现，html 标签内的语句是 <code>&lt;img src=&quot;2017/02/26/xxxx/ 图片名.jpg&quot;&gt;</code>，而不是 <code>&lt;img src=&quot;xxxx / 图片名.jpg&gt;</code>。这很重要，关乎你的网页是否可以真正加载你想插入的图片。</p>
+        <p><img src="/.com//test.jpg" alt="test"></p>
+<ol>
+<li><p>把根目录配置文件 _config.yml 里的 post_asset_folder: 这个选项设置为 true</p>
+</li>
+<li><p>在你的 hexo 目录下执行这样一句话 npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件 <a href="https://github.com/xcodebuild/hexo-asset-image" target="_blank" rel="noopener">hexo-asset-image</a></p>
+</li>
+<li><p>等待一小段时间后，再运行 hexo n “xxxx” 来生成 md 博文时，/source/_posts 文件夹内除了 xxxx.md 文件还有一个同名的文件夹</p>
+</li>
+<li><p>最后在 xxxx.md 中想引入图片时，先把图片复制到 xxxx 这个文件夹中，然后只需要在 xxxx.md 中按照 markdown 的格式引入图片：</p>
+</li>
+</ol>
+<p><code>![你想输入的替代文字](图片名.jpg)</code></p>
 <p>参考：<a href="https://www.cnblogs.com/codehome/p/8428738.html?utm_source=debugrun&utm_medium=referral" target="_blank" rel="noopener">Hexo 中添加本地图片</a></p>
+<p>（注意：参考文章中 markdown 图片引用的相对路径 <code>![你想输入的替代文字](xxxx / 图片名.jpg)</code> 是错的，不需要上层 xxxx 目录）</p>
 
       
     </div>
@@ -409,7 +415,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/" title="add-picture-to-hexo-website-2">http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/</a>
+    <a href="http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/" title="使用 hexo-asset-image 上传本地图片">http://yoursite.com/2019/06/12/add-picture-to-hexo-website-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -422,6 +428,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
 
       
       
@@ -431,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/12/add-picture-to-hexo-website/" rel="next" title="add-picture-to-hexo-website">
-                <i class="fa fa-chevron-left"></i> add-picture-to-hexo-website
+              <a href="/2019/06/12/deploy-hexo-site-on-coding-dot-me/" rel="next" title="将博客同步部署到 github 和 coding 平台">
+                <i class="fa fa-chevron-left"></i> 将博客同步部署到 github 和 coding 平台
               </a>
             
           </div>
@@ -514,7 +526,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

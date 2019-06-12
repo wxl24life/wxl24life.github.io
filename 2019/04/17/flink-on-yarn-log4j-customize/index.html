@@ -289,24 +289,131 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/17/flink-on-yarn-log4j-customize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">Flink On Yarn 模式下定制化业务日志</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>最近公司通过 on yarn 模式部署了一套 Flink 集群，遇到了提交集群作业后，业务日志 log4j 配置文件无法加载的问题。</p>
+          <h1 class="post-title" itemprop="name headline">Flink On Yarn 模式下定制化业务日志</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T15:41:16+08:00">
+                2019-04-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-10T19:41:32+08:00">
+                2019-06-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">技术笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/17/flink-on-yarn-log4j-customize/" class="leancloud_visitors" data-flag-title="Flink On Yarn 模式下定制化业务日志">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>最近公司通过 on yarn 模式部署了一套 Flink 集群，遇到了提交集群作业后，业务日志 log4j 配置文件无法加载的问题。</p>
 <p>当往集群部署作业时，默认情况下，业务应用在自己项目工程 jar 里提供的 log4j.properties 是无法加载的，Flink 会默认采用安装目录下的 conf/log4j.properties 作为统一的 logger 定义文件。Flink 提供的 log4j.properties 里只配置了 rootLogger，如果不加修改，集群上面运行的所有作业日志都将输出到 rootLogger 指向的目录。</p>
 <a id="more"></a>
 <pre><code>log4j.logger.com.umetrip.flink=INFO,file
@@ -334,15 +441,85 @@ ln -s flink/conf/* .
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果需要使用自己项目里的 log4j.properties，<strong> 前面创建软链接的方案只适用于单任务模式启动的 flink on yarn 集群（<em>one-yarn-cluster-per-job</em>）。</strong> 区别于通过 yarn-session 启动的 flink 集群。</p>
 <p>参考：<a href="https://riptutorial.com/apache-flink/example/29955/using-different-configuration-s--for-each-application" target="_blank" rel="noopener">Using different configuration (s) for each application</a></p>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    wxl24life
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/17/flink-on-yarn-log4j-customize/" title="Flink On Yarn 模式下定制化业务日志">http://yoursite.com/2019/04/17/flink-on-yarn-log4j-customize/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flink/" rel="tag"># flink</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/flink-parallelism-settings-1/" rel="next" title="对 Flink 任务并行度的理解">
+                <i class="fa fa-chevron-left"></i> 对 Flink 任务并行度的理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/slf4j-best-practice/" rel="prev" title="SLF4J 使用规范（转载）">
+                SLF4J 使用规范（转载） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -429,7 +606,7 @@ ln -s flink/conf/* .
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -527,7 +704,7 @@ ln -s flink/conf/* .
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i>访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -535,7 +712,7 @@ ln -s flink/conf/* .
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i>总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>

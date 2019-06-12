@@ -289,24 +289,131 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/java-keywords-transient/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">Java 关键字之 transient</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>在翻阅 Apache Flink 源代码的时候，单从代码观感上面看，有两大 Java 语言特性经常出现。一个是 Java 泛型，另一个就是大量使用 transient 关键字修饰类的成员变量。</p>
+          <h1 class="post-title" itemprop="name headline">Java 关键字之 transient</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T15:42:47+08:00">
+                2019-06-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-10T19:40:29+08:00">
+                2019-06-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">技术笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/06/10/java-keywords-transient/" class="leancloud_visitors" data-flag-title="Java 关键字之 transient">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在翻阅 Apache Flink 源代码的时候，单从代码观感上面看，有两大 Java 语言特性经常出现。一个是 Java 泛型，另一个就是大量使用 transient 关键字修饰类的成员变量。</p>
 <p>泛型后面会专门写一篇文章进行复习。本篇文章简单介绍一下 transient 关键字的用法。</p>
 <a id="more"></a>
 <h3 id="单词-transient-的含义"><a href="#单词-transient-的含义" class="headerlink" title="单词 transient 的含义"></a>单词 transient 的含义</h3><p>先看一下词典里这个单词的解释：</p>
@@ -333,15 +440,85 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
 <p>前期我们在开始编写并部署 Flink 程序的时候，曾经出现过因为自定义的 Function 类成员没有实现序列化接口，而导致整个对象序列化失败的案例。当时查阅文档，采用的修复策略就是本文所介绍的 <strong> 增加 transient 关键字修饰 </strong>。</p>
 <h2 id="transient-使用代码示例"><a href="#transient-使用代码示例" class="headerlink" title="transient 使用代码示例"></a>transient 使用代码示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> wxl24life</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaSerializationTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">        Male person = <span class="keyword">new</span> Male ();</span><br><span class="line">        person.setAge (<span class="string">"30"</span>);</span><br><span class="line">        person.setName (<span class="string">"aaa"</span>);</span><br><span class="line">        person.setHeight (<span class="string">"178cm"</span>);</span><br><span class="line"></span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream (<span class="string">"temp-file.txt"</span>);</span><br><span class="line">        ObjectOutputStream outputStream = <span class="keyword">new</span> ObjectOutputStream (fileOutputStream);</span><br><span class="line">        outputStream.writeObject (person);</span><br><span class="line">        outputStream.flush ();</span><br><span class="line">        outputStream.close ();</span><br><span class="line"></span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream (<span class="string">"temp-file.txt"</span>);</span><br><span class="line">        ObjectInputStream inputStream = <span class="keyword">new</span> ObjectInputStream (fileInputStream);</span><br><span class="line">        Male personAfter = (Male) inputStream.readObject ();</span><br><span class="line"></span><br><span class="line">        Assert.assertEquals (person.getAge (), personAfter.getAge ());</span><br><span class="line">        Assert.assertEquals (person.getName (), personAfter.getName ());</span><br><span class="line">        Assert.assertNull (personAfter.getHeight ());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Male</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String sex = <span class="string">"male"</span>;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> String height;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> height;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setHeight</span><span class="params">(String height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.height = height;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    wxl24life
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/06/10/java-keywords-transient/" title="Java 关键字之 transient">http://yoursite.com/2019/06/10/java-keywords-transient/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/10/practices-algorithm-2019-06-10/" rel="next" title="算法编程练习：二维数组中的查找">
+                <i class="fa fa-chevron-left"></i> 算法编程练习：二维数组中的查找
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/10/customize-openner-app-for-mac-file-type/" rel="prev" title="定制 Mac 文件类型的默认打开程序">
+                定制 Mac 文件类型的默认打开程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -428,7 +605,7 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -526,7 +703,7 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i>访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -534,7 +711,7 @@ adj lasting for only a short time; brief; fleeting 短暂的；片刻的；转�
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i>总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>

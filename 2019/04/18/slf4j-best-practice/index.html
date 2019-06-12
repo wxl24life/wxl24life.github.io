@@ -288,24 +288,131 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/slf4j-best-practice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">SLF4J 使用规范（转载）</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>本文转载自：<a href="https://www.cnblogs.com/wanghaichao/p/9214265.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghaichao/p/9214265.html</a></p>
+          <h1 class="post-title" itemprop="name headline">SLF4J 使用规范（转载）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T16:36:18+08:00">
+                2019-04-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-10T19:18:25+08:00">
+                2019-06-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/18/slf4j-best-practice/" class="leancloud_visitors" data-flag-title="SLF4J 使用规范（转载）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文转载自：<a href="https://www.cnblogs.com/wanghaichao/p/9214265.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanghaichao/p/9214265.html</a></p>
 <a id="more"></a>
 <h2 id="一、结论："><a href="#一、结论：" class="headerlink" title="一、结论："></a>一、结论：</h2><blockquote>
 <p>应用中不可直接使用日志系统（Log4j、Logback）中的 API，而应依赖使用日志框架 SLF4J 中的 API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。</p>
@@ -372,15 +479,79 @@ logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symb
 <li>作为附注，更少的暂时的字符串意味着垃圾回收器（Garbage Collector）需要做更好的工作，这意味着你的应用程序有为更好的吞吐量和性能。</li>
 </ol>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    wxl24life
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/18/slf4j-best-practice/" title="SLF4J 使用规范（转载）">http://yoursite.com/2019/04/18/slf4j-best-practice/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/17/flink-on-yarn-log4j-customize/" rel="next" title="Flink On Yarn 模式下定制化业务日志">
+                <i class="fa fa-chevron-left"></i> Flink On Yarn 模式下定制化业务日志
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/19/flink-runtime-concepts/" rel="prev" title="区分下 Flink 运行时的几个概念">
+                区分下 Flink 运行时的几个概念 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -467,7 +638,7 @@ logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symb
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -565,7 +736,7 @@ logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symb
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i>访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -573,7 +744,7 @@ logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symb
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i>总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>

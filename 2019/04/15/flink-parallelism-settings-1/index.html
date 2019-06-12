@@ -289,24 +289,131 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/flink-parallelism-settings-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">对 Flink 任务并行度的理解</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。</p>
+          <h1 class="post-title" itemprop="name headline">对 Flink 任务并行度的理解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T23:39:43+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-10T19:41:21+08:00">
+                2019-06-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">技术笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/15/flink-parallelism-settings-1/" class="leancloud_visitors" data-flag-title="对 Flink 任务并行度的理解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 Flink 的概念里面，一个作业的并发参数是通过并行度进行设置的，相关的概念主要有两个：并行度（parallelism）和最大并行度（maxParallelism）。</p>
 <a id="more"></a>
 <h2 id="概念-1-并行度"><a href="#概念-1-并行度" class="headerlink" title="概念 1 - 并行度"></a>概念 1 - 并行度</h2><p>Flink 程序由多种计算任务组成，这些任务包括转换算子、数据 source 算子和 sink 算子等。每个任务可以设置有多少个并行实例同时执行，每个并行实例处理一部分当前任务的输入数据。任务的并行实例个数称为并行度，本文把任务的并行度也称作算子的并行度。</p>
 <p>Flink 提供了 4 种设置任务并行度的方式：</p>
@@ -340,15 +447,85 @@
 <p>通过调用算子或者执行环境的 setMaxParallelism () API 的方式，可以分别在单个算子和全局作业两个粒度对任务的最大并行度进行设置。</p>
 <p>最大并行度设置时需要满足下面的条件：<br><code>0 &lt; parallelism &lt;= max parallelism &lt;= 2^15</code></p>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    wxl24life
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/15/flink-parallelism-settings-1/" title="对 Flink 任务并行度的理解">http://yoursite.com/2019/04/15/flink-parallelism-settings-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flink/" rel="tag"># flink</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/12/hexo-notes/" rel="next" title="hexo blog 操作备忘">
+                <i class="fa fa-chevron-left"></i> hexo blog 操作备忘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/flink-on-yarn-log4j-customize/" rel="prev" title="Flink On Yarn 模式下定制化业务日志">
+                Flink On Yarn 模式下定制化业务日志 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -435,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -533,7 +710,7 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i>访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -541,7 +718,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i>总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>

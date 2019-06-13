@@ -410,8 +410,7 @@
 import org.SLF4J.LoggerFactory;
 
 private static final Logger LOGGER = LoggerFactory.getLogger (Abc.class);
-LOGGER.info (&quot;订单 {} 开始取消订单，请求参数:{}&quot;, orderNo, object.toJSONString ());
-</code></pre><p>{} 可以读取到后面追加的参数并放置里面。<br>日志工具对象 logger 应声明为 <em>private static final</em>：</p>
+LOGGER.info (&quot;订单 {} 开始取消订单，请求参数:{}&quot;, orderNo, object.toJSONString ());</code></pre><p>{} 可以读取到后面追加的参数并放置里面。<br>日志工具对象 logger 应声明为 <em>private static final</em>：</p>
 <ol>
 <li>声明为 private 是出于安全性考虑，防止 logger 对象被其他类非法使用。</li>
 <li>声明为 static 是为了防止重复 new 出 logger 对象，同时防止 logger 被序列化，造成安全风险，出于资源利用的考虑，LOGGER 的构造方法参数是 Class，决定了 LOGGER 是根据类的结构来进行区分日志，所以一个类只要一个 LOGGER 就可以了，故 static。</li>
@@ -443,7 +442,8 @@ LOGGER.info (&quot;订单 {} 开始取消订单，请求参数:{}&quot;, orderNo
 </li>
 </ol>
 <ul>
-<li>单独使用。分别调用框架自己的方法来输出日志信息。</li>
+<li><p>单独使用。分别调用框架自己的方法来输出日志信息。</p>
+</li>
 <li><p>绑定 SLF4J 一起使用。调用 SLF4J 的 api 来输入日志信息，具体使用与底层日志框架无关（需要底层框架的配置文件）。</p>
 <p>  显然不推荐单独使用日志框架。假设项目中已经使用了 log4j，而我们此时加载了一个类库，而这个类库依赖另一个日志框架。这个时候我们就需要维护两个日志框架，这是一个非常麻烦的事情。而使用了 SLF4J 就不同了，由于应用调用的抽象层的 api，与底层日志框架是无关的，因此可以任意更换日志框架。</p>
 </li>
@@ -460,11 +460,11 @@ if (logger.isDebugEnabled ()) {
 logger.debug (&quot;Processing trade with id:&quot; + id + &quot;and symbol:&quot; + symbol);
 }
 # 正例：（占位符）
-logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symbol);
-</code></pre></li>
+logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symbol);</code></pre></li>
 <li><p>通过使用 SLF4J 的日志方法，你可以延迟构建日志信息（Srting）的开销，直到你真正需要，这对于内存和 CPU 都是高效的。</p>
 </li>
-<li>作为附注，更少的暂时的字符串意味着垃圾回收器（Garbage Collector）需要做更好的工作，这意味着你的应用程序有为更好的吞吐量和性能。</li>
+<li><p>作为附注，更少的暂时的字符串意味着垃圾回收器（Garbage Collector）需要做更好的工作，这意味着你的应用程序有为更好的吞吐量和性能。</p>
+</li>
 </ol>
 
       
@@ -604,7 +604,7 @@ logger.debug (&quot;Processing trade with id: {} and symbol : {}&quot;, id, symb
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

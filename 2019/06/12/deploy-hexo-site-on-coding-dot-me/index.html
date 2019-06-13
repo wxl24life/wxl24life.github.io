@@ -383,22 +383,26 @@
 <p>诚然，写博客的主要目的是为了记录日常学习工作生活中的一些想法以及解决问题的思路，但是如果文章能够帮助到别人，肯定也是一件很有成就感的事情。尤其，当意识到会有更多的人读到自己写的文章，本身对于文章的写作质量自然会有更高的要求。</p>
 <p>针对如何提升博客打开速度的问题，网上搜到的经验普遍是将整个博客站点往国内的代码平台同步托管一份，例如 coding.me。</p>
 <a id="more"></a>
+
 <p>这两天，我按照其他人总结的经验逐步做了设置，但是，经过各种尝试都没能通过自己的独立域名打开博客。最后，我对域名解析以及 CNAME 等网络知识做了简单 <a href="https://www.zhihu.com/question/22916306" target="_blank" rel="noopener">调研</a>，成功将域名解析到了 coding pages 页面。</p>
 <p>在此，我对整个过程里涉及到的操作步骤做一下记录。</p>
 <p>首先，注册 coding.me，创建项目，添加公钥，修改 _config.yml 支持同步往 github.io 和 coding.me 上面推送代码，开启  coding pages。网上有更详细的操作步骤 <a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">介绍</a>。</p>
 <p>接下来是域名解析部分，几个关键步骤：</p>
 <ol>
-<li>hexo 站点目录 source 文件夹下添加 CNAME 文件，里面输入自己的域名。我填写的是 wxl24life.com，也可以写 <a href="http://www.wxl24life.com" target="_blank" rel="noopener">www.wxl24life.com</a>, 这两个是有区别的。</li>
+<li><p>hexo 站点目录 source 文件夹下添加 CNAME 文件，里面输入自己的域名。我填写的是 wxl24life.com，也可以写 <a href="http://www.wxl24life.com" target="_blank" rel="noopener">www.wxl24life.com</a>, 这两个是有区别的。</p>
+</li>
 <li><p>域名服务提供商网站上面添加 CNAME 记录。我用的是腾讯云，具体位置：云解析 -&gt; 域名解析列表 -&gt; 添加记录。</p>
 <ul>
-<li>我查阅到的所有文章都将主机记录即域名前缀设置成了 www。这里有坑，<strong> 如果设置成 www，后面使用域名时，必须带 www 前缀，例如 <a href="http://www.wxl24life.com" target="_blank" rel="noopener">www.wxl24life.com</a></strong>，如果域名链接里不包含 www 将无法打开博客。</li>
+<li>我查阅到的所有文章都将主机记录即域名前缀设置成了 www。这里有坑，** 如果设置成 www，后面使用域名时，必须带 www 前缀，例如 <a href="http://www.wxl24life.com**，如果域名链接里不包含" target="_blank" rel="noopener">www.wxl24life.com**，如果域名链接里不包含</a> www 将无法打开博客。</li>
 <li>如果希望通过不带 www 前缀的域名访问博客站点，需要在域名解析列表里将主机记录设定为 @。</li>
 <li>如果想支持 www 和不带 www 前缀两种域名访问方式，需要添加两条记录。且将前缀分别设定为 www 和 @。</li>
 </ul>
 </li>
-<li>coding.me 平台 Pages 服务绑定在自定义域名，为了能够支持通过 www 和非 www 两种前缀访问博客站点，绑定了两个域名，分别是 <a href="http://www.wxl24life.com" target="_blank" rel="noopener">www.wxl24life.com</a> 和 wxl24life.com。</li>
+<li><p>coding.me 平台 Pages 服务绑定在自定义域名，为了能够支持通过 www 和非 www 两种前缀访问博客站点，绑定了两个域名，分别是 <a href="http://www.wxl24life.com" target="_blank" rel="noopener">www.wxl24life.com</a> 和 wxl24life.com。</p>
+</li>
 <li><p>通过 dig 工具可以验证 CNAME 是否设置生效。</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ dig wxl24life.com | grep IN</span><br><span class="line">;wxl24life.com.			IN	A</span><br><span class="line">wxl24life.com.		752	IN	CNAME		</span><br><span class="line">wxl24life_blog.coding.me.</span><br><span class="line">wxl24life_blog.coding.me. 77	IN	A	119.28.76.36</span><br><span class="line"></span><br><span class="line">$ dig www.wxl24life.com | grep IN</span><br><span class="line">;www.wxl24life.com.		IN	A</span><br><span class="line">www.wxl24life.com.	752	IN	CNAME</span><br><span class="line">wxl24life_blog.coding.me.</span><br><span class="line">wxl24life_blog.coding.me. 65	IN	A	119.28.76.36</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <hr>
@@ -415,8 +419,7 @@
 要解析 www.wxl24life.com，请填写 www。主机记录就是域名前缀，常见用法有：
 
 www            解析后的域名为 www.wxl24life.com
-@            直接解析主域名 wxl24life.com
-</code></pre><p>如果对这里的提示认真理解一下，而不是盲从其他人的操作设置，可能会少走很多弯路。通过这个案例也再次提醒我们，网上的经验文章不一定完全适用于自己，如果只是盲从完全照搬的话，踩坑的可能性会很大。</p>
+@            直接解析主域名 wxl24life.com</code></pre><p>如果对这里的提示认真理解一下，而不是盲从其他人的操作设置，可能会少走很多弯路。通过这个案例也再次提醒我们，网上的经验文章不一定完全适用于自己，如果只是盲从完全照搬的话，踩坑的可能性会很大。</p>
 <p>当然，最后这部分的反思也适用于我博客里所谓的 “经验” 文章，仅做参考。</p>
 
       
@@ -475,6 +478,10 @@ www            解析后的域名为 www.wxl24life.com
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/12/add-picture-to-hexo-website/" rel="prev" title="Hexo 上传本地图片">
+                Hexo 上传本地图片 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -549,7 +556,7 @@ www            解析后的域名为 www.wxl24life.com
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

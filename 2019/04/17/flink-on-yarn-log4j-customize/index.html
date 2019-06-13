@@ -404,6 +404,7 @@
         <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>最近公司通过 on yarn 模式部署了一套 Flink 集群，遇到了提交集群作业后，业务日志 log4j 配置文件无法加载的问题。</p>
 <p>当往集群部署作业时，默认情况下，业务应用在自己项目工程 jar 里提供的 log4j.properties 是无法加载的，Flink 会默认采用安装目录下的 conf/log4j.properties 作为统一的 logger 定义文件。Flink 提供的 log4j.properties 里只配置了 rootLogger，如果不加修改，集群上面运行的所有作业日志都将输出到 rootLogger 指向的目录。</p>
 <a id="more"></a>
+
 <pre><code>log4j.logger.com.umetrip.flink=INFO,file
 
 # Log all infos in the given file
@@ -411,22 +412,18 @@ log4j.appender.file=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.file.File=${log.file}
 log4j.appender.file.append=false
 log4j.appender.file.layout=org.apache.log4j.PatternLayout
-log4j.appender.file.layout.ConversionPattern=% d {yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c % x - % m% n
-</code></pre><p>采用默认设置的好处是可以通过 flink web ui 查看日志，因为集群缺省提供的 <em>log.file</em> 指向了 yarn 的 application container 下的日志文件，而它正是 web ui 的 taskmanager logs 页面所指向的日志文件在服务器上的地址。但是，由于每次查看都需要打开完整的文件，所以当日志量很大时，加载会非常慢甚至直接导致页面挂掉。</p>
+log4j.appender.file.layout.ConversionPattern=% d {yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c % x - % m% n</code></pre><p>采用默认设置的好处是可以通过 flink web ui 查看日志，因为集群缺省提供的 <em>log.file</em> 指向了 yarn 的 application container 下的日志文件，而它正是 web ui 的 taskmanager logs 页面所指向的日志文件在服务器上的地址。但是，由于每次查看都需要打开完整的文件，所以当日志量很大时，加载会非常慢甚至直接导致页面挂掉。</p>
 <p>能够想到的解决办法是，继续使用 <em>flink/conf/log4j.properties</em> 文件，但是每个应用需要在里面定制自己的 logger。</p>
 <h2 id="定制方案"><a href="#定制方案" class="headerlink" title="定制方案"></a>定制方案</h2><p>我们通过创建软链接的方式，在每次执行 <em>flink run</em> 命令启动作业时，由业务指定自己的 log4j.properties，定制自己业务的 logger。</p>
 <p>具体步骤如下：</p>
 <ol>
-<li>在应用作业部署路径下创建一个 <em>conf</em> 目录<pre><code>$ mkdir /home/umecron/wxl/conf 
-</code></pre></li>
+<li>在应用作业部署路径下创建一个 <em>conf</em> 目录<pre><code>$ mkdir /home/umecron/wxl/conf </code></pre></li>
 <li>创建 <em>conf</em> 目录下所有文件的软链接<pre><code>$ cd /home/umecron/wxl/conf
-ln -s flink/conf/* . 
-</code></pre></li>
-<li>将业务自己的 log4j.properties 放进 <em>/home/umecron/wxl/conf </em> 目录，替换已经存在的软链接</li>
-<li>执行 <em>flink run</em> 提交任务之前，执行：<pre><code>export FLINK_CONF_DIR=/home/umecron/wxl/conf
-</code></pre></li>
+ln -s flink/conf/* . </code></pre></li>
+<li>将业务自己的 log4j.properties 放进 */home/umecron/wxl/conf * 目录，替换已经存在的软链接</li>
+<li>执行 <em>flink run</em> 提交任务之前，执行：<pre><code>export FLINK_CONF_DIR=/home/umecron/wxl/conf</code></pre></li>
 </ol>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果需要使用自己项目里的 log4j.properties，<strong> 前面创建软链接的方案只适用于单任务模式启动的 flink on yarn 集群（<em>one-yarn-cluster-per-job</em>）。</strong> 区别于通过 yarn-session 启动的 flink 集群。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果需要使用自己项目里的 log4j.properties，<em>* 前面创建软链接的方案只适用于单任务模式启动的 flink on yarn 集群（</em>one-yarn-cluster-per-job<em>）。*</em> 区别于通过 yarn-session 启动的 flink 集群。</p>
 <p>参考：<a href="https://riptutorial.com/apache-flink/example/29955/using-different-configuration-s--for-each-application" target="_blank" rel="noopener">Using different configuration (s) for each application</a></p>
 
       
@@ -572,7 +569,7 @@ ln -s flink/conf/* .
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

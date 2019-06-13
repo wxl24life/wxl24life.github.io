@@ -403,8 +403,9 @@
       
         <p>长期以来，我对于写算法或者白板写代码一直是 “畏惧” 的。但是，自己也深刻知道，算法作为一项最基本的技能，每个程序员都需要有一些基本的掌握。</p>
 <p>从今天开始，我准备坚持做一些练习，在熟悉算法的同时，也练习提升下自己的编码能力。并且会同步在博客对编写代码过程中遇到的问题和收获的经验进行记录。</p>
-<p>先从一道最简单的题目入手：<a href="https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&amp;tqId=11154&amp;rp=1&amp;ru=/ta/coding-interviews&amp;qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">二维数组中的查找</a>。</p>
+<p>先从一道最简单的题目入手：<a href="https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking" target="_blank" rel="noopener">二维数组中的查找</a>。</p>
 <a id="more"></a>
+
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <p>手写代码第一版：</p>
 <pre><code>public class Solution {
@@ -433,13 +434,11 @@ private boolean binarySearch (int target, int [] array, int start, int end) {
     if (target &gt; array [mid]) return binarySearch (target, array, mid + 1, end);
     if (target &lt; array [mid]) return binarySearch (target, array, start, mid - 1);
 }
-}
-</code></pre><p>编译错误：error: cannot find symbol.. method size ()</p>
+}</code></pre><p>编译错误：error: cannot find symbol.. method size ()</p>
 <p>!!! 第一次手写代码，竟然通过 Java 获取数组长度的方法都记错了。应该是跟数组列表获取长度的方式记混了。</p>
 <p>正确的写法 <code>list.size ()</code>, <code>array.length</code>。</p>
 <p>修改，提交，依然报错。</p>
-<pre><code>`binnarySearch ()` 方法最后缺少 `return` 语句。
-</code></pre><p>在第一次写代码实现时，考虑过要不要换成 <code>if {} else if {} else {}</code> 的方式。当时觉得，在目前这个版本里，所使用的三个 <code>if</code> 条件语句已经包含了所有的情况，不需要再做额外的 <code>return</code>，以为编译器可以智能地识别这种情况。但是实际编译的时候，还是报错了，说明目前的编译器还可以做的更智能。</p>
+<pre><code>`binnarySearch ()` 方法最后缺少 `return` 语句。</code></pre><p>在第一次写代码实现时，考虑过要不要换成 <code>if {} else if {} else {}</code> 的方式。当时觉得，在目前这个版本里，所使用的三个 <code>if</code> 条件语句已经包含了所有的情况，不需要再做额外的 <code>return</code>，以为编译器可以智能地识别这种情况。但是实际编译的时候，还是报错了，说明目前的编译器还可以做的更智能。</p>
 <p>最终版本：</p>
 <pre><code>private boolean binarySearch (int target, int [] array, int start, int end) {
     if (array == null || array.length == 0) {
@@ -455,8 +454,7 @@ private boolean binarySearch (int target, int [] array, int start, int end) {
         //if (target &lt; array [mid])
         return binarySearch (target, array, start, mid - 1);
     }
-}
-</code></pre>
+}</code></pre>
       
     </div>
     
@@ -602,7 +600,7 @@ private boolean binarySearch (int target, int [] array, int start, int end) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -381,6 +381,7 @@
       
         <p>使用 Flink 有一段时间了，本文简单梳理下 Flink 分布式 runtime 涉及到一些容易混淆的概念。</p>
 <a id="more"></a>
+
 <h2 id="Task-vs-Subtask"><a href="#Task-vs-Subtask" class="headerlink" title="Task vs Subtask"></a>Task vs Subtask</h2><p>算子的 parallelism 表示该算子在运行时可被拆解为多少个子任务 (subtask)。Flink 默认会尝试对相邻连续算子的子任务进行串联 (chain)，串联到一起的一个或多个子任务组成了 Flink 概念里的任务 (task)，例如 source-map-filter  三个算子的子任务默认是可以串联到一个任务里执行的。</p>
 <p>每个任务独占一个线程，该线程与 taskmanager 的任务槽 (task slot) 是一一对应的。</p>
 <blockquote>
@@ -392,8 +393,7 @@
 </ol>
 <pre><code>The number of task slots that each TaskManager offers. Each slot runs one parallel pipeline.
 
-taskmanager.numberOfTaskSlots: 2
-</code></pre><ol start="3">
+taskmanager.numberOfTaskSlots: 2</code></pre><ol start="3">
 <li>JobManager 用于协调分布式执行过程，例如调度任务、协调完成 checkpoint、协调失败场景下的恢复操作等。TaskManager 负责执行 dataflow 里的具体任务，同时也负责 datastream 的缓存和数据交换。</li>
 </ol>
 
@@ -540,7 +540,7 @@ taskmanager.numberOfTaskSlots: 2
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

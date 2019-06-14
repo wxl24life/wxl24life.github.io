@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="java,">
 
 
 
@@ -79,16 +79,23 @@
 
 
 
-<meta name="description" content="有椒其馨,胡考之宁">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxl24life&#39;s blog">
-<meta property="og:url" content="http://wxl24life.com/archives/2019/page/2/index.html">
+<meta name="description" content="volatile 关键字多出现在 Java 多线程场景，用于声明共享变量的可见性（visibility）。 可见性解读所谓可见性（visibility），是指当一个线程对共享变量做了修改，其他线程能够在第一时间看到该变量修改后的值。这里涉及到的多个线程位于同一个 JVM 进程里。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 关键字之 volatile">
+<meta property="og:url" content="http://wxl24life.com/2019/06/13/java-keywords-volatile/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="有椒其馨,胡考之宁">
+<meta property="og:description" content="volatile 关键字多出现在 Java 多线程场景，用于声明共享变量的可见性（visibility）。 可见性解读所谓可见性（visibility），是指当一个线程对共享变量做了修改，其他线程能够在第一时间看到该变量修改后的值。这里涉及到的多个线程位于同一个 JVM 进程里。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wxl24life.com/images/post_images/volatile-01.jpg">
+<meta property="og:image" content="http://wxl24life.com/images/post_images/volatile-02.jpg">
+<meta property="og:image" content="http://wxl24life.com/images/post_images/volatile-03.jpg">
+<meta property="og:image" content="http://wxl24life.com/images/post_images/volatile-04.jpg">
+<meta property="og:updated_time" content="2019-06-14T02:15:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxl24life&#39;s blog">
-<meta name="twitter:description" content="有椒其馨,胡考之宁">
+<meta name="twitter:title" content="Java 关键字之 volatile">
+<meta name="twitter:description" content="volatile 关键字多出现在 Java 多线程场景，用于声明共享变量的可见性（visibility）。 可见性解读所谓可见性（visibility），是指当一个线程对共享变量做了修改，其他线程能够在第一时间看到该变量修改后的值。这里涉及到的多个线程位于同一个 JVM 进程里。">
+<meta name="twitter:image" content="http://wxl24life.com/images/post_images/volatile-01.jpg">
 
 
 
@@ -118,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://wxl24life.com/archives/2019/page/2/">
+  <link rel="canonical" href="http://wxl24life.com/2019/06/13/java-keywords-volatile/">
 
 
 
 
 
-  <title>归档 | wxl24life's blog</title>
+  <title>Java 关键字之 volatile | wxl24life's blog</title>
   
 
 
@@ -143,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -295,181 +302,213 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/06/13/java-keywords-volatile/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Java 关键字之 volatile</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-13T21:21:41+08:00">
+                2019-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 14 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
+             <span id="/2019/06/13/java-keywords-volatile/" class="leancloud_visitors" data-flag-title="Java 关键字之 volatile">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/15/flink-parallelism-settings-1/" itemprop="url">
-              
-                <span itemprop="name">对 Flink 任务并行度的理解</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-15T23:39:43+08:00" content="2019-04-15">
-          04-15
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/12/hexo-notes/" itemprop="url">
-              
-                <span itemprop="name">hexo blog 操作备忘</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-12T16:11:02+08:00" content="2019-04-12">
-          04-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" itemprop="url">
-              
-                <span itemprop="name">通过内存堆栈 hprof 文件分析 Java 内存泄露</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-10T22:18:47+08:00" content="2019-04-10">
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>volatile 关键字多出现在 Java 多线程场景，用于声明共享变量的可见性（visibility）。</p>
+<h2 id="可见性解读"><a href="#可见性解读" class="headerlink" title="可见性解读"></a>可见性解读</h2><p>所谓可见性（visibility），是指当一个线程对共享变量做了修改，其他线程能够在第一时间看到该变量修改后的值。这里涉及到的多个线程位于同一个 JVM 进程里。</p>
+<a id="more"></a>
 
-        
-        
+<p>为了理解可见性，需要先了解 Java 线程访问变量涉及到的内存模型。</p>
+<p>我们知道 Java 里的对象和变量是存储在 JVM 内存里的，为了保证内存中变量的访问效率，在内存之上，CPU 里还有一层缓存，称为 CPU cache。当一个线程需要访问非 volatile 变量时，它会首先访问线程所在 CPU 的 cache。</p>
+<p>JVM 负责 CPU cache 和内存之间的数据同步，可以确定的是，两者之间的同步是存在延迟的。现代计算机通常都具有多颗 CPU，在并发场景下，无法保证不同 CPU cache 里缓存的变量值始终与内存里的值保持一致。</p>
+<h2 id="演示示例"><a href="#演示示例" class="headerlink" title="演示示例"></a>演示示例</h2><p>考虑一个例子，有一个共享变量 counter，初始值为 0。有两个线程需要访问 counter 的值。为了说明 volatile 的作用，在此简化场景，假设 counter 的值只会被一个线程更新（即不会存在写冲突）。</p>
+<h3 id="场景一：counter-未被声明成-volatile"><a href="#场景一：counter-未被声明成-volatile" class="headerlink" title="场景一：counter 未被声明成 volatile"></a>场景一：counter 未被声明成 volatile</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SharedObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        
+<h4 id="初始时刻"><a href="#初始时刻" class="headerlink" title="初始时刻"></a>初始时刻</h4><p>两个线程 thread-0 和 thread-1 同时读取了这个变量的值 – 将变量的值读进了线程所在 CPU 的缓存里，此时内存、thread-0、thread-1 所在的 CPU cache 里的变量值相同，counter = 0。</p>
+<p><img src="/images/post_images/volatile-01.jpg" alt="初始状态"></p>
+<h4 id="counter-更新值"><a href="#counter-更新值" class="headerlink" title="counter 更新值"></a>counter 更新值</h4><p>thread-0 对 counter 值做了加 1 操作，首先会修改 CPU-0 cache 里的值，该值需要经由 JVM 同步才会更新内存里的值，最后 thread-1 想看到最新值又需要额外一次内存到 CPU-1 cache 的同步。因此，thread-0 和 tread-1 访问变量最新值时会存在下面两种不一致的状态。</p>
+<p>状态 1：counter = 1 未同步回内存<br><img src="/images/post_images/volatile-02.jpg" alt="counter 未同步回内存"></p>
+<p>状态 2：counter = 1 已同步回内存但未同步回 CPU-1 cache<br><img src="/images/post_images/volatile-03.jpg" alt="counter 已同步回内存但未同步回 CPU-1 cache"></p>
+<h3 id="场景二：counter-被声明成-volatile"><a href="#场景二：counter-被声明成-volatile" class="headerlink" title="场景二：counter 被声明成 volatile"></a>场景二：counter 被声明成 volatile</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SharedObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/10/hello-world-md/" itemprop="url">
-              
-                <span itemprop="name">博客开场白</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-10T19:41:14+08:00" content="2019-04-10">
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<p>使用 volatile 修饰后，由于对 counter 的访问都是直接读 / 写内存，因此 counter 的每次更新都能第一时间对所有线程可见。所以，当 counter 做加 1 操作后，只会出现下面这一种状态。</p>
+<p><img src="/images/post_images/volatile-04.jpg" alt="对 counter 的访问直接通过内存"></p>
+<h2 id="可见性-vs-原子性"><a href="#可见性-vs-原子性" class="headerlink" title="可见性 vs. 原子性"></a>可见性 vs. 原子性</h2><p>通过上面的示例，我们可以直观地看到，volatitle 关键字能够保证多线程环境下共享变量访问的可见性。</p>
+<p>需要强调的是，volatile 的作用相对有限，它只能保证共享变量的可见性，无法保证其原子性。也就意味着，volatile 修饰的共享变量当被多个线程并发访问时，依旧存在写冲突的风险。</p>
+<p>为了保证线程安全，多数情况下，我们需要对共享变量的访问施加必要的锁机制，如添加 synchronized 关键字，或者将变量声明为原子变量 AtomicXX，以此来保证共享变量访问的原子性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>volatile 变量值的读写访问会绕过 CPU cache 进而直接访问内存，所以能够保证可见性。</p>
+<p>synchronized 等锁机制在保证共享变量访问可见性的同时，还能保证对于共享变量的读写满足原子性。而多数并发场景下，原子性是更迫切的需求。</p>
+<p>所以，volatile 的使用场景相对有限，主要应用场景与我们示例场景类似，即只存在一个线程更新变量，所有线程对共享变量只有读的访问。</p>
+<p>最后，volatile 关键字的使用对性能会有一定的影响，主要体现在两方面：</p>
+<ol>
+<li>由于每次对 volatile 变量的访问都会直接读写内存，相比于读写 CPU cache 而言，读写内存要慢很多。</li>
+<li>volatile 除了给变量访问提供可见性保证，在 JDK 5 之后的规范里，volatile 还会阻止 JVM 对程序指令的重排列，而重排列是 JVM 为了提升程序性能施加的一种优化策略。</li>
+</ol>
+<hr>
+<p>参考：</p>
+<ul>
+<li><p><a href="http://tutorials.jenkov.com/java-concurrency/volatile.html" target="_blank" rel="noopener">Java Volatile Keyword</a></p>
+</li>
+<li><p><a href="https://www.geeksforgeeks.org/volatile-keyword-in-java/" target="_blank" rel="noopener">volatile keyword in Java</a></p>
+</li>
+</ul>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    wxl24life
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wxl24life.com/2019/06/13/java-keywords-volatile/" title="Java 关键字之 volatile">http://wxl24life.com/2019/06/13/java-keywords-volatile/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/13/add-picture-to-hexo-website/" rel="next" title="Hexo 上传本地图片">
+                <i class="fa fa-chevron-left"></i> Hexo 上传本地图片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -477,6 +516,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY3NC8yMDIxNA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -497,8 +545,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -576,6 +633,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#可见性解读"><span class="nav-number">1.</span> <span class="nav-text">可见性解读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#演示示例"><span class="nav-number">2.</span> <span class="nav-text">演示示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景一：counter-未被声明成-volatile"><span class="nav-number">2.1.</span> <span class="nav-text">场景一：counter 未被声明成 volatile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始时刻"><span class="nav-number">2.1.1.</span> <span class="nav-text">初始时刻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#counter-更新值"><span class="nav-number">2.1.2.</span> <span class="nav-text">counter 更新值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景二：counter-被声明成-volatile"><span class="nav-number">2.2.</span> <span class="nav-text">场景二：counter 被声明成 volatile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可见性-vs-原子性"><span class="nav-number">3.</span> <span class="nav-text">可见性 vs. 原子性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -731,6 +804,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -759,6 +836,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

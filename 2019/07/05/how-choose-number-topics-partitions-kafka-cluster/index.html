@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,">
+  <meta name="keywords" content="kafka,translation,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="先说答案：Java is always pass-by-value。 下面的例子里，将 aDog 变量传递给了 foo 方法，并在其内部对参数做了重新赋值，foo 方法执行完后，aDog 仍然指向了原来的对象。验证了 Java 按值传递的特性。">
-<meta name="keywords" content="java">
+<meta name="description" content="Kafka 的分区数据量会对性能产生哪些影响？最多能支持多大规模的分区数量？本文将从正面和负面两个维度做详细的分析。 本文讨论的内容适应于 Apache Kafka 1.1.0 之前的版本。1.1.0 版本做了很多优化，特别是单集群能够支持的分区总数有了 显著提升。">
+<meta name="keywords" content="kafka,translation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 按值传递还是按引用传递？">
-<meta property="og:url" content="http://wxl24life.com/2019/06/26/java-pass-by-value/index.html">
+<meta property="og:title" content="如何选择 kafka 的主题分区数量 - 译">
+<meta property="og:url" content="http://wxl24life.com/2019/07/05/how-choose-number-topics-partitions-kafka-cluster/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="先说答案：Java is always pass-by-value。 下面的例子里，将 aDog 变量传递给了 foo 方法，并在其内部对参数做了重新赋值，foo 方法执行完后，aDog 仍然指向了原来的对象。验证了 Java 按值传递的特性。">
+<meta property="og:description" content="Kafka 的分区数据量会对性能产生哪些影响？最多能支持多大规模的分区数量？本文将从正面和负面两个维度做详细的分析。 本文讨论的内容适应于 Apache Kafka 1.1.0 之前的版本。1.1.0 版本做了很多优化，特别是单集群能够支持的分区总数有了 显著提升。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-26T09:13:36.000Z">
+<meta property="og:updated_time" content="2019-07-05T09:17:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 按值传递还是按引用传递？">
-<meta name="twitter:description" content="先说答案：Java is always pass-by-value。 下面的例子里，将 aDog 变量传递给了 foo 方法，并在其内部对参数做了重新赋值，foo 方法执行完后，aDog 仍然指向了原来的对象。验证了 Java 按值传递的特性。">
+<meta name="twitter:title" content="如何选择 kafka 的主题分区数量 - 译">
+<meta name="twitter:description" content="Kafka 的分区数据量会对性能产生哪些影响？最多能支持多大规模的分区数量？本文将从正面和负面两个维度做详细的分析。 本文讨论的内容适应于 Apache Kafka 1.1.0 之前的版本。1.1.0 版本做了很多优化，特别是单集群能够支持的分区总数有了 显著提升。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wxl24life.com/2019/06/26/java-pass-by-value/">
+  <link rel="canonical" href="http://wxl24life.com/2019/07/05/how-choose-number-topics-partitions-kafka-cluster/">
 
 
 
 
 
-  <title>Java 按值传递还是按引用传递？ | wxl24life's blog</title>
+  <title>如何选择 kafka 的主题分区数量 - 译 | wxl24life's blog</title>
   
 
 
@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/06/26/java-pass-by-value/">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/07/05/how-choose-number-topics-partitions-kafka-cluster/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wxl24life">
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java 按值传递还是按引用传递？</h1>
+          <h1 class="post-title" itemprop="name headline">如何选择 kafka 的主题分区数量 - 译</h1>
         
 
         <div class="post-meta">
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-26T17:02:16+08:00">
-                2019-06-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-05T08:56:06+08:00">
+                2019-07-05
               </time>
             
 
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/2019/06/26/java-pass-by-value/" class="leancloud_visitors" data-flag-title="Java 按值传递还是按引用传递？">
+             <span id="/2019/07/05/how-choose-number-topics-partitions-kafka-cluster/" class="leancloud_visitors" data-flag-title="如何选择 kafka 的主题分区数量 - 译">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -389,16 +389,36 @@
       
 
       
-        <p>先说答案：Java is always pass-by-value。</p>
-<p>下面的例子里，将 aDog 变量传递给了 foo 方法，并在其内部对参数做了重新赋值，foo 方法执行完后，aDog 仍然指向了原来的对象。验证了 Java 按值传递的特性。</p>
+        <p>Kafka 的分区数据量会对性能产生哪些影响？最多能支持多大规模的分区数量？本文将从正面和负面两个维度做详细的分析。</p>
+<p>本文讨论的内容适应于 Apache Kafka 1.1.0 之前的版本。1.1.0 版本做了很多优化，特别是单集群能够支持的分区总数有了 <a href="https://www.confluent.io/blog/apache-kafka-supports-200k-partitions-per-cluster" target="_blank" rel="noopener">显著提升</a>。</p>
 <a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123;</span><br><span class="line">    Dog aDog = <span class="keyword">new</span> Dog (<span class="string">"Max"</span>);</span><br><span class="line">    Dog oldDog = aDog;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//we pass the object to foo</span></span><br><span class="line">    foo (aDog);</span><br><span class="line">    <span class="comment">//aDog variable is still pointing to the "Max" dog when foo (...) returns</span></span><br><span class="line">    aDog.getName ().equals (<span class="string">"Max"</span>); <span class="comment">//true</span></span><br><span class="line">    aDog.getName ().equals (<span class="string">"Fifi"</span>); <span class="comment">//false</span></span><br><span class="line">    aDog == oldDog; <span class="comment">//true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">(Dog d)</span> </span>&#123;</span><br><span class="line">    d.getName ().equals (<span class="string">"Max"</span>); <span class="comment">//true</span></span><br><span class="line">    <span class="comment">//change d inside of foo () to point to a new Dog instance "Fifi"</span></span><br><span class="line">    d = <span class="keyword">new</span> Dog (<span class="string">"Fifi"</span>);</span><br><span class="line">    d.getName ().equals (<span class="string">"Fifi"</span>); <span class="comment">//true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面的例子进一步测试，虽然是按值传递，但是通过 setName 方法还是能够修改参数所指向的对象状态（Name）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static void main (String [] args) &#123;</span><br><span class="line">    Dog aDog = new Dog (&quot;Max&quot;);</span><br><span class="line">    Dog oldDog = aDog;</span><br><span class="line"></span><br><span class="line">    foo (aDog);</span><br><span class="line">    //when foo (...) returns, the name of the dog has been changed to &quot;Fifi&quot;</span><br><span class="line">    aDog.getName ().equals (&quot;Fifi&quot;); //true</span><br><span class="line">    //but it is still the same dog:</span><br><span class="line">    aDog == oldDog; //true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void foo (Dog d) &#123;</span><br><span class="line">    d.getName ().equals (&quot;Max&quot;); //true</span><br><span class="line">    //this changes the name of d to be &quot;Fifi&quot;</span><br><span class="line">    d.setName (&quot;Fifi&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考 SO: <a href="https://stackoverflow.com/a/40523" target="_blank" rel="noopener">Is Java “pass-by-reference” or “pass-by-value”?</a></p>
+<h2 id="正面影响"><a href="#正面影响" class="headerlink" title="正面影响"></a>正面影响</h2><h3 id="更多的分区数会带来更高的吞吐"><a href="#更多的分区数会带来更高的吞吐" class="headerlink" title="更多的分区数会带来更高的吞吐"></a>更多的分区数会带来更高的吞吐</h3><p>在 kafka 概念里，分区（patition）是并行处理的基本单位 </p>
+<ul>
+<li>在 producer 和 broker 端，能够以完全并行的方式往多个不同分区里面写数据。因此，诸如压缩等昂贵的操作可以使用更多的硬件资源。</li>
+<li>在 consumer 端，kafka 总是将单一分区内的数据分配给一个 consumer 线程。因而，consumer 端（指同一个消费组）的并行度与所消费的分区数量是绑定的。</li>
+</ul>
+<p>所以，通常而言，分区数量越多，所能获得的吞吐越高。</p>
+<p>分区数量的可以基于吞吐量粗略的计算得出。先考虑只有一个分区的场景，我们分别测量 producer 和 consumer 能达到的吞吐，假设分别是 p 和 c。如果目标吞吐量是 t，那么至少应该分配 <code>max (t/p, t/c)</code> 数量的分区。</p>
+<p>往每个分区发送数据的吞吐性能受限于几个配置参数：batch size, 压缩码率，ack 的类型，副本数量等。通常，往单个分区生产数据的最大吞吐量是每秒几十 MB。consumer 端的吞吐量与具体业务紧密相连，因为不同业务的 consumer 对消息的处理逻辑是不同的。</p>
+<p>kafka 支持在初始分区数量之上增加分区数。不过，需要格外注意的是，当往 topic 发送数据是如果给定了 key，也即发送的是 keyed message，增加分区数有可能会破坏原来希望在单个分区上保证消息传递顺序性的需求。为了避免这种情况发生，通常先估算未来（一般是一到两年）的目标吞吐量，之后在估算出的分区数上多留一些分区。所以，初始的时候，可以先创建一个小的 kafka 集群，随着时间的推移，可以扩展 broker 数量并按比例将部分分区迁移到新的 broker 上面。这样就可以在吞吐增长时不会破坏按 key 分区的语义。</p>
+<h2 id="负面影响"><a href="#负面影响" class="headerlink" title="负面影响"></a>负面影响</h2><h3 id="1-更多的分区需要更多的文件句柄（Open-File-Handles）"><a href="#1-更多的分区需要更多的文件句柄（Open-File-Handles）" class="headerlink" title="1. 更多的分区需要更多的文件句柄（Open File Handles）"></a>1. 更多的分区需要更多的文件句柄（Open File Handles）</h3><p>每个分区与 broker 所在文件系统下的一个目录一一对应，在其目录中，每个日志片段包含两个文件，一个索引，另一个是真实数据文件。在 kafka 集群里，每个 broker 会为所有日志片段的两个文件开启文件句柄。所以，分区数量越多，需要在操作系统里配置更大的文件句柄数。在实际生产集群中，我们碰到过的最高纪录是：每个 broker 上配置的文件句柄数超过 3,0000 个。</p>
+<h3 id="2-更多的分区可能会增加不可用（Unavailability）"><a href="#2-更多的分区可能会增加不可用（Unavailability）" class="headerlink" title="2. 更多的分区可能会增加不可用（Unavailability）"></a>2. 更多的分区可能会增加不可用（Unavailability）</h3><p>kafka 支持集群内的复制机制（<a href="https://www.slideshare.net/junrao/kafka-replication-apachecon2013" target="_blank" rel="noopener">intra-cluster replication</a>），它能提供更高的可用性和持久性。每个分区可以有多个副本，而同一分区的不同副本不会出现在一个 broker 上。副本包含一个 leader 和多个 follower。kafka 自动管理所有的副本，并保证副本之间数据的同步。producer 和 consumer 对某个分区的请求只会发往 leader 副本。当包含分区 leader 副本的 broker 挂机时，这些分区将临时不可用。kafka 会自动将这些不可用分区的 leader 角色转移给其他副本，从而持续服务 client 端的请求。整个过程是由集群的 controller 节点完成的，会涉及读写相关受影响的分区在 zookeeper 中的元数据。目前，controller 对 zk 的这种访问操作是串行的。</p>
+<p>在对 broker 做「优雅」停机的时候，controller 会事先将该 broker 上的分区 leader 逐个转移到其他节点。每个 leader 的转移大概占用几毫秒的时间，所以，「优雅」停机对 client 带来的不可用时间窗口较小。</p>
+<p>然而，如果 broker 意外挂机或者采用了相对「暴力」的方式 (比如 kill -9）停机，不可用的影响程度将跟分区的数量成正比。假设 broker 上包含 2000 个分区，每个分区有两个副本。粗略估计，该 broker 可能包含 1000 个分区的 leader 副本。当出现意外停机时，所有 1000 个分区将同时变为不可用状态。假设，每个分区 leader 的重新分配需要 5 毫秒的时间，为 1000 个分区选择新的 leader 总共将占用 5 秒钟的时间。所以，对一些分区而言，不可用的时间是 5 秒加上用于发现失败的时间。</p>
+<p>考虑另一种极端情况：失败的 broker 恰好是 controller。需要等待集群重新选举完 controller 才能开始分区 leader 的转移。kafka 会自动选举新的 controller，但是在新的 controller 初始化的时候需要从 zookeeper 上读取每个分区的元数据。例如，如果集群包含 10,000 个分区，从 zookeeper 为每个区分初始化元数据花费 2 毫秒，总共会增加 20 多秒的不可用时间。</p>
+<p>通常情况下，意外的 broker 失败相对少见。但是，如果关注这些特殊情况发生时的可用性，最好限制每个 broker 上的分区数量，单 broker 分区数量建议限制在 2,000 ~ 4,000，集群分区总数限制在 10,000 以内。</p>
+<h3 id="3-更多的分区会增加消息端到端传递的延迟"><a href="#3-更多的分区会增加消息端到端传递的延迟" class="headerlink" title="3. 更多的分区会增加消息端到端传递的延迟"></a>3. 更多的分区会增加消息端到端传递的延迟</h3><p>kafka 的消息延迟定义如下：消息被 producer 端发送到 broker，一直到被 consumer 消费拉下为止的耗时。</p>
+<p>消息发往分区 leader 副本所在的 broker 节点，broker 会对消息做 commit 操作，为了保证可用性及持久化，需要等到当前分区的所有 ISR 副本（In-Sync Replica）都接收到消息之后才执行 commit，整个过程会占用一些时间。另外，broker 间用于副本同步的线程只有一个，所以当集群分区数量很大时，由于单线程的限制，必定会影响消息在副本间的同步，从而造成消息传递的延迟。实验结果显示，将 1000 个分区从一个 broker 复制到另一个 broker 会有 20 毫秒的延迟，意味着端到端的延迟至少是 20 毫秒。对于一些对时间敏感的实时应用而言，这个延迟就过高了。</p>
+<p>注意，在相同分区数量的前提下，集群规模（broker 数量）越大，副本同步对延迟的影响越小。</p>
+<p>假设某个 broker 上有 1000 个分区的 leader，集群另外还有 10 个 broker，那么，这 10 个 broker 里的每一个平均只需要从第一个 broker 上拉取 100 个分区副本。因此，commit 消息带来的延迟只有几毫秒，而不是几十毫秒。</p>
+<p>如果你很关心延迟，推荐将每个 broker 上的分区数量限制在 <code>100 * b * r</code>，其中 b 是集群中 broker 的数量，r 是副本因子。</p>
+<h3 id="4-更多的分区会使-client-占用更多的内存"><a href="#4-更多的分区会使-client-占用更多的内存" class="headerlink" title="4. 更多的分区会使 client 占用更多的内存"></a>4. 更多的分区会使 client 占用更多的内存</h3><p>在 0.8.2 版本之后，producer 的实现逻辑做了一次重构，消息会先存放在 producer 的 buffer 里，只有当 buffer 满或者达到设定好的发送时间间隔，才会往 broker 端批量发送数据。producer 端的 buffer 是跟分区一一对应的，即每个分区单独维护一个 buffer。当分区数量增加时，producer 端的内存占用必然跟着增加，如果超过设定的内存大小，就会造成 producer 阻塞或者干脆将新的消息丢弃掉。为了避免发生这样的事情，需要重新调整 producer 的内存大小。通常建议将每个分区的 buffer 大小至少设置为几十 KB，如果分区数量过大，必要的情况下甚至需要调整 producer 总的内存大小。</p>
+<p>consumer 端也存在类似的情况，每个 consumer 会将对应分区的消息批量拉下。consumer 要拉取的分区数量越多，占用的内存就越大。当然，对于实时的应用场景，消息拉下后会马上处理，所以实时场景一般不受影响。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>kafka 集群分区数量越大，吞吐量会越高。但是，也会对可用性、消息传递的延迟、client 端的内存占用等带来一定的负面影响。</p>
+<hr>
+<h2 id="文末题记"><a href="#文末题记" class="headerlink" title="文末题记"></a>文末题记</h2><p>本文是对 conluent 上 <a href="https://www.confluent.io/blog/how-choose-number-topics-partitions-kafka-cluster" target="_blank" rel="noopener">How to choose the number of topics/partitions in a Kafka cluster?</a> 的翻译。</p>
+<p>这篇文章很早之前就阅读过，原文写的很流畅，理解不难。当这次尝试翻译整篇文章的时候，发现想把一篇文章翻译好并不容易，这篇文章的翻译大概花了 3 个小时的时间，远远超出了一开始预计的难度。</p>
+<p>虽然费了不少时间，但是翻译的收益还是体会很深的，对主题的理解和记忆会更加的透彻深刻。当然，翻译一定还是需要技巧的，以后需要坚持练习，加强训练。</p>
 
       
     </div>
@@ -419,7 +439,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wxl24life.com/2019/06/26/java-pass-by-value/" title="Java 按值传递还是按引用传递？">http://wxl24life.com/2019/06/26/java-pass-by-value/</a>
+    <a href="http://wxl24life.com/2019/07/05/how-choose-number-topics-partitions-kafka-cluster/" title="如何选择 kafka 的主题分区数量 - 译">http://wxl24life.com/2019/07/05/how-choose-number-topics-partitions-kafka-cluster/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -434,7 +454,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/kafka/" rel="tag"># kafka</a>
+          
+            <a href="/tags/translation/" rel="tag"># translation</a>
           
         </div>
       
@@ -447,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/23/post-reading-notes-how-to-beat-others/" rel="next" title="「左耳朵耗子 - 如何超越大多数人」阅读笔记">
-                <i class="fa fa-chevron-left"></i> 「左耳朵耗子 - 如何超越大多数人」阅读笔记
+              <a href="/2019/06/28/install-ducktape-notes/" rel="next" title="分布式系统性能测试工具 Ducktape 安装">
+                <i class="fa fa-chevron-left"></i> 分布式系统性能测试工具 Ducktape 安装
               </a>
             
           </div>
@@ -456,10 +478,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/28/install-ducktape-notes/" rel="prev" title="分布式系统性能测试工具 Ducktape 安装">
-                分布式系统性能测试工具 Ducktape 安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -516,8 +534,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -595,6 +622,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正面影响"><span class="nav-number">1.</span> <span class="nav-text">正面影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更多的分区数会带来更高的吞吐"><span class="nav-number">1.1.</span> <span class="nav-text">更多的分区数会带来更高的吞吐</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负面影响"><span class="nav-number">2.</span> <span class="nav-text">负面影响</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-更多的分区需要更多的文件句柄（Open-File-Handles）"><span class="nav-number">2.1.</span> <span class="nav-text">1. 更多的分区需要更多的文件句柄（Open File Handles）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-更多的分区可能会增加不可用（Unavailability）"><span class="nav-number">2.2.</span> <span class="nav-text">2. 更多的分区可能会增加不可用（Unavailability）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-更多的分区会增加消息端到端传递的延迟"><span class="nav-number">2.3.</span> <span class="nav-text">3. 更多的分区会增加消息端到端传递的延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-更多的分区会使-client-占用更多的内存"><span class="nav-number">2.4.</span> <span class="nav-text">4. 更多的分区会使 client 占用更多的内存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文末题记"><span class="nav-number">4.</span> <span class="nav-text">文末题记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

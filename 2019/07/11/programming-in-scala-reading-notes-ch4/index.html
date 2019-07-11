@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="scala,book-reading,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="有椒其馨,胡考之宁">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxl24life&#39;s blog">
-<meta property="og:url" content="http://wxl24life.com/tags/java/index.html">
+<meta name="description" content="Scala 尽一切可能为我们提供程序的健壮性和简洁性。 健壮追求健壮性的重要手段是保证对象的状态始终有效。公共访问（public）是 Scala 的默认访问级别，可以通过将字段标记为私有（private）来防止外部直接访问。另外，Scala 方法参数的一个重要特征是它们都是 val 常量而非 var 变量。 简洁推荐编写方法的风格是「避免使用任何显示的 return 语句，尤其是多个 return">
+<meta name="keywords" content="scala,book-reading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Programming In Scala 阅读笔记 - CH4">
+<meta property="og:url" content="http://wxl24life.com/2019/07/11/programming-in-scala-reading-notes-ch4/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="有椒其馨,胡考之宁">
+<meta property="og:description" content="Scala 尽一切可能为我们提供程序的健壮性和简洁性。 健壮追求健壮性的重要手段是保证对象的状态始终有效。公共访问（public）是 Scala 的默认访问级别，可以通过将字段标记为私有（private）来防止外部直接访问。另外，Scala 方法参数的一个重要特征是它们都是 val 常量而非 var 变量。 简洁推荐编写方法的风格是「避免使用任何显示的 return 语句，尤其是多个 return">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-11T01:37:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxl24life&#39;s blog">
-<meta name="twitter:description" content="有椒其馨,胡考之宁">
+<meta name="twitter:title" content="Programming In Scala 阅读笔记 - CH4">
+<meta name="twitter:description" content="Scala 尽一切可能为我们提供程序的健壮性和简洁性。 健壮追求健壮性的重要手段是保证对象的状态始终有效。公共访问（public）是 Scala 的默认访问级别，可以通过将字段标记为私有（private）来防止外部直接访问。另外，Scala 方法参数的一个重要特征是它们都是 val 常量而非 var 变量。 简洁推荐编写方法的风格是「避免使用任何显示的 return 语句，尤其是多个 return">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wxl24life.com/tags/java/">
+  <link rel="canonical" href="http://wxl24life.com/2019/07/11/programming-in-scala-reading-notes-ch4/">
 
 
 
 
 
-  <title>标签: java | wxl24life's blog</title>
+  <title>Programming In Scala 阅读笔记 - CH4 | wxl24life's blog</title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -295,156 +297,190 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>java<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/07/11/programming-in-scala-reading-notes-ch4/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/06/26/java-pass-by-value/" itemprop="url">
-              
-                <span itemprop="name">Java 按值传递还是按引用传递？</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Programming In Scala 阅读笔记 - CH4</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-26T17:02:16+08:00" content="2019-06-26">
-          06-26
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-11T09:34:36+08:00">
+                2019-07-11
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/07/11/programming-in-scala-reading-notes-ch4/" class="leancloud_visitors" data-flag-title="Programming In Scala 阅读笔记 - CH4">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/13/java-keywords-volatile/" itemprop="url">
-              
-                <span itemprop="name">Java 关键字之 volatile</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-13T21:21:41+08:00" content="2019-06-13">
-          06-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
+        <p>Scala 尽一切可能为我们提供程序的健壮性和简洁性。</p>
+<h3 id="健壮"><a href="#健壮" class="headerlink" title="健壮"></a>健壮</h3><p>追求健壮性的重要手段是保证对象的状态始终有效。公共访问（public）是 Scala 的默认访问级别，可以通过将字段标记为私有（private）来防止外部直接访问。另外，Scala 方法参数的一个重要特征是它们都是 val 常量而非 var 变量。</p>
+<h3 id="简洁"><a href="#简洁" class="headerlink" title="简洁"></a>简洁</h3><p>推荐编写方法的风格是「避免使用任何显示的 return 语句，尤其是多个 return」。在没有显示的 return 语句时，Scala 方法返回的是方法内部计算出的最后一个表达式的值。</p>
+<p>这其实是在鼓励编写短小的方法，鼓励将大的方法拆解成小的方法。</p>
+<p>当方法只去计算一个返回结果的表达式时，可以_不写花括号_，如果表达式很短，甚至可以跟 def 放在同一行。另外，Scala 编译器支持类型推断，所以也允许省略结果类型。不过，建议在声明类中的公有方法时尽量显式地给出结果类型，方便代码的阅读。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChecksumAccumulator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(b: <span class="type">Byte</span>): <span class="type">Unit</span> = sum += b</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">checksum</span></span>(): <span class="type">Int</span> = ~(sum &amp; <span class="number">0xFF</span>) + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/10/java-keywords-transient/" itemprop="url">
-              
-                <span itemprop="name">Java 关键字之 transient</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-10T15:42:47+08:00" content="2019-06-10">
-          06-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/10/practices-algorithm-2019-06-10/" itemprop="url">
-              
-                <span itemprop="name">算法编程练习：二维数组中的查找</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-10T08:22:37+08:00" content="2019-06-10">
-          06-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/10/java-oom-analysis-with-hprof-file-md/" itemprop="url">
-              
-                <span itemprop="name">通过内存堆栈 hprof 文件分析 Java 内存泄露</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-10T22:18:47+08:00" content="2019-04-10">
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+<p>结果类型为 Unit 的方法执行的目的是为了「副作用」：改变方法外部的某种状态或者执行 I/O 的动作。这种方法也称作「过程」（Procedure）。</p>
+<hr>
+<h3 id="关于单例对象"><a href="#关于单例对象" class="headerlink" title="关于单例对象"></a>关于单例对象</h3><p>Scala 类中不允许有静态成员，类似功能需要使用单例对象来实现。</p>
+<p>单例对象的定义只需要将类定义中的 class 替换成 object。相同 scala 文件中如果包含同名的类和对象定义，这个对象称为同名类的「<em>* 伴生对象 **」（</em>companion object<em>），这个类称为同名对象的「** 伴生类 **」（</em>companion class<em>），它们可以互相访问对方的私有成员。没有同名伴生类的单例对象称为「** 孤立对象 **」（</em>standalone object*）。</p>
+<p>单例对象的用法类似于 Java 里的静态类，不能使用 new 的方式创建，与 Java 静态类相似，在首次调用单例对象内的成员时进行初始化。</p>
+<h3 id="关于-scala-文件的命名"><a href="#关于-scala-文件的命名" class="headerlink" title="关于 scala 文件的命名"></a>关于 scala 文件的命名</h3><p>scala 允许以任意文件名命名 .scala 文件，.scala 文件中允许出现多个类或对象的定义。不过为了代码维护的方便，推荐将类放到以类名命名的文件中。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    wxl24life
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wxl24life.com/2019/07/11/programming-in-scala-reading-notes-ch4/" title="Programming In Scala 阅读笔记 - CH4">http://wxl24life.com/2019/07/11/programming-in-scala-reading-notes-ch4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/scala/" rel="tag"># scala</a>
+          
+            <a href="/tags/book-reading/" rel="tag"># book-reading</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/05/how-choose-number-topics-partitions-kafka-cluster/" rel="next" title="如何选择 kafka 的主题分区数量 - 译">
+                <i class="fa fa-chevron-left"></i> 如何选择 kafka 的主题分区数量 - 译
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -452,6 +488,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY3NC8yMDIxNA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -472,8 +517,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -551,6 +605,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#健壮"><span class="nav-number">1.</span> <span class="nav-text">健壮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简洁"><span class="nav-number">2.</span> <span class="nav-text">简洁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于单例对象"><span class="nav-number">3.</span> <span class="nav-text">关于单例对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-scala-文件的命名"><span class="nav-number">4.</span> <span class="nav-text">关于 scala 文件的命名</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -706,6 +776,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -734,6 +808,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

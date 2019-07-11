@@ -391,22 +391,16 @@
 
       
         
-          
-            <p>Scala 尽一切可能为我们提供程序的健壮性和简洁性。</p>
+          <p>Scala 尽一切可能为我们提供程序的健壮性和简洁性。</p>
 <h3 id="健壮"><a href="#健壮" class="headerlink" title="健壮"></a>健壮</h3><p>追求健壮性的重要手段是保证对象的状态始终有效。公共访问（public）是 Scala 的默认访问级别，可以通过将字段标记为私有（private）来防止外部直接访问。另外，Scala 方法参数的一个重要特征是它们都是 val 常量而非 var 变量。</p>
 <h3 id="简洁"><a href="#简洁" class="headerlink" title="简洁"></a>简洁</h3><p>推荐编写方法的风格是「避免使用任何显示的 return 语句，尤其是多个 return」。在没有显示的 return 语句时，Scala 方法返回的是方法内部计算出的最后一个表达式的值。</p>
-<p>这其实是在鼓励编写短小的方法，鼓励将大的方法拆解成小的方法。</p>
-<p>当方法只去计算一个返回结果的表达式时，可以_不写花括号_，如果表达式很短，甚至可以跟 def 放在同一行。另外，Scala 编译器支持类型推断，所以也允许省略结果类型。不过，建议在声明类中的公有方法时尽量显式地给出结果类型，方便代码的阅读。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChecksumAccumulator</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(b: <span class="type">Byte</span>): <span class="type">Unit</span> = sum += b</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">checksum</span></span>(): <span class="type">Int</span> = ~(sum &amp; <span class="number">0xFF</span>) + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果类型为 Unit 的方法执行的目的是为了「副作用」：改变方法外部的某种状态或者执行 I/O 的动作。这种方法也称作「过程」（Procedure）。</p>
-<hr>
-<h3 id="关于单例对象"><a href="#关于单例对象" class="headerlink" title="关于单例对象"></a>关于单例对象</h3><p>Scala 类中不允许有静态成员，类似功能需要使用单例对象来实现。</p>
-<p>单例对象的定义只需要将类定义中的 class 替换成 object。相同 scala 文件中如果包含同名的类和对象定义，这个对象称为同名类的「<em>* 伴生对象 **」（</em>companion object<em>），这个类称为同名对象的「** 伴生类 **」（</em>companion class<em>），它们可以互相访问对方的私有成员。没有同名伴生类的单例对象称为「** 孤立对象 **」（</em>standalone object*）。</p>
-<p>单例对象的用法类似于 Java 里的静态类，不能使用 new 的方式创建，与 Java 静态类相似，在首次调用单例对象内的成员时进行初始化。</p>
-<h3 id="关于-scala-文件的命名"><a href="#关于-scala-文件的命名" class="headerlink" title="关于 scala 文件的命名"></a>关于 scala 文件的命名</h3><p>scala 允许以任意文件名命名 .scala 文件，.scala 文件中允许出现多个类或对象的定义。不过为了代码维护的方便，推荐将类放到以类名命名的文件中。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/11/programming-in-scala-reading-notes-ch4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

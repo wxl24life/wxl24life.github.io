@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,oom,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="场景应用日志报 OutOfMemoryError 现场证据收集 首先使用 jstat 查看内存回收情况  $ jstat -gcutil PID 1000 从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC 增长迅速。 查看应用日志，发现 OutOfMemoryError，怀疑内存泄露  通过 jmap 打印内存堆栈 dump 文件（hprof 文件）  $ jmap -dump">
-<meta name="keywords" content="java,oom">
-<meta property="og:type" content="article">
-<meta property="og:title" content="通过内存堆栈 hprof 文件分析 Java 内存泄露">
-<meta property="og:url" content="http://wxl24life.com/2019/04/10/java-oom-analysis-with-hprof-file-md/index.html">
+<meta name="description" content="有椒其馨,胡考之宁">
+<meta property="og:type" content="website">
+<meta property="og:title" content="wxl24life&#39;s blog">
+<meta property="og:url" content="http://wxl24life.com/archives/2019/12/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="场景应用日志报 OutOfMemoryError 现场证据收集 首先使用 jstat 查看内存回收情况  $ jstat -gcutil PID 1000 从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC 增长迅速。 查看应用日志，发现 OutOfMemoryError，怀疑内存泄露  通过 jmap 打印内存堆栈 dump 文件（hprof 文件）  $ jmap -dump">
+<meta property="og:description" content="有椒其馨,胡考之宁">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T11:39:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="通过内存堆栈 hprof 文件分析 Java 内存泄露">
-<meta name="twitter:description" content="场景应用日志报 OutOfMemoryError 现场证据收集 首先使用 jstat 查看内存回收情况  $ jstat -gcutil PID 1000 从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC 增长迅速。 查看应用日志，发现 OutOfMemoryError，怀疑内存泄露  通过 jmap 打印内存堆栈 dump 文件（hprof 文件）  $ jmap -dump">
+<meta name="twitter:title" content="wxl24life&#39;s blog">
+<meta name="twitter:description" content="有椒其馨,胡考之宁">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://wxl24life.com/2019/04/10/java-oom-analysis-with-hprof-file-md/">
+  <link rel="canonical" href="http://wxl24life.com/archives/2019/12/">
 
 
 
 
 
-  <title>通过内存堆栈 hprof 文件分析 Java 内存泄露 | wxl24life's blog</title>
+  <title>归档 | wxl24life's blog</title>
   
 
 
@@ -145,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -297,232 +295,72 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 23 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/04/10/java-oom-analysis-with-hprof-file-md/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wxl24life">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/final.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wxl24life's blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" itemprop="url">
+              
+                <span itemprop="name">Java Arrays.fill () 对二维（多维）数组赋值</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">通过内存堆栈 hprof 文件分析 Java 内存泄露</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T22:18:47+08:00">
-                2019-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/异常分析/" itemprop="url" rel="index">
-                    <span itemprop="name">异常分析</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/04/10/java-oom-analysis-with-hprof-file-md/" class="leancloud_visitors" data-flag-title="通过内存堆栈 hprof 文件分析 Java 内存泄露">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>应用日志报 <strong>OutOfMemoryError</strong></p>
-<h2 id="现场证据收集"><a href="#现场证据收集" class="headerlink" title="现场证据收集"></a>现场证据收集</h2><ul>
-<li>首先使用 <em>jstat</em> 查看内存回收情况<br>  <code>$ jstat -gcutil PID 1000</code></li>
-<li>从该命令的输出看，Eden 和 Old 区空间占用 100%，FGC 增长迅速。</li>
-<li>查看应用日志，发现 <code>OutOfMemoryError</code>，怀疑内存泄露 </li>
-<li>通过 <em>jmap</em> 打印内存堆栈 dump 文件（hprof 文件）<br>  <code>$ jmap -dump:format=b,file=/tmp/dump.log PID</code></li>
-<li>dump 文件大于 4G，尝试拉取到本地机器（可以通过浏览器访问分析结果）使用 <em>jhat</em> 分析，内存溢出报错<br>之后上网寻找分析超大内存 dump 文件的解决方案，发现了 Eclipse MAT 插件，实际使用发现对内存的消耗明显减少。</li>
-</ul>
-<a id="more"></a>
-
-<p>贴几个网上找到的链接：</p>
-<ul>
-<li><a href="https://stackoverflow.com/questions/7254017/tool-for-analyzing-large-java-heap-dumps/7254494#7254494" title="SO: tool-for-analyzing-large-java-heap-dumps" target="_blank" rel="noopener">StackOverFlow: tool-for-analyzing-large-java-heap-dumps</a></li>
-<li><a href="https://sites.google.com/site/eclipsebiz/Finding-Memory-Leak" title="Finding-Memory-Leak" target="_blank" rel="noopener">Finding-Memory-Leak</a></li>
-</ul>
-<h2 id="使用-mat-分析内存堆栈"><a href="#使用-mat-分析内存堆栈" class="headerlink" title="使用 mat 分析内存堆栈"></a>使用 mat 分析内存堆栈</h2><p>首先，Memory Analyzer 有两种运行方式：</p>
-<ul>
-<li>stand-alone: 可以不依赖 eclipse 独立运行，直接执行脚本即可。我选用了这种方式</li>
-<li>以 eclipse 插件方式运行，如果机器有安装 eclipse 可以尝试</li>
-</ul>
-<p>下面是具体的指令执行过程（整体思路来自 StackOverFlow 那篇回复）:</p>
-<ol>
-<li>执行脚本 <code>./mat/ParseHeapDump.sh dump.log</code> 报内存溢出错误</li>
-<li>修改脚本文件 <code>./mat/ParseHeapDump.sh</code> JVM 启动参数，最后一行:<br> <code>&quot;$(dirname --&quot;$0&quot;)&quot;/MemoryAnalyzer -consolelog -application org.eclipse.mat.api.parse &quot;$@&quot; -vmargs -Xmx8g -XX:-UseGCOverheadLimit</code></li>
-<li>执行脚本 <code>./mat/ParseHeapDump.sh dump.log</code>，生成一堆 index 文件</li>
-<li>执行命令，生成内存泄露报告，以 html 静态文件存在:<br> <code>./mat/ParseHeapDump.sh dump.log org.eclipse.mat.api:suspects</code></li>
-<li>浏览器打开 index.html，定位到引起内存泄露的对象</li>
-</ol>
-<p>更多关于 mat 内存泄露报告的分析介绍，参见 <a href="https://sites.google.com/site/eclipsebiz/Finding-Memory-Leak" title="Finding-Memory-Leak" target="_blank" rel="noopener">Finding-Memory-Leak</a></p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    wxl24life
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://wxl24life.com/2019/04/10/java-oom-analysis-with-hprof-file-md/" title="通过内存堆栈 hprof 文件分析 Java 内存泄露">http://wxl24life.com/2019/04/10/java-oom-analysis-with-hprof-file-md/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-12-06T06:47:20+08:00" content="2019-12-06">
+          12-06
+        </time>
       </div>
-    
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/oom/" rel="tag"># oom</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/10/hello-world-md/" rel="next" title="博客开场白">
-                <i class="fa fa-chevron-left"></i> 博客开场白
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/12/hexo-notes/" rel="prev" title="hexo blog 操作备忘">
-                hexo blog 操作备忘 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -530,15 +368,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY3NC8yMDIxNA=="></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -559,17 +388,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -647,22 +467,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现场证据收集"><span class="nav-number">2.</span> <span class="nav-text">现场证据收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-mat-分析内存堆栈"><span class="nav-number">3.</span> <span class="nav-text">使用 mat 分析内存堆栈</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -818,10 +622,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
@@ -850,17 +650,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 

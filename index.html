@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/12/23/java-thread-pooling-techniques/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wxl24life">
@@ -329,7 +329,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" itemprop="url">Java Arrays.fill () 对二维（多维）数组赋值</a></h1>
+                <a class="post-title-link" href="/2019/12/23/java-thread-pooling-techniques/" itemprop="url">Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池</a></h1>
         
 
         <div class="post-meta">
@@ -341,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T06:47:20+08:00">
-                2019-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-23T19:48:24+08:00">
+                2019-12-23
               </time>
             
 
@@ -359,7 +359,7 @@
 
           
           
-             <span id="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" class="leancloud_visitors" data-flag-title="Java Arrays.fill () 对二维（多维）数组赋值">
+             <span id="/2019/12/23/java-thread-pooling-techniques/" class="leancloud_visitors" data-flag-title="Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,27 +391,167 @@
 
       
         
+          <p>最基本的线程池类 ThreadPoolExecutor 完整的构造器方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor (int corePoolSize,</span><br><span class="line">                          int maximumPoolSize,</span><br><span class="line">                          long keepAliveTime,</span><br><span class="line">                          TimeUnit unit,</span><br><span class="line">                          BlockingQueue&lt;Runnable&gt; workQueue,</span><br><span class="line">                          ThreadFactory threadFactory,</span><br><span class="line">                          RejectedExecutionHandler handler)</span><br></pre></td></tr></table></figure>
+
+<p>以下针对 Java doc 文档做几点说明（参考 <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html" target="_blank" rel="noopener">Java doc</a>）</p>
+<h3 id="一、关于-pool-里-thread-的创建时机"><a href="#一、关于-pool-里-thread-的创建时机" class="headerlink" title="一、关于 pool 里 thread 的创建时机"></a>一、关于 pool 里 thread 的创建时机</h3><p>“By default, even core threads are initially created and started only when new tasks arrive”</p>
+<p>可以通过 prestartCoreThread () or prestartAllCoreThreads () 修改默认行为：分别预启动一个 coreThread 和所有 core threads. 例如下面的场景下可能需要 prestartAllCoreThreads：</p>
+<p>“You probably want to prestart threads <strong>if you construct the pool with a non-empty queue</strong>.”</p>
+<p>When a new task is submitted in method execute (java.lang.Runnable)</p>
+<ul>
+<li><p>If fewer than corePoolSize threads are running, a new thread is created to handle the request, even if other worker threads are idle. </p>
+</li>
+<li><p>If there are more than corePoolSize but less than maximumPoolSize threads running, <em>a new thread will be created only if the queue is full</em>.</p>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/23/java-thread-pooling-techniques/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" itemprop="url">Java 里 Arrays.fill () 对二维（多维）数组赋值</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T06:47:20+08:00">
+                2019-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-            <p>Java 提供了丰富的数组及集合操作 libarary。其中使用 <code>Arrays.fill (a, val)</code> 可以方便地将数组 a 的所有值赋值为 val。</p>
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" class="leancloud_visitors" data-flag-title="Java 里 Arrays.fill () 对二维（多维）数组赋值">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Java 提供了丰富的数组及集合操作 libarary。其中使用 <code>Arrays.fill (a, val)</code> 可以方便地将数组 a 的所有值赋值为 val。</p>
 <p>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] tmp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>]; <span class="comment">// 创建大小为 10 的一维整型数组，初始值为 0</span></span><br><span class="line">Arrays.fill (tmp, -<span class="number">1</span>); <span class="comment">// 将所有的数组值重置为 -1</span></span><br></pre></td></tr></table></figure>
 
 <p>接下来看二维数组的场景，看一段代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] intervalArray = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>][<span class="number">2</span>];</span><br><span class="line"><span class="comment">// 希望将二维数组的初始值赋值为 [-1, -1]</span></span><br><span class="line">Arrays.fill (intervalArray, <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length (); i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> letterIdx = s.charAt (i) - <span class="string">'a'</span>;</span><br><span class="line">    <span class="keyword">if</span> (intervalArray [letterIdx][<span class="number">0</span>] == -<span class="number">1</span>) &#123;</span><br><span class="line">        intervalArray [letterIdx][<span class="number">0</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    intervalArray [letterIdx][<span class="number">1</span>] = i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">    System.out.println (Arrays.toString (intervalArray [i]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码最终的行为与预期的完全不符。本意是希望使用 intervalArray 记录每个字符在字符串中出现的初始和最末索引序号，但是运行上面的代码，输出非常奇怪：所有 intervalArray [i][0] 的值都是 0，intervalArray [i][1] 的值也是同一个数值。</p>
-<p>经过反复调试，最终确定了坑的来源。先分析下这段代码。</p>
-<p>首先创建了一个二维数组，二维整型数组本质上是 int [] 类型的一维数组，希望将初始值赋值为 [-1, -1], 套用 <code>Arrays.fill (a, val)</code> 对二维数组每个 int [] 赋值可行吗？</p>
-<p>答案是否定的。</p>
-<p>这是因为 Java 里的 int [] 是对象类型，语句 <code>new int [] {-1, -1}</code> 创建了一个数组类型的 <strong>Object</strong>。所以 <code>Arrays.fill (intervalArray, new int []{-1, -1});</code> 会将 intervalArray 的所有 rows 赋值为同一个由 <code>new int []{-1, -1}</code> 创建的对象，当修改这个对象内部值（对象引用不变）时，所有其他引用该对象的元素必然一起改变。</p>
-<p>所以，正确使用 <code>Arrays.fill</code> 为二维数组赋值的姿势需要使用 <code>for</code> 循环，应该是下面这样的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">	Arrays.fill (intervalArray [i], -<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span>[] row : intervalArray) &#123;</span><br><span class="line">	Arrays.fill (row, -<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1542,142 +1682,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/06/13/java-keywords-volatile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wxl24life">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/final.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wxl24life's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/13/java-keywords-volatile/" itemprop="url">Java 关键字之 volatile</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-13T21:21:41+08:00">
-                2019-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/06/13/java-keywords-volatile/" class="leancloud_visitors" data-flag-title="Java 关键字之 volatile">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>volatile 关键字多出现在 Java 多线程场景，用于声明共享变量的可见性（visibility）。</p>
-<h2 id="可见性解读"><a href="#可见性解读" class="headerlink" title="可见性解读"></a>可见性解读</h2><p>所谓可见性（visibility），是指当一个线程对共享变量做了修改，其他线程能够在第一时间看到该变量修改后的值。这里涉及到的多个线程位于同一个 JVM 进程里。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/13/java-keywords-volatile/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1730,7 +1734,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

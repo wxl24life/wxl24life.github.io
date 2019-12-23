@@ -82,14 +82,14 @@
 <meta name="description" content="Java 提供了丰富的数组及集合操作 libarary。其中使用 Arrays.fill (a, val) 可以方便地将数组 a 的所有值赋值为 val。 例如： 12int[] tmp = new int[10]; // 创建大小为 10 的一维整型数组，初始值为 0Arrays.fill (tmp, -1); // 将所有的数组值重置为 -1  接下来看二维数组的场景，看一段代码： 12345">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java Arrays.fill () 对二维（多维）数组赋值">
+<meta property="og:title" content="Java 里 Arrays.fill () 对二维（多维）数组赋值">
 <meta property="og:url" content="http://wxl24life.com/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
 <meta property="og:description" content="Java 提供了丰富的数组及集合操作 libarary。其中使用 Arrays.fill (a, val) 可以方便地将数组 a 的所有值赋值为 val。 例如： 12int[] tmp = new int[10]; // 创建大小为 10 的一维整型数组，初始值为 0Arrays.fill (tmp, -1); // 将所有的数组值重置为 -1  接下来看二维数组的场景，看一段代码： 12345">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-05T23:22:03.000Z">
+<meta property="og:updated_time" content="2019-12-23T12:35:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Arrays.fill () 对二维（多维）数组赋值">
+<meta name="twitter:title" content="Java 里 Arrays.fill () 对二维（多维）数组赋值">
 <meta name="twitter:description" content="Java 提供了丰富的数组及集合操作 libarary。其中使用 Arrays.fill (a, val) 可以方便地将数组 a 的所有值赋值为 val。 例如： 12int[] tmp = new int[10]; // 创建大小为 10 的一维整型数组，初始值为 0Arrays.fill (tmp, -1); // 将所有的数组值重置为 -1  接下来看二维数组的场景，看一段代码： 12345">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>Java Arrays.fill () 对二维（多维）数组赋值 | wxl24life's blog</title>
+  <title>Java 里 Arrays.fill () 对二维（多维）数组赋值 | wxl24life's blog</title>
   
 
 
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java Arrays.fill () 对二维（多维）数组赋值</h1>
+          <h1 class="post-title" itemprop="name headline">Java 里 Arrays.fill () 对二维（多维）数组赋值</h1>
         
 
         <div class="post-meta">
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" class="leancloud_visitors" data-flag-title="Java Arrays.fill () 对二维（多维）数组赋值">
+             <span id="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" class="leancloud_visitors" data-flag-title="Java 里 Arrays.fill () 对二维（多维）数组赋值">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -396,6 +396,7 @@
 <p>接下来看二维数组的场景，看一段代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] intervalArray = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>][<span class="number">2</span>];</span><br><span class="line"><span class="comment">// 希望将二维数组的初始值赋值为 [-1, -1]</span></span><br><span class="line">Arrays.fill (intervalArray, <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length (); i++) &#123;</span><br><span class="line">    <span class="keyword">int</span> letterIdx = s.charAt (i) - <span class="string">'a'</span>;</span><br><span class="line">    <span class="keyword">if</span> (intervalArray [letterIdx][<span class="number">0</span>] == -<span class="number">1</span>) &#123;</span><br><span class="line">        intervalArray [letterIdx][<span class="number">0</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    intervalArray [letterIdx][<span class="number">1</span>] = i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">    System.out.println (Arrays.toString (intervalArray [i]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
 <p>这段代码最终的行为与预期的完全不符。本意是希望使用 intervalArray 记录每个字符在字符串中出现的初始和最末索引序号，但是运行上面的代码，输出非常奇怪：所有 intervalArray [i][0] 的值都是 0，intervalArray [i][1] 的值也是同一个数值。</p>
 <p>经过反复调试，最终确定了坑的来源。先分析下这段代码。</p>
 <p>首先创建了一个二维数组，二维整型数组本质上是 int [] 类型的一维数组，希望将初始值赋值为 [-1, -1], 套用 <code>Arrays.fill (a, val)</code> 对二维数组每个 int [] 赋值可行吗？</p>
@@ -427,7 +428,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wxl24life.com/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" title="Java Arrays.fill () 对二维（多维）数组赋值">http://wxl24life.com/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/</a>
+    <a href="http://wxl24life.com/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" title="Java 里 Arrays.fill () 对二维（多维）数组赋值">http://wxl24life.com/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -464,6 +465,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/23/java-thread-pooling-techniques/" rel="prev" title="Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池">
+                Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -538,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

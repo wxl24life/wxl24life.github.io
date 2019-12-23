@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo,">
+  <meta name="keywords" content="java,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="搭建博客以来，图片上传功能是目前为止相对最迫切的一个需求。像往常一样，在网上搜了很多方案，包括本地维护和上传到第三方网站然后外链的方式。为防止以后外链失效，所以主要尝试本地上传的方案。">
-<meta name="keywords" content="hexo">
+<meta name="description" content="最基本的线程池类 ThreadPoolExecutor 完整的构造器方法如下： 1234567public ThreadPoolExecutor (int corePoolSize,                          int maximumPoolSize,                          long keepAliveTime,">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo 上传本地图片">
-<meta property="og:url" content="http://wxl24life.com/2019/06/13/add-picture-to-hexo-website/index.html">
+<meta property="og:title" content="Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池">
+<meta property="og:url" content="http://wxl24life.com/2019/12/23/java-thread-pooling-techniques/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="搭建博客以来，图片上传功能是目前为止相对最迫切的一个需求。像往常一样，在网上搜了很多方案，包括本地维护和上传到第三方网站然后外链的方式。为防止以后外链失效，所以主要尝试本地上传的方案。">
+<meta property="og:description" content="最基本的线程池类 ThreadPoolExecutor 完整的构造器方法如下： 1234567public ThreadPoolExecutor (int corePoolSize,                          int maximumPoolSize,                          long keepAliveTime,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wxl24life.com/images/post_images/test.png">
-<meta property="og:updated_time" content="2019-06-13T02:12:32.000Z">
+<meta property="og:updated_time" content="2019-12-23T12:34:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo 上传本地图片">
-<meta name="twitter:description" content="搭建博客以来，图片上传功能是目前为止相对最迫切的一个需求。像往常一样，在网上搜了很多方案，包括本地维护和上传到第三方网站然后外链的方式。为防止以后外链失效，所以主要尝试本地上传的方案。">
-<meta name="twitter:image" content="http://wxl24life.com/images/post_images/test.png">
+<meta name="twitter:title" content="Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池">
+<meta name="twitter:description" content="最基本的线程池类 ThreadPoolExecutor 完整的构造器方法如下： 1234567public ThreadPoolExecutor (int corePoolSize,                          int maximumPoolSize,                          long keepAliveTime,">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wxl24life.com/2019/06/13/add-picture-to-hexo-website/">
+  <link rel="canonical" href="http://wxl24life.com/2019/12/23/java-thread-pooling-techniques/">
 
 
 
 
 
-  <title>Hexo 上传本地图片 | wxl24life's blog</title>
+  <title>Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池 | wxl24life's blog</title>
   
 
 
@@ -313,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/06/13/add-picture-to-hexo-website/">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/12/23/java-thread-pooling-techniques/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wxl24life">
@@ -330,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hexo 上传本地图片</h1>
+          <h1 class="post-title" itemprop="name headline">Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池</h1>
         
 
         <div class="post-meta">
@@ -342,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-13T09:17:43+08:00">
-                2019-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-23T19:48:24+08:00">
+                2019-12-23
               </time>
             
 
@@ -360,7 +358,7 @@
 
           
           
-             <span id="/2019/06/13/add-picture-to-hexo-website/" class="leancloud_visitors" data-flag-title="Hexo 上传本地图片">
+             <span id="/2019/12/23/java-thread-pooling-techniques/" class="leancloud_visitors" data-flag-title="Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,14 +389,165 @@
       
 
       
-        <p><img src="/images/post_images/test.png" alt="test"></p>
-<p>搭建博客以来，图片上传功能是目前为止相对最迫切的一个需求。像往常一样，在网上搜了很多方案，包括本地维护和上传到第三方网站然后外链的方式。为防止以后外链失效，所以主要尝试本地上传的方案。</p>
-<a id="more"></a>
+        <p>最基本的线程池类 ThreadPoolExecutor 完整的构造器方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor (int corePoolSize,</span><br><span class="line">                          int maximumPoolSize,</span><br><span class="line">                          long keepAliveTime,</span><br><span class="line">                          TimeUnit unit,</span><br><span class="line">                          BlockingQueue&lt;Runnable&gt; workQueue,</span><br><span class="line">                          ThreadFactory threadFactory,</span><br><span class="line">                          RejectedExecutionHandler handler)</span><br></pre></td></tr></table></figure>
 
-<p>首先尝试的是 <a href="https://github.com/xcodebuild/hexo-asset-image" target="_blank" rel="noopener">hexo-asset-image</a>，本地执行 npm install 命令一直有依赖更新失败。</p>
-<p>最后使用了最简单的方案，本地 source/images 目录里维护图片，为了跟系统图片区分开，在里面新建了一个 post_images 的目录。</p>
-<p>本文题图通过下面的方式引入：</p>
-<p><code>![test](/images/post_images/test.png)</code></p>
+<p>以下针对 Java doc 文档做几点说明（参考 <a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html" target="_blank" rel="noopener">Java doc</a>）</p>
+<h3 id="一、关于-pool-里-thread-的创建时机"><a href="#一、关于-pool-里-thread-的创建时机" class="headerlink" title="一、关于 pool 里 thread 的创建时机"></a>一、关于 pool 里 thread 的创建时机</h3><p>“By default, even core threads are initially created and started only when new tasks arrive”</p>
+<p>可以通过 prestartCoreThread () or prestartAllCoreThreads () 修改默认行为：分别预启动一个 coreThread 和所有 core threads. 例如下面的场景下可能需要 prestartAllCoreThreads：</p>
+<p>“You probably want to prestart threads <strong>if you construct the pool with a non-empty queue</strong>.”</p>
+<p>When a new task is submitted in method execute (java.lang.Runnable)</p>
+<ul>
+<li><p>If fewer than corePoolSize threads are running, a new thread is created to handle the request, even if other worker threads are idle. </p>
+</li>
+<li><p>If there are more than corePoolSize but less than maximumPoolSize threads running, <em>a new thread will be created only if the queue is full</em>.</p>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="二、关于-keepAliveTime"><a href="#二、关于-keepAliveTime" class="headerlink" title="二、关于 keepAliveTime"></a>二、关于 keepAliveTime</h3><p>If the pool currently has more than corePoolSize threads, excess threads will be terminated if they have been idle for more than the keepAliveTime.</p>
+<p>This provides a means of <strong>reducing resource consumption</strong> when the pool is not being actively used. If the pool becomes more active later, new threads will be constructed.</p>
+<p>By default, the keep-alive policy applies only when there are more than corePoolSizeThreads</p>
+<h3 id="三、关于任务队列"><a href="#三、关于任务队列" class="headerlink" title="三、关于任务队列"></a>三、关于任务队列</h3><h4 id="3-条原则（Queuing-vs-pool-sizing）"><a href="#3-条原则（Queuing-vs-pool-sizing）" class="headerlink" title="3 条原则（Queuing vs. pool sizing）:"></a>3 条原则（Queuing vs. pool sizing）:</h4><ul>
+<li>If fewer than corePoolSize threads are running, the Executor always prefers adding a new thread rather than queuing.</li>
+<li>If corePoolSize or more threads are running, the Executor always prefers queuing a request rather than adding a new thread. (<strong>why?</strong>)</li>
+</ul>
+<blockquote>
+<p>If you define a thread pool with the following code, it will never start the 2nd thread because the LinkedBlockingQueue is unbounded.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService threadPool = new ThreadPoolExecutor (1, 50, 60, TimeUnit.SECONDS, </span><br><span class="line">			new LinkedBlockingQueue&lt;Runnable&gt;(/* unlimited queue */));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>RF: <a href="https://stackoverflow.com/questions/19528304/how-to-get-the-threadpoolexecutor-to-increase-threads-to-max-before-queueing?answertab=votes#tab-top" target="_blank" rel="noopener">How to get the ThreadPoolExecutor to increase threads to max before queueing?</a></p>
+</blockquote>
+<blockquote>
+<p>关于 why? 我的理解：这样设计更多是从性能方面考虑。线程池创建和销毁线程需要额外的性能开销，优先将任务排队，可以减少创建非核心线程的开销，尽量最大化核心线程的使用价值，当任务数超过阻塞队列容量，表名任务数量过大，此时不得不创建额外的非核心线程。</p>
+</blockquote>
+<ul>
+<li>If a request cannot be queued, a new thread is created unless this would exceed maximumPoolSize, in which case, the task will be rejected.</li>
+</ul>
+<h4 id="3-种-queuing-策略："><a href="#3-种-queuing-策略：" class="headerlink" title="3 种 queuing 策略："></a>3 种 queuing 策略：</h4><ul>
+<li>Direct handoffs（SynchronousQueue, 优先创建线程，generally require unbounded maximumPoolSizes to avoid rejection of new submitted tasks）</li>
+<li>Unbounded queues: cause new tasks to wait in the queue when all corePoolSize threads are busy (Thus, no more than corePoolSize threads will ever be created. And the value of the maximumPoolSize therefore doesn’t have any effect)<pre><code>- It admits the possibility of unbounded work queue growth</code></pre></li>
+<li>Bounded queues ( affected throughput）</li>
+</ul>
+<h4 id="4-种-rejection-策略（由-RejectionHandler-提供）："><a href="#4-种-rejection-策略（由-RejectionHandler-提供）：" class="headerlink" title="4 种 rejection 策略（由 RejectionHandler 提供）："></a>4 种 rejection 策略（由 RejectionHandler 提供）：</h4><ul>
+<li>AbortPolicy （缺省，抛异常  RejectedExecutionException）</li>
+<li>CallerRunsPolicy （交给执行 execute () 方法的线程执行）</li>
+<li>DiscardPolicy（直接 drop 掉）</li>
+<li>DiscardOldestPolicy （if the executor is not shut down, the task at the head of the work queue is dropped）</li>
+</ul>
+<h3 id="四、JDK-提供的五种标准线程池实现方式（通过-Executors-工厂类创建）"><a href="#四、JDK-提供的五种标准线程池实现方式（通过-Executors-工厂类创建）" class="headerlink" title="四、JDK 提供的五种标准线程池实现方式（通过 Executors 工厂类创建）"></a>四、JDK 提供的五种标准线程池实现方式（通过 Executors 工厂类创建）</h3><table>
+<thead>
+<tr>
+<th align="left">methods</th>
+<th align="left">corePoolSize</th>
+<th>maximumPoolSize</th>
+<th align="left">keepAliveTime</th>
+<th align="left">unit</th>
+<th align="left">workQueue</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">newFixedThreadPool (int nThreads)</td>
+<td align="left">nThreads</td>
+<td>nThreads</td>
+<td align="left">0</td>
+<td align="left">MILLISECONDS</td>
+<td align="left">LinkedBlockingQueue</td>
+</tr>
+<tr>
+<td align="left">newSingleThreadPool</td>
+<td align="left">1</td>
+<td>1</td>
+<td align="left">0</td>
+<td align="left">MILLISECONDS</td>
+<td align="left">LinkedBlockingQueue</td>
+</tr>
+<tr>
+<td align="left">newCachedThreadPool</td>
+<td align="left">0</td>
+<td>Integer.MAX_VALUE</td>
+<td align="left">60</td>
+<td align="left">SECONDS</td>
+<td align="left">SynchronousQueue</td>
+</tr>
+<tr>
+<td align="left">newScheduledThreadPool (int corePoolSize)</td>
+<td align="left">corePoolSize</td>
+<td>Integer.MAX_VALUE</td>
+<td align="left">0</td>
+<td align="left">NANOSECONDS</td>
+<td align="left">DelayedWorkQueue</td>
+</tr>
+<tr>
+<td align="left">newSingleThreadScheduledExecutor</td>
+<td align="left">1</td>
+<td>Integer.MAX_VALUE</td>
+<td align="left">0</td>
+<td align="left">NANOSECONDS</td>
+<td align="left">DelayedWorkQueue</td>
+</tr>
+</tbody></table>
+<p>所有的 ThreadFactory 和 RejectionHandler 对象都采用默认值：Executors.defaultThreadFactory () 和 new AbortPolicy ()。</p>
+<h3 id="五、最后说一下-JDBC-connection-pool-的一些设置参数"><a href="#五、最后说一下-JDBC-connection-pool-的一些设置参数" class="headerlink" title="五、最后说一下 JDBC connection pool 的一些设置参数"></a>五、最后说一下 JDBC connection pool 的一些设置参数</h3><p>以 <a href="https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html" target="_blank" rel="noopener">DBCP</a> 和 <a href="https://commons.apache.org/proper/commons-dbcp/configuration.html" target="_blank" rel="noopener">Tomcat JDBC connection pool</a> 为例</p>
+<table>
+<thead>
+<tr>
+<th align="left">parameters</th>
+<th>DBCP</th>
+<th align="left">Tomcat</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">initialSize</td>
+<td>0</td>
+<td align="left">10</td>
+<td align="left">The initial number of connections that are created when the pool is started.</td>
+</tr>
+<tr>
+<td align="left">maxActive</td>
+<td>maxTotal / 8</td>
+<td align="left">100</td>
+<td align="left">The maximum number of active connections that can be allocated from this pool at the same time</td>
+</tr>
+<tr>
+<td align="left">maxIdle</td>
+<td>8</td>
+<td align="left">maxActive:100</td>
+<td align="left">The maximum number of connections that should be kept in the pool at all times.  Idle connections are checked periodically (if enabled) and connections that been idle for longer than minEvictableIdleTimeMillis will be released.</td>
+</tr>
+<tr>
+<td align="left">minIdle</td>
+<td>0</td>
+<td align="left">initialSize:10</td>
+<td align="left">The minimum number of established connections that should be kept in the pool at all times. The connection pool can shrink below this number if validation queries fail.</td>
+</tr>
+<tr>
+<td align="left">maxWait</td>
+<td>maxWaitMillis /indefinitely</td>
+<td align="left">30000 (30 seconds)</td>
+<td align="left">The maximum number of milliseconds that the pool will wait (when there are no available connections) for a connection to be returned before throwing an exception</td>
+</tr>
+<tr>
+<td align="left">minEvictableIdleTimeMillis</td>
+<td>1000 * 60 * 30 (30 minutes)</td>
+<td align="left">60000 (60 seconds)</td>
+<td align="left">The minimum amount of time an object may sit idle in the pool before it is eligible for eviction</td>
+</tr>
+<tr>
+<td align="left">testWhileIdle</td>
+<td>false</td>
+<td align="left">false</td>
+<td align="left">The indication of whether objects will be validated by the idle object evictor (if any). If an object fails to validate, it will be dropped from the pool. The default value is false and this property has to be set in order for the pool cleaner/test thread is to run</td>
+</tr>
+<tr>
+<td align="left">timeBetweenEvictionRunsMillis</td>
+<td>-1 / When non-positive, no idle object evictor thread will be run</td>
+<td align="left">5000 (5 seconds) / This value should not be set under 1 second.</td>
+<td align="left">The number of milliseconds to sleep between runs of the idle connection validation/cleaner thread. It dictates how often we check for idle, abandoned connections, and how often we validate idle connections</td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -419,7 +568,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wxl24life.com/2019/06/13/add-picture-to-hexo-website/" title="Hexo 上传本地图片">http://wxl24life.com/2019/06/13/add-picture-to-hexo-website/</a>
+    <a href="http://wxl24life.com/2019/12/23/java-thread-pooling-techniques/" title="Java 线程池实现 Notes 及 Pooling 技术的应用 - 数据库连接池">http://wxl24life.com/2019/12/23/java-thread-pooling-techniques/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -434,7 +583,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -447,8 +596,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/12/deploy-hexo-site-on-coding-dot-me/" rel="next" title="将博客同步部署到 github 和 Coding 平台">
-                <i class="fa fa-chevron-left"></i> 将博客同步部署到 github 和 Coding 平台
+              <a href="/2019/12/06/java-multidimensional-array-initialize-with-arraysfill/" rel="next" title="Java 里 Arrays.fill () 对二维（多维）数组赋值">
+                <i class="fa fa-chevron-left"></i> Java 里 Arrays.fill () 对二维（多维）数组赋值
               </a>
             
           </div>
@@ -456,10 +605,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/13/java-keywords-volatile/" rel="prev" title="Java 关键字之 volatile">
-                Java 关键字之 volatile <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -516,8 +661,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -595,6 +749,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、关于-pool-里-thread-的创建时机"><span class="nav-number">1.</span> <span class="nav-text">一、关于 pool 里 thread 的创建时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、关于-keepAliveTime"><span class="nav-number">2.</span> <span class="nav-text">二、关于 keepAliveTime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、关于任务队列"><span class="nav-number">3.</span> <span class="nav-text">三、关于任务队列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-条原则（Queuing-vs-pool-sizing）"><span class="nav-number">3.1.</span> <span class="nav-text">3 条原则（Queuing vs. pool sizing）:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-种-queuing-策略："><span class="nav-number">3.2.</span> <span class="nav-text">3 种 queuing 策略：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-种-rejection-策略（由-RejectionHandler-提供）："><span class="nav-number">3.3.</span> <span class="nav-text">4 种 rejection 策略（由 RejectionHandler 提供）：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、JDK-提供的五种标准线程池实现方式（通过-Executors-工厂类创建）"><span class="nav-number">4.</span> <span class="nav-text">四、JDK 提供的五种标准线程池实现方式（通过 Executors 工厂类创建）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、最后说一下-JDBC-connection-pool-的一些设置参数"><span class="nav-number">5.</span> <span class="nav-text">五、最后说一下 JDBC connection pool 的一些设置参数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

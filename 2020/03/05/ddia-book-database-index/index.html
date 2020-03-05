@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="有椒其馨,胡考之宁">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxl24life&#39;s blog">
-<meta property="og:url" content="http://wxl24life.com/tags/随笔/index.html">
+<meta name="description" content="数据库最核心的功能是存储和检索 - 以某种格式存储到某种存储介质，之后通过某种查询方式（例如 SQL 或者 API）进行检索。 最简单的存储方式基于日志，以追加式的方式实现，数据按照写入顺序排列。比如日志以 CSV 格式顺序追加到文件里，数据的增删改都以单独的一条记录存储在日志里。 基于日志的存储在写性能方面优势明显，主要问题是检索的效率太差，需要逐个遍历每条记录。 为了提升数据检索的效率，我们考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDIA 笔记之数据库与索引">
+<meta property="og:url" content="http://wxl24life.com/2020/03/05/ddia-book-database-index/index.html">
 <meta property="og:site_name" content="wxl24life&#39;s blog">
-<meta property="og:description" content="有椒其馨,胡考之宁">
+<meta property="og:description" content="数据库最核心的功能是存储和检索 - 以某种格式存储到某种存储介质，之后通过某种查询方式（例如 SQL 或者 API）进行检索。 最简单的存储方式基于日志，以追加式的方式实现，数据按照写入顺序排列。比如日志以 CSV 格式顺序追加到文件里，数据的增删改都以单独的一条记录存储在日志里。 基于日志的存储在写性能方面优势明显，主要问题是检索的效率太差，需要逐个遍历每条记录。 为了提升数据检索的效率，我们考">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-05T06:20:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxl24life&#39;s blog">
-<meta name="twitter:description" content="有椒其馨,胡考之宁">
+<meta name="twitter:title" content="DDIA 笔记之数据库与索引">
+<meta name="twitter:description" content="数据库最核心的功能是存储和检索 - 以某种格式存储到某种存储介质，之后通过某种查询方式（例如 SQL 或者 API）进行检索。 最简单的存储方式基于日志，以追加式的方式实现，数据按照写入顺序排列。比如日志以 CSV 格式顺序追加到文件里，数据的增删改都以单独的一条记录存储在日志里。 基于日志的存储在写性能方面优势明显，主要问题是检索的效率太差，需要逐个遍历每条记录。 为了提升数据检索的效率，我们考">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://wxl24life.com/tags/随笔/">
+  <link rel="canonical" href="http://wxl24life.com/2020/03/05/ddia-book-database-index/">
 
 
 
 
 
-  <title>标签: 随笔 | wxl24life's blog</title>
+  <title>DDIA 笔记之数据库与索引 | wxl24life's blog</title>
   
 
 
@@ -143,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -295,52 +296,224 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>随笔<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2020/03/05/ddia-book-database-index/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/09/29/rainy-mood-calm-yourself-down/" itemprop="url">
-              
-                <span itemprop="name">rainymood - 收拾心情</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">DDIA 笔记之数据库与索引</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-29T09:37:47+08:00" content="2019-09-29">
-          09-29
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-05T14:17:53+08:00">
+                2020-03-05
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/03/05/ddia-book-database-index/" class="leancloud_visitors" data-flag-title="DDIA 笔记之数据库与索引">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据库最核心的功能是存储和检索 - 以某种格式存储到某种存储介质，之后通过某种查询方式（例如 SQL 或者 API）进行检索。</p>
+<p>最简单的存储方式基于日志，以追加式的方式实现，数据按照写入顺序排列。比如日志以 CSV 格式顺序追加到文件里，数据的增删改都以单独的一条记录存储在日志里。</p>
+<p>基于日志的存储在写性能方面优势明显，主要问题是检索的效率太差，需要逐个遍历每条记录。</p>
+<p>为了提升数据检索的效率，我们考虑维护 ** 索引 ** 结构。索引在提升读访问性能时会增加写操作的维护成本，减慢写的速度，因此应该根据数据访问需要，只创建必要的索引。</p>
+<p>最简单的索引结构是哈希表，在内存中维护每个 key 和该 key 在日志文件里的偏移量。这种方式要求内存足够容下所有 key (对 value 的数据大小没有要求）。</p>
+<p>追加日志文件的方式通常与文件分段、压缩、合并等操作相结合。</p>
+<ul>
+<li>分段可以避免单个文件过大进而最终用尽磁盘</li>
+<li>分段是将文件分成一定大小的段，当文件达到大小阈值时就关闭它，后续写入维护到新的段文件里</li>
+<li>可以在段上执行压缩，将日志中重复的键丢弃，只保留最近的更新</li>
+<li>压缩会使得段变小，可以在执行压缩的同时将多个段合并在一起并写入新的文件，整个过程可以在后台异步完成，压缩合并执行过程中，可以继续用旧的段文件进行读写请求</li>
+<li>合并使得段的数量减少，可以有效减少数据查询操作需要检查的段数量</li>
+</ul>
+<p>其他的一些重要考量因素：</p>
+<ol>
+<li>数据格式：用二进制格式替换 CSV</li>
+<li>对于删除记录，也追加到文件中，称为墓碑记录</li>
+<li>考虑到崩溃后需要恢复内存 hashmap，可以在磁盘上维护每个段文件对应 hashmap 的内存快照</li>
+<li>部分写入的记录可以通过校验值的方式发现并丢弃</li>
+<li>并发控制的选择考虑用单个写线程负责数据文件的追加，保证写入先后顺序</li>
+</ol>
+<p>追加日志相比原地更新文件的好处：</p>
+<ol>
+<li>顺序写速度远高于随机写</li>
+<li>因为段文件的追加或不可变的，并发和崩溃恢复起来简单很多</li>
+<li>文件合并可以避免碎片化问题</li>
+</ol>
+<p>哈希索引的局限：</p>
+<ol>
+<li>必须全部维护到内存，不适合大量键的场景。如果考虑磁盘维护哈希表？性能很难表现良好，几个原因：1. 需要大量随机 I/O 访问 2. 哈希表满了之后扩容代价昂贵 3. 解决哈希冲突的复杂性</li>
+<li>区间查询效率不高，只能针对区间内的每个值单独查询</li>
+</ol>
+<hr>
+<p>最简单的日志存储方式，每个段文件里存储一组 key-value 对且按照写入顺序排列。如果希望日志里的数据按照 key 排列，如何重新设计段文件的格式。</p>
+<p>下面引入 SSTable - 排序字符串表。</p>
+<ol>
+<li>因为段文件有序，合并端变得简单高效，采用类似归并排序的合并方法即可。</li>
+<li>可以采用稀疏索引，不需要在内存中维护所有键的索引</li>
+<li>可以按区间维护块并在写磁盘前进行压缩，稀疏内存索引指向压缩快的开头，既节省空间又减少了 I/O 带宽</li>
+</ol>
+<p>如何构建和维护 SSTable？如何保证磁盘段文件里的数据按照 key 排序。</p>
+<p>B-Tree 可以直接在磁盘上维护排序结构，不过与之相比，在内存中维护排序结构会容易很多。</p>
+<p>内存排序可以考虑红黑树或者 AVL 树等平衡二叉树结构，这种结构支持任意顺序写入并以排序后的顺序读取它们。</p>
+<p>存储工作流程如下：</p>
+<ol>
+<li>内存中维护内存表，选用平衡二叉树（例如红黑树）作为存储结构。写入时，将数据写入内存表。</li>
+<li>内存表大小达到阈值，将其作为 SSTable 文件写入磁盘。</li>
+<li>对于读请求，先在内存表中查找，然后是最新的磁盘段文件，以此类推。</li>
+<li>后台进程周期性地合并压缩段文件</li>
+</ol>
+<p>上述过程存在的问题是，如果遇到数据库崩溃，内存表中的最近写入数据将丢失。为此，需要在磁盘保留单独的 WAL 日志。</p>
+<hr>
+<p>SSTable 及内存表的术语来源于 Google 的 Bigtable 论文，整体是基于合并和压缩排序日志文件的原理，属于 LSM-Tree (Log-Structured Merge Tree，日志结构的合并树)。<br>很多存储引擎的实现都采用了类似的结构，统称为 LSM 存储引擎，例如 Cassandra、HBase 以及全文搜索系统所使用的索引引擎 Lucene。</p>
+<p>对于不存在的 key 值检索，按照 LSM-Tree 的算法，需要轮流遍历内存表和从新到旧的每一个 SSTable 段文件，因此效率很差。为此，存储引擎会引入额外的布隆过滤器，如果数据库中不存在某个键，会直接通过内存里的布隆过滤器找到答案。</p>
+<p>关于 SSTable 的压缩合并时机，HBase 采用了大小分级的压缩方式，区分为 Major Compact 和 Minor Compact。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    wxl24life
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wxl24life.com/2020/03/05/ddia-book-database-index/" title="DDIA 笔记之数据库与索引">http://wxl24life.com/2020/03/05/ddia-book-database-index/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/16/redis-persistence/" rel="next" title="Redis 的持久化机制">
+                <i class="fa fa-chevron-left"></i> Redis 的持久化机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -348,6 +521,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY3NC8yMDIxNA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -602,6 +784,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -630,6 +816,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

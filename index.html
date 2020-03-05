@@ -310,6 +310,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2020/01/16/redis-persistence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wxl24life">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/final.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wxl24life's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/16/redis-persistence/" itemprop="url">Redis 的持久化机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-16T13:59:24+08:00">
+                2020-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/01/16/redis-persistence/" class="leancloud_visitors" data-flag-title="Redis 的持久化机制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>redis 提供了两种持久化机制：rdb 和 AOF。</p>
+<h3 id="一、rdb-方式"><a href="#一、rdb-方式" class="headerlink" title="一、rdb 方式"></a>一、rdb 方式</h3><p>rdb 通过快照的方式定期对 redis 某个时刻的数据做磁盘备份。相比 AOF，rdb 文件恢复数据更快一些，文件紧凑，适合数据备份。使用子进程的方式进行异步数据备份，对 redis 服务器的性能影响是最小的。</p>
+<h3 id="1-1-如何开启-rdb-持久化"><a href="#1-1-如何开启-rdb-持久化" class="headerlink" title="1.1 如何开启 rdb 持久化"></a>1.1 如何开启 rdb 持久化</h3><ol>
+<li>同步命令：通过客户端向服务器发送 save（同步的方式，会阻塞服务器其他请求，不要在生产环境执行 save）</li>
+<li>异步命令：bgsave 命令触发 redis 服务主进程 fork 一个子进程来同步数据到 rdb 文件。注意子进程 fork 的过程是同步操作，如果 fork 子进程花费太长时间，也会阻塞其他请求。</li>
+<li>通过配置指定触发条件。执行类似 bgsave，不推荐这种方式触发 rdb，频率控制的不当会造成不同的后果：过频繁，造成压力；间隔太长，数据丢失问题。</li>
+</ol>
+<h3 id="1-2-rdb-方式主要问题"><a href="#1-2-rdb-方式主要问题" class="headerlink" title="1.2 rdb 方式主要问题"></a>1.2 rdb 方式主要问题</h3><ol>
+<li>由于两次 rdb 之间会有时间间隔，如果 redis 实例恰好在此期间挂掉，那么回造成两次 rdb 之间的数据丢失。</li>
+<li>通过 save 命令触发 rdb 时会造成服务阻塞，直到数据同步完成才能接受后续请求。</li>
+<li>使用 bgsave 命令在 fork 子进程时，如果数据量太大，fork 的过程也会阻塞；另外，fork 子进程会耗费内存。</li>
+</ol>
+<h2 id="二、AOF（append-only-file）"><a href="#二、AOF（append-only-file）" class="headerlink" title="二、AOF（append-only file）"></a>二、AOF（append-only file）</h2><p>AOF 持久化方式会记录客户端对服务器的每一次写操作命令，并将这些写操作以 redis 协议追加保存到以后缀为 aof 文件末尾。<br>在 redis 重启时，会加载并运行 aof 文件的命令，以达到数据恢复的目的。</p>
+<p>默认不开启，通过配置文件的方式开启 aof 持久化。</p>
+<h3 id="2-1-三种不同保障级别的写入策略（通过-appendsync-选项指定）"><a href="#2-1-三种不同保障级别的写入策略（通过-appendsync-选项指定）" class="headerlink" title="2.1 三种不同保障级别的写入策略（通过 appendsync 选项指定）"></a>2.1 三种不同保障级别的写入策略（通过 appendsync 选项指定）</h3><ol>
+<li>always: 最安全也是最耗费资源（每个写都有 IO 操作）的一种策略，每个写操作都要保存到 aof 文件中</li>
+<li>everysec：默认写入策略，每秒写一次。最多会丢失 1s 的数据</li>
+<li>no：redis 服务器不负责写入 aof，交给操作系统来决定什么时候写 aof；最快也是最不安全的选择，不推荐使用。</li>
+</ol>
+<h3 id="2-2-AOF-文件重写"><a href="#2-2-AOF-文件重写" class="headerlink" title="2.2 AOF 文件重写"></a>2.2 AOF 文件重写</h3><p>开辟一个子进程对内存进行遍历，转换成一系列 redis 的操作指令，序列化成一个新的 aof 日志文件。<br>效果类似于对某个 key 的多次操作压缩合并成为一条指令，有助于降低 aof 文件的磁盘占用，从而有助于加快数据恢复的速度。</p>
+<p>支持不开启重写（默认) 和让服务器异步重写追加 aof 文件命令（bgrewriteaof)。</p>
+<h3 id="2-3-AOF-的优缺点"><a href="#2-3-AOF-的优缺点" class="headerlink" title="2.3 AOF 的优缺点"></a>2.3 AOF 的优缺点</h3><p>优点只是追加日志文件，对服务器性能影响较小，速度比 rdb 更快，消耗的内存较少。<br>缺点主要是生成的 aof 日志文件太大，恢复数据的速度比 rdb 慢。</p>
+<h2 id="三、其他-notes"><a href="#三、其他-notes" class="headerlink" title="三、其他 notes"></a>三、其他 notes</h2><ol>
+<li><p>当 rdb 和 aof 两种方式都开启时，redis 优先使用 aof 日志来恢复数据，因为 aof 保存的文件更完整。</p>
+</li>
+<li><p>从运维实践的角度，如何应用 rdb 和 aof 持久化机制。</p>
+<p> 先说快照的方式，它通过开启子进程的方式进行，fork 是比较耗费资源的操作。全量快照需要遍历整个内存，大块写磁盘也会加重系统负载。<br> AOF 的 fsync（异步刷盘）是一个耗时的 IO 操作，会降低 redis 性能，也会增加系统 IO 负担。</p>
+<p> 运维实践中，通常 redis 的主节点不会进行持久化操作，持久化交给从节点进行。注意网络分区造成主从数据不一致问题，做好监控，也应该增加一个从节点，避免数据丢失。</p>
+</li>
+<li><p>redis 4.0 提供的混合持久化机制</p>
+<p> 重启 redis 很少使用 rdb 来恢复数据，因为可能存在大量数据丢失。aof 文件过大，恢复数据太慢。<br> 混合持久化机制是结合 rdb 的数据恢复速度和 aof 的数据完整性，先恢复 rdb 数据，之后通过 aof 回放 rdb 丢失的增量数据。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/12/23/java-thread-pooling-techniques/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1545,143 +1708,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wxl24life.com/2019/06/23/post-reading-notes-how-to-beat-others/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wxl24life">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/final.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wxl24life's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/23/post-reading-notes-how-to-beat-others/" itemprop="url">「左耳朵耗子 - 如何超越大多数人」阅读笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T07:59:29+08:00">
-                2019-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/06/23/post-reading-notes-how-to-beat-others/" class="leancloud_visitors" data-flag-title="「左耳朵耗子 - 如何超越大多数人」阅读笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>早上读了耗子哥最新发表的文章「<a href="https://coolshell.cn/articles/19464.html" target="_blank" rel="noopener">如何超越大多数人</a>」。</p>
-<p>其实昨天晚上就在 twitter 上看到了这篇推送，当时看到标题，第一反应是，「耗子哥又在推销成功学经验了，超越大多数人？还是先超越自己吧」。</p>
-<p>然后今早醒来认真的读了一遍，还是有些启发的，文章的内容也没有题目那样功利主义。因为自己记性比较差，所以做下简单的记录就当是阅读笔记了。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/23/post-reading-notes-how-to-beat-others/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1734,7 +1760,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1756,7 +1782,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1809,7 +1835,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
